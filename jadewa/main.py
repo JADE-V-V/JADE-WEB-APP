@@ -1,14 +1,13 @@
-import os
+"""Main app entry point.
+"""
+
 import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
 from jadewa.status import Status
 from jadewa.processor import Processor
-import jadewa.resources as res
 
 
 # Get list of CSV files in current directory

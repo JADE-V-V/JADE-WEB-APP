@@ -15,6 +15,6 @@ TEST_DF = pd.DataFrame(
 class TestPlotter:
     """Test Plotter class"""
 
-    def test_get_plot(self):
+    def test_get_figure(self):
         key_args = {"x": "x", "y": "y"}
-        get_figure("line", TEST_DF, key_args)
+        get_figure("step", TEST_DF, key_args)
