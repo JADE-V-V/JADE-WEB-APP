@@ -127,13 +127,16 @@ def update_graph(
     isotope_material: str,
 ):
     if selected_benchmark and selected_lib and selected_tally:
-        if selected_benchmark == "Sphere" and isotope_material:
-            fig = processor.get_plot(
-                selected_benchmark,
-                selected_lib,
-                selected_tally,
-                isotope_material=isotope_material,
-            )
+        if selected_benchmark == "Sphere":
+            if isotope_material:
+                fig = processor.get_plot(
+                    selected_benchmark,
+                    selected_lib,
+                    selected_tally,
+                    isotope_material=isotope_material,
+                )
+            else:
+                return {}
         else:
             fig = processor.get_plot(selected_benchmark, selected_lib, selected_tally)
         return fig
