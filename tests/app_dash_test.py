@@ -1,4 +1,4 @@
-from jadewa.app import (
+from jadewa.app_dash import (
     update_lib_dropdown,
     update_isotope_material,
     update_tally_dropdown,
