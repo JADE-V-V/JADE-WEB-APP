@@ -7,6 +7,7 @@ import os
 from importlib.resources import files, as_file
 import jadewa.resources as res
 import json
+from jadewa.utils import LIB_NAMES
 
 RESOURCES = files(res)
 
@@ -66,7 +67,7 @@ class Processor:
                         continue
                 else:
                     df = pd.read_csv(path.format(tally))
-                df["label"] = f"{lib}-{code}"
+                df["label"] = f"{LIB_NAMES[lib]}-{code}"
                 dfs.append(df)
         newdf = pd.concat(dfs)
 

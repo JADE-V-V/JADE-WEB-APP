@@ -4,6 +4,7 @@
 import streamlit as st
 from jadewa.status import Status
 from jadewa.processor import Processor
+from jadewa.utils import LIB_SUFFIXES, MATERIAL_NUMBERS
 
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
@@ -30,7 +31,7 @@ with col1:
 
     # get the libraries for the selected benchmark
     if selected_benchmark:
-        lib_options = status.get_libraries(selected_benchmark)
+        lib_options = status.get_libraries(selected_benchmark, pretty=True)
         ref_lib = st.selectbox("Select reference library", lib_options, index=None)
     else:
         ref_lib = None
@@ -39,7 +40,7 @@ with col1:
     if selected_benchmark == "Sphere":
         if ref_lib:
             isotope_material_options = processor.get_available_isotopes_materials(
-                selected_benchmark, ref_lib, "mcnp"
+                selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
             )
 
             isotope_material = st.selectbox(
@@ -51,7 +52,7 @@ with col1:
     # select the tally
     if selected_benchmark and ref_lib:
         tallies_options = processor.get_available_tallies(
-            selected_benchmark, ref_lib, "mcnp"
+            selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
         )
         tally = st.selectbox("Select tally", tallies_options, index=None)
 
@@ -61,14 +62,14 @@ with col1:
             if isotope_material:
                 fig = processor.get_plot(
                     selected_benchmark,
-                    ref_lib,
+                    LIB_SUFFIXES[ref_lib],
                     tally,
                     isotope_material=isotope_material,
                 )
             else:
                 fig = None
         else:
-            fig = processor.get_plot(selected_benchmark, ref_lib, tally)
+            fig = processor.get_plot(selected_benchmark, LIB_SUFFIXES[ref_lib], tally)
     else:
         fig = None
 

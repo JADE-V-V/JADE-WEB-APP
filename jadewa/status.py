@@ -1,6 +1,7 @@
 from __future__ import annotations
 import os
 import requests
+from jadewa.utils import LIB_NAMES, MATERIAL_NAMES
 
 
 class Status:
@@ -144,20 +145,30 @@ class Status:
         """
         return list(self.status.keys())
 
-    def get_libraries(self, benchmark: str) -> list[str]:
+    def get_libraries(self, benchmark: str, pretty: bool = False) -> list[str]:
         """Get a list of all libraries available for a given benchmark
 
         Parameters
         ----------
         benchmark : str
             Benchmark name
+        pretty : bool, optional
+            if True, return the pretty names, by default False
 
         Returns
         -------
         list[str]
             List of all libraries available
         """
-        return list(self.status[benchmark].keys())
+        # Use the pretty names
+        if pretty:
+            libs = []
+            for lib in self.status[benchmark].keys():
+                libs.append(LIB_NAMES[lib])
+        else:
+            libs = list(self.status[benchmark].keys())
+
+        return libs
 
     def get_codes(self, benchmark: str, library: str) -> list[str]:
         """Get a list of all codes available for a given library and benchmark

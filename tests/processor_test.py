@@ -37,7 +37,7 @@ class TestProcessor:
             "21c",
             "204",
         )
-        assert set(data["label"]) == {"32c-mcnp", "00c-mcnp"}
+        assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
 
         try:
@@ -68,7 +68,7 @@ class TestProcessor:
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
             isotope_material="1001",
         )
-        assert set(data["label"]) == {"00c-mcnp", "32c-mcnp"}
+        assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 6
         assert len(set(data["Tally Description"].to_list())) == 1
 
