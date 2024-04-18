@@ -48,19 +48,24 @@ class Processor:
                 f"{benchmark}-{tally} combination not supported"
             ) from exc
 
-        # get all dfs for the different codes-librarries combos
+        # get all dfs for the different codes-libraries combos
         dfs = []
         for lib, values in self.status.status[benchmark].items():
             for code, (path, _) in values.items():
+                if "https" in path:
+                    path = path + r"/{}.csv?raw=true"
+                else:
+                    path = path + os.sep + "{}.csv"
+
                 if isotope_material:
                     try:
-                        df = pd.read_csv(os.path.join(path, f"{isotope_material}.csv"))
+                        df = pd.read_csv(path.format(isotope_material))
                     except FileNotFoundError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
                         continue
                 else:
-                    df = pd.read_csv(os.path.join(path, tally + ".csv"))
+                    df = pd.read_csv(path.format(tally))
                 df["label"] = f"{lib}-{code}"
                 dfs.append(df)
         newdf = pd.concat(dfs)
@@ -133,7 +138,10 @@ class Processor:
         # Sphere benchmark raw data has a different structure
         if benchmark == "Sphere":
             # get the first availeble csv file
-            path_csv = os.path.join(available_csv[0], csv_names[0])
+            if "https" in available_csv[0]:
+                path_csv = available_csv[0] + r"/" + csv_names[0] + r"?raw=true"
+            else:
+                path_csv = os.path.join(available_csv[0], csv_names[0])
             df = pd.read_csv(path_csv)
             return list(
                 set(df["Tally Description"].to_list()).intersection(set(supported))

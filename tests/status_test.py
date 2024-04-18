@@ -6,6 +6,7 @@ from importlib.resources import files
 import pytest
 from jadewa.status import Status
 import tests.resources.status as res
+import pandas as pd
 
 
 class TestStatus:
@@ -37,3 +38,11 @@ class TestStatus:
         path, files_res = status.get_results("ITER_1D", "00c", "mcnp")
         assert os.path.exists(os.path.join(path, files_res[0]))
         assert len(files_res) == 23
+
+    def test_from_github(self):
+        """Test the from_github method"""
+        status = Status.from_github("JADE-V-V", "JADE-RAW-RESULTS")
+        assert isinstance(status, Status)
+        csvs = status.get_results("Sphere", "32c", "mcnp")
+        assert len(csvs[1]) > 100
+        assert pd.read_csv(csvs[0] + "/" + csvs[1][0] + "?raw=true") is not None

@@ -1,5 +1,6 @@
 from __future__ import annotations
 import os
+import requests
 
 
 class Status:
@@ -12,15 +13,74 @@ class Status:
         ----------
         status : dict[str, dict[str, dict[str, tuple[str, list[str]]]]]
             nested dictionary. First level is benchmark name, second level is
-            library and third is code.
+            library and third is code. The value is a tuple with the path to
+            the results and a list of all files available.
 
         Attributes
         ----------
         status : dict[str, dict[str, dict[str, tuple[str, list[str]]]]]
             nested dictionary. First level is benchmark name, second level is
-            library and third is code.
+            library and third is code. The value is a tuple with the path to
+            the results and a list of all files available.
         """
         self.status = status
+
+    @staticmethod
+    def _github_walk(owner: str, repo: str, branch: str = "main"):
+        url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{branch}?recursive=1"
+        r = requests.get(url, timeout=10)
+        r.raise_for_status()
+        data = r.json()
+
+        return data["tree"]
+
+    @classmethod
+    def from_github(cls, owner: str, repo: str, branch: str = "main") -> Status:
+        """Create a Status object parsing all files contained in a GitHub repository
+
+        Parameters
+        ----------
+        owner : str
+            Owner of the repository
+        repo : str
+            name of the repository
+        branch : str, optional
+            branch name, by default 'main'
+
+        Returns
+        -------
+        Status
+            Status object
+        """
+        # structure in the root directory goes library -> benchmark ->
+        # code -> results.
+
+        # First get all last level directories
+        allfiles = []
+        for i in cls._github_walk(owner, repo, branch):
+            path = i["path"]
+            if os.path.basename(path)[-3:] == "csv":
+                allfiles.append(path)
+
+        # create the nested dict for the status
+        status = {}
+        start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
+        for path in allfiles:
+            pieces = path.split("/")
+            library = pieces[-5]
+            benchmark = pieces[-4]
+            code = pieces[-3]
+            file = pieces[-1]
+            if benchmark not in status:
+                status[benchmark] = {}
+            if library not in status[benchmark]:
+                status[benchmark][library] = {}
+            if code not in status[benchmark][library]:
+                rel_path = start_url + os.path.dirname(path)
+                status[benchmark][library][code] = (rel_path, [])
+            status[benchmark][library][code][1].append(file)
+
+        return cls(status)
 
     @classmethod
     def from_root(cls, root: os.PathLike) -> Status:

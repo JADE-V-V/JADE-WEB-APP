@@ -15,7 +15,13 @@ class TestProcessor:
         return Status.from_root(files(res).joinpath("root"))
 
     @pytest.fixture
+    def processor_github(self):
+        """Fixture for github processor"""
+        return Processor(Status.from_github("JADE-V-V", "JADE-RAW-RESULTS"))
+
+    @pytest.fixture
     def processor(self, status: Status):
+        """Fixture for local processor"""
         return Processor(status)
 
     def test_init(self, status: Status):
@@ -41,6 +47,19 @@ class TestProcessor:
         except NotImplementedError:
             assert True
 
+    def test_get_graph_data_github(self):
+        """Test the get_graph_data method with github data"""
+        processor = Processor(Status.from_github("JADE-V-V", "JADE-RAW-RESULTS"))
+        data = processor._get_graph_data(
+            "Sphere",
+            "32c",
+            "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+            isotope_material="mcnp1001",
+        )
+        # assert set(data["label"]) == {"00c-mcnp", "32c-mcnp"}
+        assert len(data.columns) == 6
+        assert len(set(data["Tally Description"].to_list())) == 1
+
     def test_get_graph_data_isotope_material(self, processor: Processor):
         """Test the get_graph_data method with isotope_material"""
         data = processor._get_graph_data(
@@ -60,6 +79,12 @@ class TestProcessor:
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""
         assert processor.get_available_tallies("ITER_1D", "00c", "mcnp") == ["204"]
+
+    def test_get_available_tallies_github(self, processor_github: Processor):
+        """Test the get_available_tallies method"""
+        assert (
+            processor_github.get_available_tallies("Sphere", "32c", "mcnp") is not None
+        )
 
     def test_get_available_tallies_sphere(self, processor: Processor):
         """Test the get_available_tallies method specific to the Sphere benchmark"""

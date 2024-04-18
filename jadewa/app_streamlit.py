@@ -1,12 +1,17 @@
+"""Main streamlit app entry point.
+"""
+
 import streamlit as st
 from jadewa.status import Status
 from jadewa.processor import Processor
 
 # Get list of CSV files in current directory
-ROOT = r"R:\AC_ResultsDB\Jade\03_JADEv300_root\Tests\Post-Processing\Single_Libraries"
+OWNER = "JADE-V-V"
+REPO = "JADE-RAW-RESULTS"
+BRANCH = "main"
 
 # Initialize status and processor
-status = Status.from_root(ROOT)
+status = Status.from_github(OWNER, REPO, branch=BRANCH)
 processor = Processor(status)
 
 # Get available benchmarks
