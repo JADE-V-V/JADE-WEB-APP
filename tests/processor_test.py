@@ -28,14 +28,14 @@ class TestProcessor:
         """Test the __init__ method"""
         processor = Processor(status)
         assert isinstance(processor, Processor)
-        assert processor.params["ITER_1D"]["204"]["plot_args"]["x"] == "Energy [MeV]"
+        assert processor.params["ITER_1D"]["204"]["plot_args"]["x"] == "Cell index"
 
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""
         data = processor._get_graph_data(
             "ITER_1D",
             "21c",
-            "Neutron Flux",
+            "204",
         )
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
@@ -46,6 +46,23 @@ class TestProcessor:
             assert False
         except NotImplementedError:
             assert True
+
+    def test_get_graph_data_ratio(self, processor: Processor):
+        """Test the get_graph_data method with ratio"""
+        data = processor._get_graph_data(
+            "ITER_1D",
+            "32c",
+            "204",
+            ratio=True,
+        )
+        assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
+        assert len(data.columns) == 4
+        assert (
+            data.groupby("label")
+            .mean()
+            .loc["FENDL 3.2b-mcnp"]["Neutron flux [n/cm^2/s]"]
+            == 1
+        )
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
@@ -74,7 +91,7 @@ class TestProcessor:
 
     def test_get_plot(self, processor: Processor):
         """Test the get_plot method"""
-        fig = processor.get_plot("ITER_1D", "21c", "Neutron Flux")
+        fig = processor.get_plot("ITER_1D", "32c", "Neutron Flux")
 
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""

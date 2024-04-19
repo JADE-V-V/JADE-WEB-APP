@@ -21,7 +21,13 @@ class Processor:
                 self.params = json.load(infile)
 
     def _get_graph_data(
-        self, benchmark: str, reflib: str, tally: str, isotope_material: str = None
+        self,
+        benchmark: str,
+        reflib: str,
+        tally: str,
+        isotope_material: str = None,
+        refcode: str = "mcnp",
+        ratio: bool = False,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -35,6 +41,10 @@ class Processor:
             tally to be plotted (pretty name).
         isotope_material : str, optional
             isotope or material to be plotted, by default None
+        refcode : str, optional
+            code to be used as reference, by default 'mcnp'
+        ratio : bool, optional
+            if True, the data will be normalized to the ref-lib and ref-code, by default False
 
         Returns
         -------
@@ -68,9 +78,24 @@ class Processor:
                         continue
                 else:
                     df = pd.read_csv(path.format(tally))
-                df["label"] = f"{LIB_NAMES[lib]}-{code}"
+
+                label = f"{LIB_NAMES[lib]}-{code}"
+                df["label"] = label
+                if reflib == lib and refcode == code:
+                    ref_df = df
                 dfs.append(df)
-        newdf = pd.concat(dfs)
+
+        # normalize data to reflib/refcode if requested
+        if ratio:
+            newdfs = []
+            for df in dfs:
+                newdf = df.copy()
+                newdf["Value"] = newdf["Value"] / ref_df["Value"]
+                newdfs.append(newdf)
+        else:
+            newdfs = dfs
+
+        newdf = pd.concat(newdfs)
 
         # Rename columns
         for old, new in self.params[benchmark][tally]["substitutions"].items():
@@ -107,14 +132,17 @@ class Processor:
             if value["tally_name"] == tally:
                 tally = key
 
+        ratio = self.params[benchmark][tally]["ratio"]
         if benchmark == "Sphere":
             data = self._get_graph_data(
-                benchmark, reflib, tally, isotope_material=isotope_material
+                benchmark, reflib, tally, isotope_material=isotope_material, ratio=ratio
             )
         else:
-            data = self._get_graph_data(benchmark, reflib, tally)
+            data = self._get_graph_data(benchmark, reflib, tally, ratio=ratio)
         key_args = self.params[benchmark][tally]["plot_args"]
         plot_type = self.params[benchmark][tally]["plot_type"]
+        # be sure to deactivate log if ratio is on
+        key_args["log_y"] = False if ratio else key_args["log_y"]
         fig = get_figure(plot_type, data, key_args)
         return fig
 
