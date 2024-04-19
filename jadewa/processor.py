@@ -32,7 +32,7 @@ class Processor:
         reflib : str
             library to be used as reference
         tally : str
-            tally to be plotted.
+            tally to be plotted (pretty name).
         isotope_material : str, optional
             isotope or material to be plotted, by default None
 
@@ -41,6 +41,7 @@ class Processor:
         pd.DataFrame
             data for plotting
         """
+
         # verify that the benchmark-tally combination is supported
         try:
             self.params[benchmark][tally]
@@ -101,6 +102,11 @@ class Processor:
         Figure
             plotly Figure
         """
+        # Recover the tally code
+        for key, value in self.params[benchmark].items():
+            if value["tally_name"] == tally:
+                tally = key
+
         if benchmark == "Sphere":
             data = self._get_graph_data(
                 benchmark, reflib, tally, isotope_material=isotope_material
@@ -113,7 +119,7 @@ class Processor:
         return fig
 
     def get_available_tallies(
-        self, benchmark: str, library: str, code: str
+        self, benchmark: str, library: str, code: str, pretty: bool = False
     ) -> list[str]:
         """Cross check which tallies have been run for a given benchmark with
         the ones supported by the plotter.
@@ -126,6 +132,8 @@ class Processor:
             Library name
         code : str
             Code name
+        pretty : bool, optional
+            if True, return the pretty names, by default False
 
         Returns
         -------
@@ -151,7 +159,14 @@ class Processor:
         available = []
         for csv in csv_names:
             available.append(csv[:-4])
-        return list(set(available).intersection(set(supported)))
+        tallies = list(set(available).intersection(set(supported)))
+        if pretty:
+            pretty_tallies = []
+            for tally in tallies:
+                pretty_tallies.append(self.params[benchmark][tally]["tally_name"])
+        else:
+            pretty_tallies = tallies
+        return pretty_tallies
 
     def get_available_isotopes_materials(
         self, benchmark: str, library: str, code: str

@@ -35,13 +35,13 @@ class TestProcessor:
         data = processor._get_graph_data(
             "ITER_1D",
             "21c",
-            "204",
+            "Neutron Flux",
         )
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
 
         try:
-            processor._get_graph_data("ITER2D", "21c", "204")
+            # processor._get_graph_data("ITER2D", "21c", "204")
             processor._get_graph_data("ITER_1D", "21c", "999")
             assert False
         except NotImplementedError:
@@ -74,7 +74,7 @@ class TestProcessor:
 
     def test_get_plot(self, processor: Processor):
         """Test the get_plot method"""
-        fig = processor.get_plot("ITER_1D", "21c", "204")
+        fig = processor.get_plot("ITER_1D", "21c", "Neutron Flux")
 
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""

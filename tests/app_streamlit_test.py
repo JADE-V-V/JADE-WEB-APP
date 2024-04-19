@@ -52,7 +52,7 @@ class TestStreamlitApp:
         app = AppTest("app_streamlit.py", default_timeout=10).run()
         app.selectbox(key="benchmark").select("ITER_1D").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
-        assert "204" in app.selectbox(key="tally").options
+        assert "Neutron Flux" in app.selectbox(key="tally").options
         try:
             app.selectbox(key="isotope")
             assert False
@@ -66,5 +66,5 @@ class TestStreamlitApp:
         app = AppTest("app_streamlit.py", default_timeout=10).run()
         app.selectbox(key="benchmark").select("ITER_1D").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
-        app.selectbox(key="tally").select("204").run()
+        app.selectbox(key="tally").select("Neutron Flux").run()
         assert True

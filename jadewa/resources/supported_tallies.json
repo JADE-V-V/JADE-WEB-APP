@@ -8,7 +8,7 @@
             },
             "plot_type": "step",
             "plot_args": {
-                "x": "Energy [MeV]",
+                "x": "Cell index",
                 "y": "Neutron flux [n/cm^2/s]",
                 "log_x": false,
                 "log_y": true

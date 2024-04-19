@@ -57,7 +57,7 @@ with col1:
     # select the tally
     if selected_benchmark and ref_lib:
         tallies_options = processor.get_available_tallies(
-            selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
+            selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp", pretty=True
         )
         tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 
