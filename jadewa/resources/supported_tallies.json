@@ -1,15 +1,16 @@
 {
     "ITER_1D": {
         "204": {
+            "tally_name": "Neutron Flux",
             "substitutions": {
-                "Cells": "Energy [MeV]",
+                "Cells": "Cell index",
                 "Value": "Neutron flux [n/cm^2/s]"
             },
             "plot_type": "step",
             "plot_args": {
                 "x": "Energy [MeV]",
                 "y": "Neutron flux [n/cm^2/s]",
-                "log_x": true,
+                "log_x": false,
                 "log_y": true
             }
         }
@@ -17,6 +18,7 @@
 
     "Sphere": {
         "Neutron Flux at the external surface in Vitamin-J 175 energy groups": {
+            "tally_name": "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
             "substitutions": {
                 "Energy": "Energy [MeV]",
                 "Value": "Neutron flux [n/cm^2/s]"
@@ -31,6 +33,7 @@
         },
 
         "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]": {
+            "tally_name": "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]",
             "substitutions": {
                 "Energy": "Energy [MeV]",
                 "Value": "Photon flux [n/cm^2/s]"

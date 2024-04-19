@@ -26,13 +26,15 @@ col1, col2 = st.columns([0.4, 0.6])
 with col1:
     # first select the benchmark
     selected_benchmark = st.selectbox(
-        "Select benchmark", available_benchmarks, index=None
+        "Select benchmark", available_benchmarks, index=None, key="benchmark"
     )
 
     # get the libraries for the selected benchmark
     if selected_benchmark:
         lib_options = status.get_libraries(selected_benchmark, pretty=True)
-        ref_lib = st.selectbox("Select reference library", lib_options, index=None)
+        ref_lib = st.selectbox(
+            "Select reference library", lib_options, index=None, key="lib"
+        )
     else:
         ref_lib = None
 
@@ -44,7 +46,10 @@ with col1:
             )
 
             isotope_material = st.selectbox(
-                "Select isotope or material", isotope_material_options, index=None
+                "Select isotope or material",
+                isotope_material_options,
+                index=None,
+                key="isotope",
             )
     else:
         isotope_material = None
@@ -54,7 +59,7 @@ with col1:
         tallies_options = processor.get_available_tallies(
             selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
         )
-        tally = st.selectbox("Select tally", tallies_options, index=None)
+        tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 
     # and finally plot!
     if selected_benchmark and ref_lib and tally:
