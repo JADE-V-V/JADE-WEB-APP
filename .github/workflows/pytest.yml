@@ -45,6 +45,7 @@ jobs:
       - name: Testing - Linux
         if: runner.os == 'Linux'
         run: |
+          set -o pipefail
           pytest --cov=. --cov-report html | tee pytest_output.log
 
       # Activate environment and run pytest
