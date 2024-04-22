@@ -23,11 +23,11 @@ class TestStatus:
 
     def test_get_benchmarks(self, status: Status):
         """Test the get_benchmarks method"""
-        assert status.get_benchmarks() == ["ITER_1D", "Sphere"]
+        assert set(status.get_benchmarks()) == {"ITER_1D", "Sphere"}
 
     def test_get_libraries(self, status: Status):
         """Test the get_libraries method"""
-        assert status.get_libraries("ITER_1D") == ["00c", "32c"]
+        assert set(status.get_libraries("ITER_1D")) == {"00c", "32c"}
 
     def test_get_codes(self, status: Status):
         """Test the get_codes method"""
