@@ -1,5 +1,6 @@
 from jadewa.status import Status
 from jadewa.plotter import get_figure
+from urllib.error import HTTPError
 
 from plotly.graph_objects import Figure
 import pandas as pd
@@ -8,6 +9,7 @@ from importlib.resources import files, as_file
 import jadewa.resources as res
 import json
 from jadewa.utils import LIB_NAMES
+
 
 RESOURCES = files(res)
 
@@ -73,6 +75,10 @@ class Processor:
                     try:
                         df = pd.read_csv(path.format(isotope_material))
                     except FileNotFoundError:
+                        # if everything went well, it means that the isotope
+                        # or material is not available for this library
+                        continue
+                    except HTTPError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
                         continue

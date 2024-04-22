@@ -61,6 +61,9 @@ with col1:
         )
         tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 
+    st.image(r"jadewa/assets/Jade.png", width=200)
+
+with col2:
     # and finally plot!
     if selected_benchmark and ref_lib and tally:
         if selected_benchmark == "Sphere":
@@ -78,8 +81,5 @@ with col1:
     else:
         fig = None
 
-    st.image(r"jadewa/assets/Jade.png", width=200)
-
-with col2:
     if fig:
         st.plotly_chart(fig, use_container_width=True)
