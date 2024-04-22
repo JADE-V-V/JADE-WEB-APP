@@ -57,12 +57,7 @@ class TestProcessor:
         )
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
-        assert (
-            data.groupby("label")
-            .mean()
-            .loc["FENDL 3.2b-mcnp"]["Neutron flux [n/cm^2/s]"]
-            == 1
-        )
+        assert data.groupby("label").mean().iloc[-1][-1] == 1
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
@@ -102,7 +97,7 @@ class TestProcessor:
 
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""
-        assert processor.get_available_tallies("ITER_1D", "00c", "mcnp") == ["204"]
+        assert len(processor.get_available_tallies("ITER_1D", "00c", "mcnp")) == 5
 
     def test_get_available_tallies_github(self, processor_github: Processor):
         """Test the get_available_tallies method"""

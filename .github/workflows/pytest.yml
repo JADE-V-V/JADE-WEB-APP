@@ -1,0 +1,66 @@
+name: pytest
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch for push
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main, developing ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test:
+    # The type of runner and python versions that the job will run on
+    strategy:
+      matrix:
+        # os: [windows-latest, ubuntu-20.04, ubuntu-latest]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11"]
+
+    runs-on: ${{ matrix.os }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Install python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # Activate environment and run pytest
+      - name: Testing - Linux
+        if: runner.os == 'Linux'
+        run: |
+          set -o pipefail
+          source /usr/local/Modules/init/sh
+          pytest --cov=. --cov-report html | tee pytest_output.log
+
+      # Activate environment and run pytest
+      - name: Testing - Windows
+        if: runner.os == 'Windows'
+        run: |
+          pytest --cov=. --cov-report html | tee pytest_output.log
+
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest_output_${{matrix.os}}_${{matrix.python-version}}.log
+          path: pytest_output.log
+
+      - name: Archive test coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: htmlcov${{matrix.os}}_${{matrix.python-version}}
+          path: htmlcov/
