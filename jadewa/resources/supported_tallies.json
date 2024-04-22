@@ -13,6 +13,62 @@
                 "log_x": false,
                 "log_y": true
             }
+        },
+        "214": {
+            "tally_name": "Photon Flux",
+            "substitutions": {
+                "Cells": "Cell index",
+                "Value": "Photon flux [n/cm^2/s]"
+            },
+            "plot_type": "step",
+            "plot_args": {
+                "x": "Cell index",
+                "y": "Photon flux [n/cm^2/s]",
+                "log_x": false,
+                "log_y": true
+            }
+        },
+        "6": {
+            "tally_name": "Total nuclear heating",
+            "substitutions": {
+                "Cells": "Cell index",
+                "Value": "Total nuclear heating [W/g]"
+            },
+            "plot_type": "step",
+            "plot_args": {
+                "x": "Cell index",
+                "y": "Total nuclear heating [W/g]",
+                "log_x": false,
+                "log_y": true
+            }
+        },
+        "16": {
+            "tally_name": "Neutron heating",
+            "substitutions": {
+                "Cells": "Cell index",
+                "Value": "Neutron heating [W/g]"
+            },
+            "plot_type": "step",
+            "plot_args": {
+                "x": "Cell index",
+                "y": "Neutron heating [W/g]",
+                "log_x": false,
+                "log_y": true
+            }
+        },
+        "26": {
+            "tally_name": "Photon heating",
+            "substitutions": {
+                "Cells": "Cell index",
+                "Value": "Photon heating [W/g]"
+            },
+            "plot_type": "step",
+            "plot_args": {
+                "x": "Cell index",
+                "y": "Photon heating [W/g]",
+                "log_x": false,
+                "log_y": true
+            }
         }
     },
 

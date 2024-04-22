@@ -89,9 +89,16 @@ class TestProcessor:
         assert len(data.columns) == 6
         assert len(set(data["Tally Description"].to_list())) == 1
 
-    def test_get_plot(self, processor: Processor):
+    @pytest.mark.parametrize("ratio", [True, False])
+    def test_get_plot(self, processor: Processor, ratio: bool):
         """Test the get_plot method"""
-        fig = processor.get_plot("ITER_1D", "32c", "Neutron Flux")
+        fig = processor.get_plot(
+            "Sphere",
+            "00c",
+            "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+            ratio=ratio,
+            isotope_material="1001",
+        )
 
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""

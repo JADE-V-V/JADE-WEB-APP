@@ -8,9 +8,11 @@ import os
 from importlib.resources import files, as_file
 import jadewa.resources as res
 import json
+import re
 from jadewa.utils import LIB_NAMES
 
 
+UNIT_PATTERN = re.compile(r"\[.*\]")
 RESOURCES = files(res)
 
 
@@ -56,7 +58,7 @@ class Processor:
 
         # verify that the benchmark-tally combination is supported
         try:
-            self.params[benchmark][tally]
+            y_label = self.params[benchmark][tally]["plot_args"]["y"]
         except KeyError as exc:
             raise NotImplementedError(
                 f"{benchmark}-{tally} combination not supported"
@@ -105,11 +107,15 @@ class Processor:
 
         # Rename columns
         for old, new in self.params[benchmark][tally]["substitutions"].items():
+            # if ratio was requested, change y unit
+            if ratio and new == y_label:
+                new = UNIT_PATTERN.sub(f"[ratio vs {LIB_NAMES[reflib]}]", new)
             newdf[new] = newdf[old]
             del newdf[old]
 
         if isotope_material:
             newdf = newdf[newdf["Tally Description"] == tally]
+
         return newdf
 
     def get_plot(
@@ -155,7 +161,12 @@ class Processor:
         key_args = self.params[benchmark][tally]["plot_args"]
         plot_type = self.params[benchmark][tally]["plot_type"]
         # be sure to deactivate log if ratio is on
-        key_args["log_y"] = False if ratio else key_args["log_y"]
+        if ratio:
+            key_args["log_y"] = False
+            key_args["y"] = UNIT_PATTERN.sub(
+                f"[ratio vs {LIB_NAMES[reflib]}]", key_args["y"]
+            )
+
         fig = get_figure(plot_type, data, key_args)
         return fig
 
