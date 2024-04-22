@@ -11,18 +11,32 @@ OWNER = "JADE-V-V"
 REPO = "JADE-RAW-RESULTS"
 BRANCH = "main"
 
+# Configure layout of page, must be first streamlit call in script
+st.set_page_config(layout="wide")
+
+
 # Initialize status and processor
-status = Status.from_github(OWNER, REPO, branch=BRANCH)
-processor = Processor(status)
+@st.cache_data
+def get_status_processor():
+    """Get the status and processor objects"""
+    session_status = Status.from_github(OWNER, REPO, branch=BRANCH)
+    session_processor = Processor(session_status)
+    return session_status, session_processor
+
+
+status, processor = get_status_processor()
 
 # Get available benchmarks
 available_benchmarks = status.get_benchmarks()
 
 # -- Application --
-st.set_page_config(layout="wide")
-st.title("JADE results interactive plotter [ALPHA]")
-col1, col2 = st.columns([0.4, 0.6])
+col01, col02 = st.columns([0.9, 0.1])
+with col01:
+    st.title("JADE results interactive plotter [ALPHA]")
+with col02:
+    st.image(r"jadewa/assets/Jade.png", width=75)
 
+col1, col2 = st.columns([0.4, 0.6])
 with col1:
     # first select the benchmark
     selected_benchmark = st.selectbox(
@@ -61,9 +75,16 @@ with col1:
         )
         tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 
-    st.image(r"jadewa/assets/Jade.png", width=200)
-
 with col2:
+    # Radio button to select plot type as ratio or not
+    ratio_button = st.radio(
+        "Plot type", ["Absolute", "Ratio"], index=1, horizontal=True
+    )
+    if ratio_button == "Ratio":
+        ratio = True
+    else:
+        ratio = False
+
     # and finally plot!
     if selected_benchmark and ref_lib and tally:
         if selected_benchmark == "Sphere":
@@ -73,11 +94,14 @@ with col2:
                     LIB_SUFFIXES[ref_lib],
                     tally,
                     isotope_material=isotope_material,
+                    ratio=ratio,
                 )
             else:
                 fig = None
         else:
-            fig = processor.get_plot(selected_benchmark, LIB_SUFFIXES[ref_lib], tally)
+            fig = processor.get_plot(
+                selected_benchmark, LIB_SUFFIXES[ref_lib], tally, ratio=ratio
+            )
     else:
         fig = None
 

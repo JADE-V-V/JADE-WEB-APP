@@ -68,3 +68,10 @@ class TestStreamlitApp:
         app.selectbox(key="lib").select("FENDL 3.2b").run()
         app.selectbox(key="tally").select("Neutron Flux").run()
         assert True
+
+    def test_ratio(self):
+        """
+        Test the plot by checking if the image is not None.
+        """
+        app = AppTest("app_streamlit.py", default_timeout=10).run()
+        assert app.radio.values == ["Ratio"]

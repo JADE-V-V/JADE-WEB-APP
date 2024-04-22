@@ -113,7 +113,12 @@ class Processor:
         return newdf
 
     def get_plot(
-        self, benchmark: str, reflib: str, tally: str, isotope_material: str = None
+        self,
+        benchmark: str,
+        reflib: str,
+        tally: str,
+        isotope_material: str = None,
+        ratio: bool = False,
     ) -> Figure:
         """Get a plotly figure for a specific benchmark-tally combination
 
@@ -127,6 +132,8 @@ class Processor:
             tally to be plotted.
         isotope_material : str, optional
             isotope or material to be plotted, by default None
+        ratio : bool, optional
+            if yes, the data will be normalized to the ref-lib and ref-code, by default False
 
         Returns
         -------
@@ -138,7 +145,7 @@ class Processor:
             if value["tally_name"] == tally:
                 tally = key
 
-        ratio = self.params[benchmark][tally]["ratio"]
+        # ratio = self.params[benchmark][tally]["ratio"]
         if benchmark == "Sphere":
             data = self._get_graph_data(
                 benchmark, reflib, tally, isotope_material=isotope_material, ratio=ratio

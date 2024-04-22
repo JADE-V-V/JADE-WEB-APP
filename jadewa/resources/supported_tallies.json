@@ -7,7 +7,6 @@
                 "Value": "Neutron flux [n/cm^2/s]"
             },
             "plot_type": "step",
-            "ratio": true,
             "plot_args": {
                 "x": "Cell index",
                 "y": "Neutron flux [n/cm^2/s]",
@@ -25,7 +24,6 @@
                 "Value": "Neutron flux [n/cm^2/s]"
             },
             "plot_type": "step",
-            "ratio": false,
             "plot_args": {
                 "x": "Energy [MeV]",
                 "y": "Neutron flux [n/cm^2/s]",
