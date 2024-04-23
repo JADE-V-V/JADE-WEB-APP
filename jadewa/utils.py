@@ -34,7 +34,22 @@ MAT_ISO_PATTERN = re.compile(r"[mM]*\d+")
 LIB_MANAGER = LibManager()
 
 
+def sorting_func(option: str):
+    """function to sort correctly the materials and isotopes options"""
+    # extract the isotope/material number from the pretty name
+    try:
+        num = int(MAT_ISO_PATTERN.search(option).group())
+    except ValueError:
+        # it is a material, return 0 so it is placed first
+        num = 0
+    return num
+
+
 def get_pretty_mat_iso_names(raw_names: list[str]):
+    # the names should be ordered material first and then all isotopes using
+    # as order the zaid integer number. Sorting is easier in the raw list
+    raw_names.sort(key=sorting_func)
+
     pretty_names = []
     for name in raw_names:
         # only the material/isotope needs to be assessed
@@ -44,6 +59,7 @@ def get_pretty_mat_iso_names(raw_names: list[str]):
             pretty_names.append(MATERIAL_NAMES[name])
         except KeyError:
             pretty_names.append(LIB_MANAGER.get_zaidname(name)[1])
+
     return pretty_names
 
 
