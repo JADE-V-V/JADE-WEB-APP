@@ -37,7 +37,7 @@ class TestStreamlitApp:
         app = AppTest("app_streamlit.py", default_timeout=10).run()
         app.selectbox(key="benchmark").select("Sphere").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
-        app.selectbox(key="isotope").select("mcnp1001").run()
+        app.selectbox(key="isotope").select("H-1").run()
         assert (
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups"
             in app.selectbox(key="tally").options
