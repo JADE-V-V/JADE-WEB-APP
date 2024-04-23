@@ -1,7 +1,11 @@
+"""
+This module provides a Status class that stores information on available results and their locations.
+"""
+
 from __future__ import annotations
 import os
 import requests
-from jadewa.utils import LIB_NAMES, MATERIAL_NAMES
+from jadewa.utils import LIB_NAMES
 
 
 class Status:

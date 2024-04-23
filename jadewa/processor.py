@@ -13,16 +13,21 @@ from jadewa.utils import LIB_NAMES
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
-RESOURCES = files(res)
 
 
 class Processor:
     def __init__(self, status: Status) -> None:
         self.status = status
         # Load the available tallies plot parameters
-        with as_file(RESOURCES.joinpath("supported_tallies.json")) as file:
-            with open(file, "r", encoding="utf-8") as infile:
-                self.params = json.load(infile)
+        resources = files(res)
+        self.params = {}
+        for file in os.listdir(resources):
+            if file.endswith(".json"):
+                name = file[:-5]
+                with as_file(resources.joinpath(file)) as file:
+                    with open(file, "r", encoding="utf-8") as infile:
+                        benchmark_params = json.load(infile)
+                        self.params[name] = benchmark_params
 
     def _get_graph_data(
         self,

@@ -1,0 +1,31 @@
+{
+    "Neutron Flux at the external surface in Vitamin-J 175 energy groups": {
+        "tally_name": "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        }
+    },
+
+    "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]": {
+        "tally_name": "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        }
+    }
+}
