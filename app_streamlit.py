@@ -4,7 +4,11 @@
 import streamlit as st
 from jadewa.status import Status
 from jadewa.processor import Processor
-from jadewa.utils import LIB_SUFFIXES, MATERIAL_NUMBERS
+from jadewa.utils import (
+    LIB_SUFFIXES,
+    get_mat_iso_code,
+    get_pretty_mat_iso_names,
+)
 
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
@@ -59,10 +63,12 @@ def main():
                 isotope_material_options = processor.get_available_isotopes_materials(
                     selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
                 )
+                # get pretty names
+                pretty_options = get_pretty_mat_iso_names(isotope_material_options)
 
                 isotope_material = st.selectbox(
                     "Select isotope or material",
-                    isotope_material_options,
+                    pretty_options,
                     index=None,
                     key="isotope",
                 )
@@ -96,7 +102,10 @@ def main():
                         selected_benchmark,
                         LIB_SUFFIXES[ref_lib],
                         tally,
-                        isotope_material=isotope_material,
+                        # use the raw name
+                        isotope_material=get_mat_iso_code(
+                            isotope_material, code="mcnp"
+                        ),
                         ratio=ratio,
                     )
                 else:
