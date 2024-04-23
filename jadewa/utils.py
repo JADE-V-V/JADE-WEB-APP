@@ -49,6 +49,6 @@ def get_pretty_mat_iso_names(raw_names: list[str]):
 
 def get_mat_iso_code(name: str, code="mcnp"):
     try:
-        return MATERIAL_NUMBERS[name]
+        return code + MATERIAL_NUMBERS[name]
     except KeyError:
         return code + LIB_MANAGER.get_zaidnum(name)
