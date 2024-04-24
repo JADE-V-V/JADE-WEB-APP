@@ -9,6 +9,7 @@ from importlib.resources import files, as_file
 import jadewa.resources as res
 import json
 import re
+import logging
 from jadewa.utils import LIB_NAMES
 
 
@@ -45,11 +46,11 @@ class Processor:
         benchmark : str
             benchmark name
         reflib : str
-            library to be used as reference
+            suffix of the library to be used as reference (e.g. 21c)
         tally : str
-            tally to be plotted (pretty name).
+            tally to be plotted (code).
         isotope_material : str, optional
-            isotope or material to be plotted, by default None
+            isotope or material to be plotted (e.g. 1001), by default None
         refcode : str, optional
             code to be used as reference, by default 'mcnp'
         ratio : bool, optional
@@ -80,14 +81,20 @@ class Processor:
 
                 if isotope_material:
                     try:
-                        df = pd.read_csv(path.format(isotope_material))
+                        df = pd.read_csv(path.format(code + isotope_material))
                     except FileNotFoundError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
+                        logging.debug(
+                            "%s not found", path.format(code + isotope_material)
+                        )
                         continue
                     except HTTPError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
+                        logging.debug(
+                            "%s not found", path.format(code + isotope_material)
+                        )
                         continue
                 else:
                     df = pd.read_csv(path.format(tally))
@@ -176,7 +183,7 @@ class Processor:
         return fig
 
     def get_available_tallies(
-        self, benchmark: str, library: str, code: str, pretty: bool = False
+        self, benchmark: str, library: str, code: str
     ) -> list[str]:
         """Cross check which tallies have been run for a given benchmark with
         the ones supported by the plotter.
@@ -186,11 +193,9 @@ class Processor:
         benchmark : str
             Benchmark name
         library : str
-            Library name
+            Library suffix (e.g. 21c, 30c, 31c)
         code : str
             Code name
-        pretty : bool, optional
-            if True, return the pretty names, by default False
 
         Returns
         -------
@@ -217,13 +222,13 @@ class Processor:
         for csv in csv_names:
             available.append(csv[:-4])
         tallies = list(set(available).intersection(set(supported)))
-        if pretty:
-            pretty_tallies = []
-            for tally in tallies:
-                pretty_tallies.append(self.params[benchmark][tally]["tally_name"])
-        else:
-            pretty_tallies = tallies
-        return pretty_tallies
+
+        tally_names = []
+        for tally in tallies:
+            for key, value in self.params[benchmark].items():
+                if key == tally:
+                    tally_names.append(value["tally_name"])
+        return tally_names
 
     def get_available_isotopes_materials(
         self, benchmark: str, library: str, code: str

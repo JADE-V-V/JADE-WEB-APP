@@ -5,9 +5,10 @@ import streamlit as st
 from jadewa.status import Status
 from jadewa.processor import Processor
 from jadewa.utils import (
-    LIB_SUFFIXES,
     get_mat_iso_code,
     get_pretty_mat_iso_names,
+    get_lib_suffix,
+    get_pretty_lib_names,
 )
 
 # Get list of CSV files in current directory
@@ -50,18 +51,29 @@ def main():
 
         # get the libraries for the selected benchmark
         if selected_benchmark:
-            lib_options = status.get_libraries(selected_benchmark, pretty=True)
+            lib_options = status.get_libraries(selected_benchmark)
+            #  get pretty names for the libraries
+            lib_options = get_pretty_lib_names(lib_options)
             ref_lib = st.selectbox(
                 "Select reference library", lib_options, index=None, key="lib"
             )
         else:
             ref_lib = None
 
+        # Select the reference code
+        if selected_benchmark and ref_lib:
+            code_options = status.get_codes(selected_benchmark, get_lib_suffix(ref_lib))
+            selected_code = st.selectbox(
+                "Select reference code", code_options, index=0, key="code"
+            )
+        else:
+            selected_code = None
+
         # optional, get the isotope or material for the selected benchmark
         if selected_benchmark == "Sphere":
-            if ref_lib:
+            if ref_lib and selected_code:
                 isotope_material_options = processor.get_available_isotopes_materials(
-                    selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp"
+                    selected_benchmark, get_lib_suffix(ref_lib), selected_code
                 )
                 # get pretty names
                 pretty_options = get_pretty_mat_iso_names(isotope_material_options)
@@ -76,13 +88,17 @@ def main():
             isotope_material = None
 
         # select the tally
-        if selected_benchmark and ref_lib:
+        if selected_benchmark and ref_lib and selected_code:
             tallies_options = processor.get_available_tallies(
-                selected_benchmark, LIB_SUFFIXES[ref_lib], "mcnp", pretty=True
+                selected_benchmark,
+                get_lib_suffix(ref_lib),
+                selected_code,
             )
             tally = st.selectbox(
                 "Select tally", tallies_options, index=None, key="tally"
             )
+        else:
+            tally = None
 
     with col2:
         # Radio button to select plot type as ratio or not
@@ -100,19 +116,17 @@ def main():
                 if isotope_material:
                     fig = processor.get_plot(
                         selected_benchmark,
-                        LIB_SUFFIXES[ref_lib],
+                        get_lib_suffix(ref_lib),
                         tally,
                         # use the raw name
-                        isotope_material=get_mat_iso_code(
-                            isotope_material, code="mcnp"
-                        ),
+                        isotope_material=get_mat_iso_code(isotope_material),
                         ratio=ratio,
                     )
                 else:
                     fig = None
             else:
                 fig = processor.get_plot(
-                    selected_benchmark, LIB_SUFFIXES[ref_lib], tally, ratio=ratio
+                    selected_benchmark, get_lib_suffix(ref_lib), tally, ratio=ratio
                 )
         else:
             fig = None

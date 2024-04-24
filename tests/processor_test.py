@@ -66,7 +66,7 @@ class TestProcessor:
             "Sphere",
             "32c",
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
-            isotope_material="mcnp1001",
+            isotope_material="1001",
         )
         # assert set(data["label"]) == {"00c-mcnp", "32c-mcnp"}
         assert len(data.columns) == 6
@@ -80,7 +80,11 @@ class TestProcessor:
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
             isotope_material="1001",
         )
-        assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
+        assert set(data["label"]) == {
+            "ENDFB VIII.0-mcnp",
+            "FENDL 3.2b-mcnp",
+            "ENDFB VIII.0-openmc",
+        }
         assert len(data.columns) == 6
         assert len(set(data["Tally Description"].to_list())) == 1
 
@@ -107,7 +111,7 @@ class TestProcessor:
 
     def test_get_available_tallies_sphere(self, processor: Processor):
         """Test the get_available_tallies method specific to the Sphere benchmark"""
-        tallies = processor.get_available_tallies("Sphere", "00c", "mcnp")
+        tallies = processor.get_available_tallies("Sphere", "00c", "openmc")
         assert (
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups"
             in tallies
@@ -116,4 +120,4 @@ class TestProcessor:
     def test_get_available_isotopes_materials(self, processor: Processor):
         """Test the get_available_isotopes_materials method"""
         isotopes = processor.get_available_isotopes_materials("Sphere", "32c", "mcnp")
-        assert isotopes == ["1001", "2003", "2004"]
+        assert isotopes == ["mcnp1001", "mcnp2003", "mcnp2004"]

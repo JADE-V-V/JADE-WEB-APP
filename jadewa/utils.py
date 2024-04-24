@@ -34,8 +34,8 @@ MAT_ISO_PATTERN = re.compile(r"[mM]*\d+")
 LIB_MANAGER = LibManager()
 
 
-def sorting_func(option: str):
-    """function to sort correctly the materials and isotopes options"""
+def sorting_func(option: str) -> int:
+    """sorting function for the pretty names of materials and isotopes"""
     # extract the isotope/material number from the pretty name
     try:
         num = int(MAT_ISO_PATTERN.search(option).group())
@@ -45,7 +45,19 @@ def sorting_func(option: str):
     return num
 
 
-def get_pretty_mat_iso_names(raw_names: list[str]):
+def get_pretty_mat_iso_names(raw_names: list[str]) -> list[str]:
+    """Get the pretty names of a list of materials/isotopes raw names
+
+    Parameters
+    ----------
+    raw_names : list[str]
+        raw names of the materials (e.g. mcnpM900) and isotopes (e.g. mcnp1001)
+
+    Returns
+    -------
+    list[str]
+        pretty names of the materials/isotopes
+    """
     # the names should be ordered material first and then all isotopes using
     # as order the zaid integer number. Sorting is easier in the raw list
     raw_names.sort(key=sorting_func)
@@ -63,8 +75,55 @@ def get_pretty_mat_iso_names(raw_names: list[str]):
     return pretty_names
 
 
-def get_mat_iso_code(name: str, code="mcnp"):
+def get_pretty_lib_names(raw_names: list[str]) -> list[str]:
+    """Get the pretty names of a list of libraries suffixes
+
+    Parameters
+    ----------
+    raw_names : list[str]
+        libary suffixes (e.g. 21c, 30c, 31c)
+
+    Returns
+    -------
+    list[str]
+        pretty names of the libraries (e.g. FENDL 2.1c, FENDL 3.0, FENDL 3.1d)
+    """
+    libs = []
+    for lib in raw_names:
+        libs.append(LIB_NAMES[lib])
+    return libs
+
+
+def get_mat_iso_code(name: str) -> str:
+    """Get the code of a material/isotope from its pretty name
+
+    Parameters
+    ----------
+    name : str
+        pretty name of the material/isotope (e.g. Natural Silicon, H-1, Ne-1)
+
+    Returns
+    -------
+    str
+        code of the material/isotope (e.g. mcnpM900, mcnp1001, mcnp10001)
+    """
     try:
-        return code + MATERIAL_NUMBERS[name]
+        return MATERIAL_NUMBERS[name]
     except KeyError:
-        return code + LIB_MANAGER.get_zaidnum(name)
+        return LIB_MANAGER.get_zaidnum(name)
+
+
+def get_lib_suffix(name: str) -> str:
+    """Get the suffix of a library from its pretty name
+
+    Parameters
+    ----------
+    name : str
+        pretty name of the library (e.g. FENDL 2.1c, FENDL 3.0, FENDL 3.1d)
+
+    Returns
+    -------
+    str
+        suffix of the library (e.g. 21c, 30c, 31c)
+    """
+    return LIB_SUFFIXES[name]

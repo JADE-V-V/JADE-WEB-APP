@@ -52,7 +52,7 @@ class TestStreamlitApp:
         app = AppTest("app_streamlit.py", default_timeout=10).run()
         app.selectbox(key="benchmark").select("ITER_1D").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
-        assert "Neutron Flux" in app.selectbox(key="tally").options
+        assert len(app.selectbox(key="tally").options) == 5
         try:
             app.selectbox(key="isotope")
             assert False
@@ -67,6 +67,22 @@ class TestStreamlitApp:
         app.selectbox(key="benchmark").select("ITER_1D").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
         app.selectbox(key="tally").select("Neutron Flux").run()
+        assert True
+
+    def test_plot_sphere(self):
+        """
+        Test the plot by checking if the image is not None.
+        """
+        app = AppTest("app_streamlit.py", default_timeout=10).run()
+        app.selectbox(key="benchmark").select("Sphere").run()
+        app.selectbox(key="lib").select("FENDL 3.2b").run()
+        app.selectbox(key="code").select("openmc").run()
+        app.selectbox(key="isotope").select("H-1").run()
+        assert app.selectbox(key="tally").disabled is False
+        assert len(app.selectbox(key="tally").options) > 1
+        app.selectbox(key="tally").select(
+            "Neutron Flux at the external surface in Vitamin-J 175 energy groups"
+        ).run()
         assert True
 
     def test_ratio(self):
