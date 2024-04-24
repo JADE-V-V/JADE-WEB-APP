@@ -1,0 +1,16 @@
+{
+    "FNG1 4": {
+        "tally_name": "SDDR - 1st campaign",
+        "substitutions": {
+            "Time": "Cooldown time",
+            "Value": "SDDR [Sv/h]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Cooldown time",
+            "y": "SDDR [Sv/h]",
+            "log_x": false,
+            "log_y": true
+        }
+    }
+}

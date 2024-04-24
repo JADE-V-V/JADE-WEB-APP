@@ -72,6 +72,16 @@ class TestProcessor:
         assert len(data.columns) == 6
         assert len(set(data["Tally Description"].to_list())) == 1
 
+        # check that there are no problems in getting a path with a space
+        data = processor._get_graph_data(
+            "FNG-SDDR",
+            "99c",
+            "FNG1 4",
+            ratio=True,
+            refcode="d1s",
+        )
+        assert len(data.columns) == 4
+
     def test_get_graph_data_isotope_material(self, processor: Processor):
         """Test the get_graph_data method with isotope_material"""
         data = processor._get_graph_data(
@@ -94,6 +104,7 @@ class TestProcessor:
         fig = processor.get_plot(
             "Sphere",
             "00c",
+            "mcnp",
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
             ratio=ratio,
             isotope_material="1001",

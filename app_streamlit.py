@@ -117,6 +117,7 @@ def main():
                     fig = processor.get_plot(
                         selected_benchmark,
                         get_lib_suffix(ref_lib),
+                        selected_code,
                         tally,
                         # use the raw name
                         isotope_material=get_mat_iso_code(isotope_material),
@@ -126,7 +127,11 @@ def main():
                     fig = None
             else:
                 fig = processor.get_plot(
-                    selected_benchmark, get_lib_suffix(ref_lib), tally, ratio=ratio
+                    selected_benchmark,
+                    get_lib_suffix(ref_lib),
+                    selected_code,
+                    tally,
+                    ratio=ratio,
                 )
         else:
             fig = None

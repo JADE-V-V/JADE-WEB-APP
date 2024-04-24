@@ -80,24 +80,24 @@ class Processor:
                     path = path + os.sep + "{}.csv"
 
                 if isotope_material:
+                    formatted_path = path.format(code + isotope_material).replace(
+                        " ", "%20"
+                    )
                     try:
-                        df = pd.read_csv(path.format(code + isotope_material))
+                        df = pd.read_csv(formatted_path)
                     except FileNotFoundError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
-                        logging.debug(
-                            "%s not found", path.format(code + isotope_material)
-                        )
+                        logging.debug("%s not found", formatted_path)
                         continue
                     except HTTPError:
                         # if everything went well, it means that the isotope
                         # or material is not available for this library
-                        logging.debug(
-                            "%s not found", path.format(code + isotope_material)
-                        )
+                        logging.debug("%s not found", formatted_path)
                         continue
                 else:
-                    df = pd.read_csv(path.format(tally))
+                    formatted_path = path.format(tally).replace(" ", "%20")
+                    df = pd.read_csv(formatted_path)
 
                 label = f"{LIB_NAMES[lib]}-{code}"
                 df["label"] = label
@@ -134,6 +134,7 @@ class Processor:
         self,
         benchmark: str,
         reflib: str,
+        refcode: str,
         tally: str,
         isotope_material: str = None,
         ratio: bool = False,
@@ -146,6 +147,8 @@ class Processor:
             benchmark name
         reflib : str
             library to be used as reference
+        refcode : str
+            code to be used as reference
         tally : str
             tally to be plotted.
         isotope_material : str, optional
@@ -166,10 +169,17 @@ class Processor:
         # ratio = self.params[benchmark][tally]["ratio"]
         if benchmark == "Sphere":
             data = self._get_graph_data(
-                benchmark, reflib, tally, isotope_material=isotope_material, ratio=ratio
+                benchmark,
+                reflib,
+                tally,
+                isotope_material=isotope_material,
+                ratio=ratio,
+                refcode=refcode,
             )
         else:
-            data = self._get_graph_data(benchmark, reflib, tally, ratio=ratio)
+            data = self._get_graph_data(
+                benchmark, reflib, tally, ratio=ratio, refcode=refcode
+            )
         key_args = self.params[benchmark][tally]["plot_args"]
         plot_type = self.params[benchmark][tally]["plot_type"]
         # be sure to deactivate log if ratio is on
