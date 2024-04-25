@@ -29,6 +29,10 @@ class TestStreamlitApp:
         assert app.selectbox(key="benchmark").value == "Sphere"
         assert "FENDL 3.2b" in app.selectbox(key="lib").options
 
+        # Test an experiment
+        app.selectbox(key="benchmark").select("FNG-SDDR").run()
+        assert app.selectbox(key="lib").options == ["experiment"]
+
     def test_select_tally_sphere(self):
         """
         Test the selection of tally options by checking if the selected values
