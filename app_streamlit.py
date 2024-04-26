@@ -79,7 +79,7 @@ def select_ref_lib(selected_benchmark: str, status: Status) -> str:
 
 def select_ref_code(selected_benchmark: str, ref_lib: str, status: Status) -> str:
     """Create a selectbox for the reference code selection and return the selected code.
-    In case of an experimental benchmark, the reference code is set to "".
+    In case of an experimental benchmark, the reference code is set to "experiment".
 
     Parameters
     ----------
@@ -96,7 +96,7 @@ def select_ref_code(selected_benchmark: str, ref_lib: str, status: Status) -> st
         selected reference code
     """
     if ref_lib == "experiment":
-        selected_code = ""
+        selected_code = "experiment"
     else:
         code_options = status.get_codes(selected_benchmark, get_lib_suffix(ref_lib))
         selected_code = st.selectbox(

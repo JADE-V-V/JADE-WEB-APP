@@ -14,6 +14,7 @@ LIB_NAMES = {
     "34y": "IRDFF II",
     "03c": "JEFF 3.3",
     "99c": "D1SUNED (FENDL 3.1d+EAF2007)",
+    "exp": "experiment",
 }
 LIB_SUFFIXES = {v: k for k, v in LIB_NAMES.items()}
 
