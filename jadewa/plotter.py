@@ -23,7 +23,7 @@ def get_figure(
     y_tickformat : str, optional
         x-axis tickformat, by default "e"
     x_tickformat : str, optional
-        y-axis tickformat, by default "e"
+        y-axis tickformat, by default None
 
     Returns
     -------
@@ -38,11 +38,14 @@ def get_figure(
 
     if plot_type == "step":
         fig = _plot_step(data, **keyargs)
-        fig.update_yaxes(tickformat=y_tickformat)
-        if x_tickformat is not None:
-            fig.update_xaxes(tickformat=x_tickformat)
+    elif plot_type == "scatter":
+        fig = _plot_scatter(data, **keyargs)
     else:
         raise ValueError(f"Plot type '{plot_type}' not supported")
+
+    fig.update_yaxes(tickformat=y_tickformat)
+    if x_tickformat is not None:
+        fig.update_xaxes(tickformat=x_tickformat)
 
     return fig
 
@@ -50,5 +53,16 @@ def get_figure(
 def _plot_step(data: pd.DataFrame, **keyargs) -> Figure:
     fig = px.line(
         data, **keyargs, color="label", template="plotly_white", line_shape="hv"
+    )
+    return fig
+
+
+def _plot_scatter(data: pd.DataFrame, **keyargs) -> Figure:
+    fig = px.scatter(
+        data,
+        **keyargs,
+        color="label",
+        template="plotly_white",
+        error_y=data["Error"] * data[keyargs["y"]],
     )
     return fig
