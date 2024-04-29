@@ -189,7 +189,23 @@ class Processor:
                 f"[ratio vs {LIB_NAMES[reflib]}]", key_args["y"]
             )
 
-        fig = get_figure(plot_type, data, key_args)
+        # get some optional parameter
+        try:
+            x_axis_format = self.params[benchmark][tally]["x_axis_format"]
+        except KeyError:
+            x_axis_format = None
+        try:
+            y_axis_format = self.params[benchmark][tally]["y_axis_format"]
+        except KeyError:
+            y_axis_format = None
+
+        fig = get_figure(
+            plot_type,
+            data,
+            key_args,
+            x_axis_format=x_axis_format,
+            y_axis_format=y_axis_format,
+        )
         return fig
 
     def get_available_tallies(

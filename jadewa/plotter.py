@@ -7,8 +7,8 @@ def get_figure(
     plot_type: str,
     data: pd.DataFrame,
     keyargs: dict,
-    y_tickformat: str = ".2e",
-    x_tickformat: str = None,
+    y_axis_format: str = None,
+    x_axis_format: str = None,
 ) -> Figure:
     """Get a plotly figure depending on the plot type requested
 
@@ -18,12 +18,12 @@ def get_figure(
         one of the supported plot types
     data : pd.DataFrame
         data to be plotted
-    **keyargs : dict
+    keyargs : dict
         to be passed directly to the plotly express function
-    y_tickformat : str, optional
-        x-axis tickformat, by default "e"
-    x_tickformat : str, optional
-        y-axis tickformat, by default None
+    y_axis_format : str, optional
+        dictionary of options for the y axis
+    x_axis_format : str, optional
+        dictionary of options for the x axis
 
     Returns
     -------
@@ -43,9 +43,22 @@ def get_figure(
     else:
         raise ValueError(f"Plot type '{plot_type}' not supported")
 
-    fig.update_yaxes(tickformat=y_tickformat)
-    if x_tickformat is not None:
-        fig.update_xaxes(tickformat=x_tickformat)
+    if x_axis_format is not None:
+        fig.update_xaxes(**x_axis_format)
+    if y_axis_format is not None:
+        fig.update_yaxes(**y_axis_format)
+
+    # fig.update_yaxes(tickformat=y_tickformat)
+    # if x_tickformat is not None:
+    #     fig.update_xaxes(tickformat=x_tickformat)
+
+    # fig.update_layout(
+    #     xaxis=dict(
+    #         tickmode="array",
+    #         tickvals=[1, 3, 5, 7, 9, 11],
+    #         ticktext=["One", "Three", "Five", "Seven", "Nine", "Eleven"],
+    #     )
+    # )
 
     return fig
 

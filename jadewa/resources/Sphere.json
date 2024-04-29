@@ -11,7 +11,8 @@
             "y": "Neutron flux [n/cm^2/s]",
             "log_x": true,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     },
 
     "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]": {
@@ -26,6 +27,7 @@
             "y": "Photon flux [n/cm^2/s]",
             "log_x": true,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     }
 }

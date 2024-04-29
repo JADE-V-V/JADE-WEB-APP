@@ -11,7 +11,8 @@
             "y": "Neutron flux [n/cm^2/s]",
             "log_x": false,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     },
     "214": {
         "tally_name": "Photon Flux",
@@ -25,7 +26,8 @@
             "y": "Photon flux [n/cm^2/s]",
             "log_x": false,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     },
     "6": {
         "tally_name": "Total nuclear heating",
@@ -39,7 +41,8 @@
             "y": "Total nuclear heating [W/g]",
             "log_x": false,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     },
     "16": {
         "tally_name": "Neutron heating",
@@ -53,7 +56,8 @@
             "y": "Neutron heating [W/g]",
             "log_x": false,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     },
     "26": {
         "tally_name": "Photon heating",
@@ -67,6 +71,7 @@
             "y": "Photon heating [W/g]",
             "log_x": false,
             "log_y": true
-        }
+        },
+        "y_axis_format": {"tickformat": ".2e"}
         }
 }
