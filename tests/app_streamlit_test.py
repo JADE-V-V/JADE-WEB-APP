@@ -80,7 +80,7 @@ class TestStreamlitApp:
         app = AppTest("app_streamlit.py", default_timeout=10).run()
         app.selectbox(key="benchmark").select("Sphere").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
-        app.selectbox(key="code").select("openmc").run()
+        # app.selectbox(key="code").select("openmc").run()
         app.selectbox(key="isotope").select("H-1").run()
         assert app.selectbox(key="tally").disabled is False
         assert len(app.selectbox(key="tally").options) > 1

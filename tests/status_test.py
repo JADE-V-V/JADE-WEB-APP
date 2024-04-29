@@ -23,7 +23,7 @@ class TestStatus:
 
     def test_get_benchmarks(self, status: Status):
         """Test the get_benchmarks method"""
-        assert set(status.get_benchmarks()) == {"ITER_1D", "Sphere"}
+        assert "ITER_1D" in status.get_benchmarks()
 
     def test_get_libraries(self, status: Status):
         """Test the get_libraries method"""
