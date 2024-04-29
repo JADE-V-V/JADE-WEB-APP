@@ -6,8 +6,6 @@
             "Value": "SDDR [Sv/h]"
         },
         "plot_type": "scatter",
-        "x_tickformat": ".2e",
-        "y_tickformat": ".2e",
         "plot_args": {
             "x": "Cooldown time",
             "y": "SDDR [Sv/h]",
@@ -20,5 +18,22 @@
             "tickvals": [86400, 604800, 1296000, 2592000, 5184000],
             "ticktext": ["1d", "7d", "15d", "30d", "60d"]
         }
-    }
+    },
+
+    "FNG2 4": {
+        "tally_name": "SDDR - 2nd campaign",
+        "substitutions": {
+            "Time": "Cooldown time [s]",
+            "Value": "SDDR [Sv/h]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Cooldown time [s]",
+            "y": "SDDR [Sv/h]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {"tickformat": ".2e"}
+        }
 }
