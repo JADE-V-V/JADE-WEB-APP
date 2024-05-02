@@ -13,7 +13,6 @@
             "log_y": true
         },
         "y_axis_format": {"tickformat": ".2e"},
-        "x_axis_format": {"tickformat": ".2e"},
         "compute_lethargy": true
     }
 }

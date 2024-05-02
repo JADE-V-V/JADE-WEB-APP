@@ -124,17 +124,18 @@ class Processor:
                 df["label"] = label
                 if reflib == lib and refcode == code:
                     ref_df = df
-                if reflib != "exp" and compute_lethargy:
+                if lib != "exp" and compute_lethargy:
                     ergs = [1e-10]  # Additional "zero" energy for lethargy computation
                     try:
-                        energies = df["Energy"].to_numpy()
+                        energies = df["Energy"].astype(float).values
                     except KeyError as exc:
                         raise JsonSettingsError(
                             f"Lethargy cannot be computed for {benchmark} {tally}"
                         ) from exc
                     ergs.extend(energies.tolist())
+                    ergs = np.array(ergs)
                     # flux = flux / np.log((ergs[1:] / ergs[:-1]))
-                    df["Value"] = df["Value"] / (np.log(ergs[1:] / ergs[:-1]))
+                    df["Value"] = df["Value"].values / (np.log(ergs[1:] / ergs[:-1]))
 
                 dfs.append(df)
 
