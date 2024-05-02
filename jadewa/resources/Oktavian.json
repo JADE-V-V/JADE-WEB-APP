@@ -14,5 +14,316 @@
         },
         "y_axis_format": {"tickformat": ".2e"},
         "compute_lethargy": true
+    },
+    "Co 21": {
+        "tally_name": "Co - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Cr 21": {
+        "tally_name": "Cr - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Cu 21": {
+        "tally_name": "Cu - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "LiF 21": {
+        "tally_name": "LiF - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Mn 21": {
+        "tally_name": "Mn - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Mo 21": {
+        "tally_name": "Mo - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Si 21": {
+        "tally_name": "Si - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Ti 21": {
+        "tally_name": "Ti - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "W 21": {
+        "tally_name": "W - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Zr 21": {
+        "tally_name": "Zr - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    },
+    "Al 41": {
+        "tally_name": "Al - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+
+    "Co 41": {
+        "tally_name": "Co - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Cr 41": {
+        "tally_name": "Cr - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Cu 41": {
+        "tally_name": "Cu - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "LiF 41": {
+        "tally_name": "LiF - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Mn 41": {
+        "tally_name": "Mn - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Mo 41": {
+        "tally_name": "Mo - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Si 41": {
+        "tally_name": "Si - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "Ti 41": {
+        "tally_name": "Ti - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "W 41": {
+        "tally_name": "W - Photon leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon leakage spectrum [#/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     }
 }

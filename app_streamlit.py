@@ -183,7 +183,7 @@ def main():
     # -- Application --
     col01, col02 = st.columns([0.9, 0.1])
     with col01:
-        st.title("JADE results interactive plotter [ALPHA]")
+        st.title("JADE results interactive plotter [BETA]")
     with col02:
         st.image(r"jadewa/assets/Jade.png", width=75)
 
