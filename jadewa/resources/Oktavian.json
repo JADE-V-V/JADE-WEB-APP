@@ -1,0 +1,19 @@
+{
+    "Al 21": {
+        "tally_name": "Al - neutron leakage spectrum",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    }
+}

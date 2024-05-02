@@ -59,6 +59,16 @@ class TestProcessor:
         assert len(data.columns) == 4
         assert data.groupby("label").mean().iloc[-1][-1] == 1
 
+    def test_get_graph_data_ratio_lethargy(self, processor: Processor):
+        """Test the get_graph_data method with lethargy"""
+        data = processor._get_graph_data(
+            "Oktavian",
+            "exp",
+            "Al 21",
+            compute_lethargy=True,
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 134
+
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
         processor = Processor(Status.from_github("JADE-V-V", "JADE-RAW-RESULTS"))

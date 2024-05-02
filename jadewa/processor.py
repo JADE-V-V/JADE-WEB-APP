@@ -1,9 +1,13 @@
+""" Module to process the data and get the plot
+"""
+
 from jadewa.status import Status
 from jadewa.plotter import get_figure
 from urllib.error import HTTPError
 
 from plotly.graph_objects import Figure
 import pandas as pd
+import numpy as np
 import os
 from importlib.resources import files, as_file
 import jadewa.resources as res
@@ -11,6 +15,7 @@ import json
 import re
 import logging
 from jadewa.utils import LIB_NAMES
+from jadewa.errors import JsonSettingsError
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
@@ -38,6 +43,7 @@ class Processor:
         isotope_material: str = None,
         refcode: str = "mcnp",
         ratio: bool = False,
+        compute_lethargy: bool = False,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -55,6 +61,10 @@ class Processor:
             code to be used as reference, by default 'mcnp'
         ratio : bool, optional
             if True, the data will be normalized to the ref-lib and ref-code, by default False
+        compute_lethargy: bool, optional
+            if True, the data will be converted to lethargy, by default False.
+            This is true for every library except "exp" which is
+            expected to be in the right format if needed.
 
         Returns
         -------
@@ -74,15 +84,20 @@ class Processor:
         dfs = []
         for lib, values in self.status.status[benchmark].items():
             for code, (path, _) in values.items():
+                # logic to determine the correct path (local or github)
                 if "https" in path:
                     path = path + r"/{}.csv?raw=true"
+                    if isotope_material:
+                        formatted_path = path.format(code + isotope_material).replace(
+                            " ", "%20"
+                        )
+                    else:
+                        formatted_path = path.format(tally).replace(" ", "%20")
                 else:
                     path = path + os.sep + "{}.csv"
+                    formatted_path = path.format(tally)
 
                 if isotope_material:
-                    formatted_path = path.format(code + isotope_material).replace(
-                        " ", "%20"
-                    )
                     try:
                         df = pd.read_csv(formatted_path)
                     except FileNotFoundError:
@@ -96,13 +111,31 @@ class Processor:
                         logging.debug("%s not found", formatted_path)
                         continue
                 else:
-                    formatted_path = path.format(tally).replace(" ", "%20")
                     df = pd.read_csv(formatted_path)
+
+                # Always drop the "total" row if present (check only first col)
+                df = (
+                    df.set_index(df.columns[0])
+                    .drop("total", errors="ignore")
+                    .reset_index()
+                )
 
                 label = f"{LIB_NAMES[lib]}-{code}"
                 df["label"] = label
                 if reflib == lib and refcode == code:
                     ref_df = df
+                if reflib != "exp" and compute_lethargy:
+                    ergs = [1e-10]  # Additional "zero" energy for lethargy computation
+                    try:
+                        energies = df["Energy"].to_numpy()
+                    except KeyError as exc:
+                        raise JsonSettingsError(
+                            f"Lethargy cannot be computed for {benchmark} {tally}"
+                        ) from exc
+                    ergs.extend(energies.tolist())
+                    # flux = flux / np.log((ergs[1:] / ergs[:-1]))
+                    df["Value"] = df["Value"] / (np.log(ergs[1:] / ergs[:-1]))
+
                 dfs.append(df)
 
         # normalize data to reflib/refcode if requested
@@ -165,6 +198,11 @@ class Processor:
         for key, value in self.params[benchmark].items():
             if value["tally_name"] == tally:
                 tally = key
+        # check for lethargy computation optional input
+        try:
+            compute_lethargy = self.params[benchmark][tally]["compute_lethargy"]
+        except KeyError:
+            compute_lethargy = False
 
         # ratio = self.params[benchmark][tally]["ratio"]
         if benchmark == "Sphere":
@@ -175,10 +213,16 @@ class Processor:
                 isotope_material=isotope_material,
                 ratio=ratio,
                 refcode=refcode,
+                compute_lethargy=compute_lethargy,
             )
         else:
             data = self._get_graph_data(
-                benchmark, reflib, tally, ratio=ratio, refcode=refcode
+                benchmark,
+                reflib,
+                tally,
+                ratio=ratio,
+                refcode=refcode,
+                compute_lethargy=compute_lethargy,
             )
         key_args = self.params[benchmark][tally]["plot_args"]
         plot_type = self.params[benchmark][tally]["plot_type"]
