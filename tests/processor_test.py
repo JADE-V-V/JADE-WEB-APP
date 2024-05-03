@@ -126,7 +126,7 @@ class TestProcessor:
             "C_Model",
             "00c",
             "mcnp",
-            "Neutron current on plasma boundary (inboard BLK#1 to #6) - uncollided",
+            "Neutron current on plasma boundary - (inboard BLK#1 to #6)",
         )
 
     def test_get_available_tallies(self, processor: Processor):
