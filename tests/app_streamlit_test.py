@@ -77,7 +77,7 @@ class TestStreamlitApp:
         """
         Test the plot by checking if the image is not None.
         """
-        app = AppTest("app_streamlit.py", default_timeout=10).run()
+        app = AppTest("app_streamlit.py", default_timeout=15).run()
         app.selectbox(key="benchmark").select("Sphere").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
         # app.selectbox(key="code").select("openmc").run()

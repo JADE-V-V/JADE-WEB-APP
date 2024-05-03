@@ -45,9 +45,17 @@ class Processor:
             path = path + os.sep + "{}.csv"
 
         if isotope_material:
-            formatted_path = path.format(code + isotope_material).replace(" ", "%20")
+            if "https" in path:
+                formatted_path = path.format(code + isotope_material).replace(
+                    " ", "%20"
+                )
+            else:
+                formatted_path = path.format(code + isotope_material)
         else:
-            formatted_path = path.format(tally).replace(" ", "%20")
+            if "https" in path:
+                formatted_path = path.format(tally).replace(" ", "%20")
+            else:
+                formatted_path = path.format(tally)
 
         if isotope_material:
             try:
