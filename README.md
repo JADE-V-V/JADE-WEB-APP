@@ -26,3 +26,5 @@ In addition to the requirements that can be found in the [requirements](./requir
 To run the suite of unit tests (and produce a coverage html tree) run:
 
 ```pytest --cov=. --cov-report html```
+
+To add support for a new benchmark, a new .json configuration file can added to the repository as explained [here](/docs/json_structure.md)
