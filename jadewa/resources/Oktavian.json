@@ -179,151 +179,161 @@
         "tally_name": "Al - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
 
     "Co 41": {
         "tally_name": "Co - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Cr 41": {
         "tally_name": "Cr - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Cu 41": {
         "tally_name": "Cu - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "LiF 41": {
         "tally_name": "LiF - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Mn 41": {
         "tally_name": "Mn - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Mo 41": {
         "tally_name": "Mo - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Si 41": {
         "tally_name": "Si - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "Ti 41": {
         "tally_name": "Ti - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     },
     "W 41": {
         "tally_name": "W - Photon leakage spectrum",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon leakage spectrum [#/cm^2/s]"
+            "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon leakage spectrum [#/cm^2/s]",
+            "y": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]",
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_per_unit_energy": true
     }
 }

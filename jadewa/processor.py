@@ -35,6 +35,38 @@ class Processor:
                         benchmark_params = json.load(infile)
                         self.params[name] = benchmark_params
 
+    def _get_csv(
+        self, path: str | os.PathLike, code: str, tally: str, isotope_material: bool
+    ) -> pd.DataFrame:
+        # logic to determine the correct path (local or github)
+        if "https" in path:
+            path = path + r"/{}.csv?raw=true"
+        else:
+            path = path + os.sep + "{}.csv"
+
+        if isotope_material:
+            formatted_path = path.format(code + isotope_material).replace(" ", "%20")
+        else:
+            formatted_path = path.format(tally).replace(" ", "%20")
+
+        if isotope_material:
+            try:
+                df = pd.read_csv(formatted_path)
+            except FileNotFoundError:
+                # if everything went well, it means that the isotope
+                # or material is not available for this library
+                logging.debug("%s not found", formatted_path)
+                return None
+            except HTTPError:
+                # if everything went well, it means that the isotope
+                # or material is not available for this library
+                logging.debug("%s not found", formatted_path)
+                return None
+        else:
+            df = pd.read_csv(formatted_path)
+
+        return df
+
     def _get_graph_data(
         self,
         benchmark: str,
@@ -44,6 +76,7 @@ class Processor:
         refcode: str = "mcnp",
         ratio: bool = False,
         compute_lethargy: bool = False,
+        compute_per_unit_energy: bool = False,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -65,6 +98,10 @@ class Processor:
             if True, the data will be converted to lethargy, by default False.
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
+        compute_per_unit_energy: bool, optional
+            if True, the data will be converted to per unit energy, by default False.
+            This is true for every library except "exp" which is
+            expected to be in the right format if needed.
 
         Returns
         -------
@@ -84,34 +121,10 @@ class Processor:
         dfs = []
         for lib, values in self.status.status[benchmark].items():
             for code, (path, _) in values.items():
-                # logic to determine the correct path (local or github)
-                if "https" in path:
-                    path = path + r"/{}.csv?raw=true"
-                    if isotope_material:
-                        formatted_path = path.format(code + isotope_material).replace(
-                            " ", "%20"
-                        )
-                    else:
-                        formatted_path = path.format(tally).replace(" ", "%20")
-                else:
-                    path = path + os.sep + "{}.csv"
-                    formatted_path = path.format(tally)
-
-                if isotope_material:
-                    try:
-                        df = pd.read_csv(formatted_path)
-                    except FileNotFoundError:
-                        # if everything went well, it means that the isotope
-                        # or material is not available for this library
-                        logging.debug("%s not found", formatted_path)
-                        continue
-                    except HTTPError:
-                        # if everything went well, it means that the isotope
-                        # or material is not available for this library
-                        logging.debug("%s not found", formatted_path)
-                        continue
-                else:
-                    df = pd.read_csv(formatted_path)
+                # locate and read the csv file
+                df = self._get_csv(path, code, tally, isotope_material)
+                if df is None:
+                    continue
 
                 # Always drop the "total" row if present (check only first col)
                 df = (
@@ -120,22 +133,36 @@ class Processor:
                     .reset_index()
                 )
 
+                # Add the label to the df
                 label = f"{LIB_NAMES[lib]}-{code}"
                 df["label"] = label
+
+                # Memorize the reference df to compute ratios
                 if reflib == lib and refcode == code:
                     ref_df = df
-                if lib != "exp" and compute_lethargy:
-                    ergs = [1e-10]  # Additional "zero" energy for lethargy computation
+
+                # Compute lethargy or if needed
+                if lib != "exp" and (compute_lethargy or compute_per_unit_energy):
+                    # Get the energy array
                     try:
                         energies = df["Energy"].astype(float).values
                     except KeyError as exc:
                         raise JsonSettingsError(
                             f"Lethargy cannot be computed for {benchmark} {tally}"
                         ) from exc
+                    ergs = [1e-10]  # Additional "zero" energy
                     ergs.extend(energies.tolist())
                     ergs = np.array(ergs)
-                    # flux = flux / np.log((ergs[1:] / ergs[:-1]))
-                    df["Value"] = df["Value"].values / (np.log(ergs[1:] / ergs[:-1]))
+
+                    # compute lethargy if requested
+                    if compute_lethargy:
+                        df["Value"] = df["Value"].values / (
+                            np.log(ergs[1:] / ergs[:-1])
+                        )
+
+                    # or compute per unit energy if requested
+                    elif compute_per_unit_energy:
+                        df["Value"] = df["Value"].values / (ergs[1:] - ergs[:-1])
 
                 dfs.append(df)
 
@@ -204,27 +231,27 @@ class Processor:
             compute_lethargy = self.params[benchmark][tally]["compute_lethargy"]
         except KeyError:
             compute_lethargy = False
+        # check for unit energy optional input
+        try:
+            compute_energy = self.params[benchmark][tally]["compute_per_unit_energy"]
+        except KeyError:
+            compute_energy = False
 
         # ratio = self.params[benchmark][tally]["ratio"]
         if benchmark == "Sphere":
-            data = self._get_graph_data(
-                benchmark,
-                reflib,
-                tally,
-                isotope_material=isotope_material,
-                ratio=ratio,
-                refcode=refcode,
-                compute_lethargy=compute_lethargy,
-            )
+            iso_mat = isotope_material
         else:
-            data = self._get_graph_data(
-                benchmark,
-                reflib,
-                tally,
-                ratio=ratio,
-                refcode=refcode,
-                compute_lethargy=compute_lethargy,
-            )
+            iso_mat = None
+        data = self._get_graph_data(
+            benchmark,
+            reflib,
+            tally,
+            isotope_material=iso_mat,
+            ratio=ratio,
+            refcode=refcode,
+            compute_lethargy=compute_lethargy,
+            compute_per_unit_energy=compute_energy,
+        )
         key_args = self.params[benchmark][tally]["plot_args"]
         plot_type = self.params[benchmark][tally]["plot_type"]
         # be sure to deactivate log if ratio is on
