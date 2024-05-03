@@ -167,7 +167,49 @@ def select_tally(
         get_lib_suffix(ref_lib),
         selected_code,
     )
-    tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
+    flag_split = True
+    ctg_dict = {}
+
+    for option in tallies_options:
+        if not "-" in option:
+            flag_split = False
+            break
+        ctgs = option.split("-")
+        ctg = ctgs[0]
+        option = ctgs[1]
+
+        if ctg not in ctg_dict:
+            ctg_dict[ctg] = [option]
+        else:
+            ctg_dict[ctg].append(option)
+
+    if flag_split:
+        col3, col4 = st.columns([0.5, 0.5])
+        with col3:
+            ctg_selected = st.selectbox(
+                "Select tally",
+                list(ctg_dict.keys()),
+                key="tally-ctg",
+                index=None,
+            )
+        with col4:
+            if ctg_selected:
+                option_selected = st.selectbox(
+                    "",
+                    ctg_dict[ctg_selected],
+                    key="tally-option",
+                    index=None,
+                )
+            else:
+                option_selected = None
+
+        if option_selected and ctg_selected:
+            tally = ctg_selected + "-" + option_selected
+        else:
+            tally = None
+    else:
+        tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
+
     return tally
 
 
