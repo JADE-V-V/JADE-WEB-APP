@@ -40,6 +40,8 @@ def get_figure(
         fig = _plot_step(data, **keyargs)
     elif plot_type == "scatter":
         fig = _plot_scatter(data, **keyargs)
+    elif plot_type == "grouped_bar":
+        fig = _plot_grouped_bars(data, **keyargs)
     else:
         raise ValueError(f"Plot type '{plot_type}' not supported")
 
@@ -77,5 +79,12 @@ def _plot_scatter(data: pd.DataFrame, **keyargs) -> Figure:
         color="label",
         template="plotly_white",
         error_y=data["Error"] * data[keyargs["y"]],
+    )
+    return fig
+
+
+def _plot_grouped_bars(data: pd.DataFrame, **keyargs) -> Figure:
+    fig = px.bar(
+        data, **keyargs, color="label", template="plotly_white", barmode="group"
     )
     return fig

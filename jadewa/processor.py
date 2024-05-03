@@ -260,8 +260,15 @@ class Processor:
             compute_lethargy=compute_lethargy,
             compute_per_unit_energy=compute_energy,
         )
-        key_args = self.params[benchmark][tally]["plot_args"]
-        plot_type = self.params[benchmark][tally]["plot_type"]
+        # Mandatory keys
+        try:
+            key_args = self.params[benchmark][tally]["plot_args"]
+            plot_type = self.params[benchmark][tally]["plot_type"]
+        except KeyError as exc:
+            raise JsonSettingsError(
+                f"Missing mandatory options in {benchmark} {tally}"
+            ) from exc
+
         # be sure to deactivate log if ratio is on
         if ratio:
             key_args["log_y"] = False
@@ -278,6 +285,23 @@ class Processor:
             y_axis_format = self.params[benchmark][tally]["y_axis_format"]
         except KeyError:
             y_axis_format = None
+        # # combine columns before plot (if requested)
+        # try:
+        #     combine_columns = self.params[benchmark][tally]["combine_columns"]
+        #     for key, columns in combine_columns.items():
+        #         data[key] = data[columns[0]].astype(str)
+        #         for column in columns[1:]:
+        #             data[key] = data[key].astype(str) + "-" + data[column].astype(str)
+        # except KeyError:
+        #     pass
+        # Get only a subset of the data if requested
+        try:
+            subset = self.params[benchmark][tally]["subset"]
+            col = subset[0]
+            index = subset[1]
+            data = data[data[col].astype(str) == index]
+        except KeyError:
+            pass  # no subset requested
 
         fig = get_figure(
             plot_type,

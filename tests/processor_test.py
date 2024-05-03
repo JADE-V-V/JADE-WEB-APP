@@ -120,6 +120,15 @@ class TestProcessor:
             isotope_material="1001",
         )
 
+    def test_get_plot_subset(self, processor: Processor):
+        """Test the get_plot method with a subset of tallies"""
+        fig = processor.get_plot(
+            "C_Model",
+            "00c",
+            "mcnp",
+            "Neutron current on plasma boundary (inboard BLK#1 to #6) - uncollided",
+        )
+
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""
         assert len(processor.get_available_tallies("ITER_1D", "00c", "mcnp")) == 5
