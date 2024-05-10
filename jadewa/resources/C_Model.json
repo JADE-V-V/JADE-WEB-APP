@@ -390,7 +390,7 @@
         "y_axis_format": {"tickformat": ".2e"}
     },
     "16": {
-        "tally_name": "Nuclear heating - (Blanket and Divertor)",
+        "tally_name": "Nuclear heating - Blanket and Divertor",
         "substitutions": {
             "Value": "Nuclear heating [W]",
             "Cells": "Region"
@@ -538,5 +538,225 @@
             ]
             
         }
+    },
+    "26": {
+        "tally_name": "Nuclear heating - Vacuum Vessel, Port Extensions and Port Ducts",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "75",
+                "157",
+                "158",
+                "159",
+                "160",
+                "161",
+                "162",
+                "163",
+                "164",
+                "166",
+                "167",
+                "168",
+                "68",
+                "116",
+                "134",
+                "135",
+                "125",
+                "126",
+                "127",
+                "Input 20",
+                "Input 21"],
+            "ticktext": [
+                "(PS1) - INBOARD",
+                "(PS2) - UPPER FJ Y+",
+                "(PS2) - UPPER FJ Y-",
+                "(PS2) - UPPER Y+",
+                "(PS2) - UPPER Y-",
+                "(PS3) - EQUATORIAL Y+",
+                "(PS3) - EQUATORIAL Y-",
+                "(PS4) - FJ Y+",
+                "(PS4) - FJ Y-",
+                "(PS4) - LOWER PART Y-/Y+",
+                "(PS4) - UPPER PART Y+",
+                "(PS4) - UPPER PART Y-",
+                "TRIANGULAR SUPPORT",
+                "HOOK",
+                "GRAVITY SUPPORT",
+                "GUSSETS",
+                "SHIELD ABOVE UPPER PORT - EVEN",
+                "SHIELD ABOVE UPPER PORT - ODD Y+",
+                "SHIELD ABOVE UPPER PORT - ODD Y+",
+                "UPPER PORT EXT AND DUCT",
+                "EQU PORT EXT AND DUCT"]
+            }
+        },
+        "36": {
+            "tally_name": "Nuclear heating - Thermal Shield",
+            "substitutions": {
+                "Value": "Nuclear heating [W]",
+                "Cells": "Region"
+            },
+            "plot_type": "grouped_bar",
+            "plot_args": {
+                "x": "Region",
+                "y": "Nuclear heating [W]",
+                "log_x": false,
+                "log_y": true
+            },
+            "y_axis_format": {"tickformat": ".2e"}
+        },
+        "46": {
+            "tally_name": "Nuclear heating - Cryostat",
+            "substitutions": {
+                "Value": "Nuclear heating [W]",
+                "Cells": "Region"
+            },
+            "plot_type": "grouped_bar",
+            "plot_args": {
+                "x": "Region",
+                "y": "Nuclear heating [W]",
+                "log_x": false,
+                "log_y": true
+            },
+            "y_axis_format": {"tickformat": ".2e"}
+        },
+        "56": {
+            "tally_name": "Nuclear heating - Port Plugs",
+            "substitutions": {
+                "Value": "Nuclear heating [W]",
+                "Cells": "Region"
+            },
+            "plot_type": "grouped_bar",
+            "plot_args": {
+                "x": "Region",
+                "y": "Nuclear heating [W]",
+                "log_x": false,
+                "log_y": true
+            },
+            "y_axis_format": {"tickformat": ".2e"},
+            "x_axis_format": {
+                "tickmode": "array",
+                "tickvals": [
+                    "Input 1",
+                    "Input 2",
+                    "Input 3",
+                    "85",
+                    "Input 5"],
+                "ticktext": [
+                    "UPPER PORT ENVIRONMENTS",
+                    "UPPER PORT PLUGS +PI(ISS + BIOSHIELD)",
+                    "EQU PORT PLUGS +PI(ISS + BIOSHIELD)",
+                    "LOWER PORT & PENETRATION, PORT PLUG : CENTRAL",
+                    "LOWER PORT & PENETRATION: LATERALS (e.g. IVVS)"]
+                }
+        },
+        "66": {
+            "tally_name": "Nuclear heating - PF Coils",
+            "substitutions": {
+                "Value": "Nuclear heating [W]",
+                "Cells": "Region"
+            },
+            "plot_type": "grouped_bar",
+            "plot_args": {
+                "x": "Region",
+                "y": "Nuclear heating [W]",
+                "log_x": false,
+                "log_y": true
+            },
+            "y_axis_format": {"tickformat": ".2e"},
+            "x_axis_format": {
+                "tickmode": "array",
+                "tickvals": [
+                    "Input 1",
+                    "Input 2",
+                    "Input 3",
+                    "Input 4",
+                    "Input 5",
+                    "Input 6",
+                    "Input 7"],
+                "ticktext": [
+                    "PF1",
+                    "PF2",
+                    "PF3",
+                    "PF4",
+                    "PF5",
+                    "PF6",
+                    "PF3-4 SUPPORTS"]
+                }
+            },
+            "76": {
+                "tally_name": "Nuclear heating - TF Coils",
+                "substitutions": {
+                    "Value": "Nuclear heating [W]",
+                    "Cells": "Region"
+                },
+                "plot_type": "grouped_bar",
+                "plot_args": {
+                    "x": "Region",
+                    "y": "Nuclear heating [W]",
+                    "log_x": false,
+                    "log_y": true
+                },
+                "y_axis_format": {"tickformat": ".2e"},
+                "x_axis_format": {
+                    "tickmode": "array",
+                    "tickvals": [
+                        "Input 1",
+                        "Input 2",
+                        "Input 3",
+                        "Input 4",
+                        "Input 5",
+                        "Input 6",
+                        "Input 7"],
+                    "ticktext": [
+                        "INBOARD STR",
+                        "INBOARD UPPER",
+                        "OUTBOARD UPPER",
+                        "OUTBOARD EQ",
+                        "OUTBOARD LOWER",
+                        "INBOARD LOWER",
+                        "GRAVITY SUPPORT"]
+                }
+    },
+    "86": {
+        "tally_name": "Nuclear heating - Correction Coils",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    },
+    "96": {
+        "tally_name": "Nuclear heating - Central Solenoid",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
     }
 }

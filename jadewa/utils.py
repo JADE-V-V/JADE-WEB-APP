@@ -3,6 +3,8 @@
 
 import re
 from f4enix.input.libmanager import LibManager
+import pandas as pd
+
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
@@ -129,3 +131,36 @@ def get_lib_suffix(name: str) -> str:
         suffix of the library (e.g. 21c, 30c, 31c)
     """
     return LIB_SUFFIXES[name]
+
+
+def string_ints_converter(df: pd.DataFrame, column: str) -> pd.DataFrame:
+    """Take the selected column of a Dataframe, connvert all elements to int
+    if possible and then reconvert to string. This allows '1.0' and '1' to be
+    the same index. If no element was a string in the first place, do not change
+    anything.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame to be converted
+    column : str
+        columns to be converted
+
+    Returns
+    -------
+    pd.DataFrame
+        DataFrame with the selected columns converted to string
+    """
+    try:
+        df[column].astype(float)
+        return df
+    except ValueError:
+        values = df[column].values
+        new_values = []
+        for value in values:
+            try:
+                new_values.append(str(int(float(value))))
+            except ValueError:
+                new_values.append(value)
+        df[column] = new_values
+        return df

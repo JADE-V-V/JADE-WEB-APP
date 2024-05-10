@@ -16,6 +16,7 @@ import re
 import logging
 from jadewa.utils import LIB_NAMES
 from jadewa.errors import JsonSettingsError
+from jadewa.utils import string_ints_converter
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
@@ -85,6 +86,7 @@ class Processor:
         ratio: bool = False,
         compute_lethargy: bool = False,
         compute_per_unit_energy: bool = False,
+        x_vals_to_string: bool = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -110,6 +112,10 @@ class Processor:
             if True, the data will be converted to per unit energy, by default False.
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
+        x_vals_to_string: str, optional
+            Columns to convert. The x values will be converted to string, by default False.
+            In this process, floats and int representation of integers will be
+            converted to the same value.
 
         Returns
         -------
@@ -172,6 +178,10 @@ class Processor:
                     elif compute_per_unit_energy:
                         df["Value"] = df["Value"].values / (ergs[1:] - ergs[:-1])
 
+                # if requested, convert x values to string
+                if x_vals_to_string:
+                    df = string_ints_converter(df, x_vals_to_string)
+
                 dfs.append(df)
 
         # normalize data to reflib/refcode if requested
@@ -198,6 +208,34 @@ class Processor:
             newdf = newdf[newdf["Tally Description"] == tally]
 
         return newdf
+
+    def _get_x_vals_to_string(self, benchmark: str, tally: str) -> str:
+        # Check if the x-axis needs to be converted to string
+        try:
+            # first check if the x ticks are imposed, if not no conversion
+            tickmode = self.params[benchmark][tally]["x_axis_format"]["tickmode"]
+            if tickmode == "array":
+                # then we need to check if the x values columns had originally
+                # another name in the csv
+                nice_x = self.params[benchmark][tally]["plot_args"]["x"]
+                try:
+                    subs = self.params[benchmark][tally]["substitutions"]
+                    found = False
+                    for key, value in subs.items():
+                        if nice_x == value:
+                            x_vals_to_string = key
+                            found = True
+                    if not found:
+                        x_vals_to_string = nice_x
+
+                except KeyError:
+                    x_vals_to_string = nice_x
+            else:
+                x_vals_to_string = None
+        except KeyError:
+            x_vals_to_string = None
+
+        return x_vals_to_string
 
     def get_plot(
         self,
@@ -250,6 +288,10 @@ class Processor:
             iso_mat = isotope_material
         else:
             iso_mat = None
+
+        # Check if the x-axis needs to be converted to string
+        x_vals_to_string = self._get_x_vals_to_string(benchmark, tally)
+
         data = self._get_graph_data(
             benchmark,
             reflib,
@@ -259,6 +301,7 @@ class Processor:
             refcode=refcode,
             compute_lethargy=compute_lethargy,
             compute_per_unit_energy=compute_energy,
+            x_vals_to_string=x_vals_to_string,
         )
         # Mandatory keys
         try:

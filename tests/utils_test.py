@@ -3,7 +3,9 @@ from jadewa.utils import (
     get_mat_iso_code,
     get_lib_suffix,
     get_pretty_lib_names,
+    string_ints_converter,
 )
+import pandas as pd
 
 
 class TestUtils:
@@ -24,3 +26,43 @@ class TestUtils:
         assert pretty_names == ["FENDL 2.1c", "FENDL 3.0", "FENDL 3.1d"]
         for pretty_name, code in zip(pretty_names, names):
             assert get_lib_suffix(pretty_name) == code
+
+    def test_get_mat_iso_code(self):
+        """Test the get_mat_iso_code function"""
+        names = ["Natural Silicon", "H-1", "Ne-1"]
+        codes = ["M900", "1001", "10001"]
+        for name, code in zip(names, codes):
+            assert get_mat_iso_code(name) == code
+
+    def test_get_lib_suffix(self):
+        """Test the get_lib_suffix function"""
+        names = ["FENDL 2.1c", "FENDL 3.0", "FENDL 3.1d"]
+        codes = ["21c", "30c", "31c"]
+        for name, code in zip(names, codes):
+            assert get_lib_suffix(name) == code
+
+    def test_string_ints_converter(self):
+        """Test the string_ints_converter function"""
+        df = pd.DataFrame(
+            [
+                {"A": "1", "B": 1},
+                {"A": "4.0", "B": 1},
+                {"A": 1.0, "B": 1},
+                {"A": "a string", "B": 1},
+            ]
+        )
+        df = string_ints_converter(df, "A")
+        expected = ["1", "4", "1", "a string"]
+        for i, value in enumerate(df["A"].values):
+            assert value == expected[i]
+
+        # check that if it is numerin nothing is touched
+        df = pd.DataFrame(
+            [
+                {"A": 1, "B": 1},
+                {"A": 4.0, "B": 1},
+            ]
+        )
+        df = string_ints_converter(df, "A")
+        for value in df["A"].values:
+            assert not isinstance(value, str)

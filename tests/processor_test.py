@@ -6,6 +6,11 @@ from jadewa.status import Status
 import tests.resources.status as res
 
 
+class MockProcessorParams(Processor):
+    def __init__(self, params: dict) -> None:
+        self.params = params
+
+
 class TestProcessor:
     """Test Processor class"""
 
@@ -151,3 +156,26 @@ class TestProcessor:
         """Test the get_available_isotopes_materials method"""
         isotopes = processor.get_available_isotopes_materials("Sphere", "32c", "mcnp")
         assert isotopes == ["mcnp1001", "mcnp2003", "mcnp2004"]
+
+    @pytest.mark.parametrize(
+        ["x", "substitutions", "tickmode", "expected"],
+        [
+            ["A", {"B": "A"}, "array", "B"],
+            ["A", {"B": "A"}, None, None],
+            ["A", {"B": "C"}, "array", "A"],
+        ],
+    )
+    def test_get_x_vals_to_string(
+        self, x: str, substitutions: dict, tickmode: str, expected: str
+    ):
+        params = {
+            "benchmark": {
+                "tally": {
+                    "x_axis_format": {"tickmode": tickmode},
+                    "plot_args": {"x": x},
+                    "substitutions": substitutions,
+                },
+            }
+        }
+        mock_processor = MockProcessorParams(params)
+        assert expected == mock_processor._get_x_vals_to_string("benchmark", "tally")
