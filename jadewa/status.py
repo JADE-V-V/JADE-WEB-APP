@@ -1,18 +1,22 @@
 """
-This module provides a Status class that stores information on available results and their locations.
+This module provides a Status class that stores information on available results
+and their locations.
 """
 
 from __future__ import annotations
 import os
 import requests
+import pandas as pd
 from jadewa.utils import LIB_NAMES
 
 
 class Status:
     def __init__(
-        self, status: dict[str, dict[str, dict[str, tuple[str, list[str]]]]]
+        self,
+        status: dict[str, dict[str, dict[str, tuple[str, list[str]]]]],
+        metadata_df: pd.DataFrame = None,
     ) -> None:
-        """Store information on what results are available and where
+        """Store information on what results are available and where.
 
         Parameters
         ----------
@@ -20,6 +24,8 @@ class Status:
             nested dictionary. First level is benchmark name, second level is
             library and third is code. The value is a tuple with the path to
             the results and a list of all files available.
+        metadata_df : pd.DataFrame, optional
+            DataFrame with the metadata of the results, by default None.
 
         Attributes
         ----------
@@ -27,8 +33,11 @@ class Status:
             nested dictionary. First level is benchmark name, second level is
             library and third is code. The value is a tuple with the path to
             the results and a list of all files available.
+        metadata_df : pd.DataFrame
+            DataFrame containing the metadata of the available results
         """
         self.status = status
+        self.metadata_df = metadata_df
 
     @staticmethod
     def _github_walk(owner: str, repo: str, branch: str = "main"):
@@ -64,11 +73,13 @@ class Status:
         allfiles = []
         for i in cls._github_walk(owner, repo, branch):
             path = i["path"]
-            if os.path.basename(path)[-3:] == "csv":
+            filename = os.path.basename(path)
+            if filename.endswith(".csv") or filename == "metadata.json":
                 allfiles.append(path)
 
         # create the nested dict for the status
         status = {}
+        metadata_rows = []
         start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
         for path in allfiles:
             pieces = path.split("/")
@@ -76,16 +87,26 @@ class Status:
             benchmark = pieces[-4]
             code = pieces[-3]
             file = pieces[-1]
-            if benchmark not in status:
-                status[benchmark] = {}
-            if library not in status[benchmark]:
-                status[benchmark][library] = {}
-            if code not in status[benchmark][library]:
-                rel_path = start_url + os.path.dirname(path)
-                status[benchmark][library][code] = (rel_path, [])
-            status[benchmark][library][code][1].append(file)
+            # store the .csv files
+            if file.endswith(".csv"):
+                if benchmark not in status:
+                    status[benchmark] = {}
+                if library not in status[benchmark]:
+                    status[benchmark][library] = {}
+                if code not in status[benchmark][library]:
+                    rel_path = start_url + os.path.dirname(path)
+                    status[benchmark][library][code] = (rel_path, [])
+                status[benchmark][library][code][1].append(file)
+            if file == "metadata.json":
+                json_path = (
+                    start_url + os.path.dirname(path) + r"/metadata.json?raw=true"
+                )
+                r = requests.get(json_path, timeout=5)
+                metadata_rows.append(r.json())
 
-        return cls(status)
+        df = pd.DataFrame(metadata_rows)
+
+        return cls(status, df)
 
     @classmethod
     def from_root(cls, root: os.PathLike) -> Status:

@@ -46,3 +46,4 @@ class TestStatus:
         csvs = status.get_results("Sphere", "32c", "mcnp")
         assert len(csvs[1]) > 100
         assert pd.read_csv(csvs[0] + "/" + csvs[1][0] + "?raw=true") is not None
+        assert len(status.metadata_df) > 1

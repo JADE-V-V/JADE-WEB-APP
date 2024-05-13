@@ -1,15 +1,17 @@
 """Main streamlit app entry point.
 """
 
+from __future__ import annotations
 import streamlit as st
-from jadewa.status import Status
 from jadewa.processor import Processor
 from jadewa.utils import (
     get_mat_iso_code,
     get_pretty_mat_iso_names,
     get_lib_suffix,
     get_pretty_lib_names,
+    get_info_dfs,
 )
+from jadewa.status import Status
 
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
@@ -218,87 +220,103 @@ def main():
     st.set_page_config(layout="wide")
 
     status, processor = get_status_processor()
+    sorted_df, pivot_sddr, pivot_no_sddr = get_info_dfs(status)
 
     # Get available benchmarks
     available_benchmarks = status.get_benchmarks()
 
     # -- Application --
-    col01, col02 = st.columns([0.9, 0.1])
-    with col01:
-        st.title("JADE results interactive plotter [BETA]")
-    with col02:
-        st.image(r"jadewa/assets/Jade.png", width=75)
+    tab_plot, tab_info = st.tabs(["Plot", "Info"])
 
-    col1, col2 = st.columns([0.4, 0.6])
-    with col1:
-        # first select the benchmark
-        selected_benchmark = select_benchmark(available_benchmarks)
+    with tab_plot:
+        col01, col02 = st.columns([0.9, 0.1])
+        with col01:
+            st.title("JADE results interactive plotter [BETA]")
+        with col02:
+            st.image(r"jadewa/assets/Jade.png", width=75)
 
-        # select the libraries for the selected benchmark
-        if selected_benchmark:
-            ref_lib = select_ref_lib(selected_benchmark, status)
-        else:
-            ref_lib = None
+        col1, col2 = st.columns([0.4, 0.6])
+        with col1:
+            # first select the benchmark
+            selected_benchmark = select_benchmark(available_benchmarks)
 
-        # Select the reference code
-        if selected_benchmark and ref_lib:
-            selected_code = select_ref_code(selected_benchmark, ref_lib, status)
-        else:
-            selected_code = None
+            # select the libraries for the selected benchmark
+            if selected_benchmark:
+                ref_lib = select_ref_lib(selected_benchmark, status)
+            else:
+                ref_lib = None
 
-        # optional, select the isotope or material for the selected benchmark
-        if selected_benchmark == "Sphere":
-            if ref_lib and selected_code:
-                isotope_material = select_isotope_material(
+            # Select the reference code
+            if selected_benchmark and ref_lib:
+                selected_code = select_ref_code(selected_benchmark, ref_lib, status)
+            else:
+                selected_code = None
+
+            # optional, select the isotope or material for the selected benchmark
+            if selected_benchmark == "Sphere":
+                if ref_lib and selected_code:
+                    isotope_material = select_isotope_material(
+                        selected_benchmark, ref_lib, selected_code, processor
+                    )
+            else:
+                isotope_material = None
+
+            # select the tally
+            if selected_benchmark and ref_lib and selected_code:
+                tally = select_tally(
                     selected_benchmark, ref_lib, selected_code, processor
                 )
-        else:
-            isotope_material = None
+            else:
+                tally = None
 
-        # select the tally
-        if selected_benchmark and ref_lib and selected_code:
-            tally = select_tally(selected_benchmark, ref_lib, selected_code, processor)
-        else:
-            tally = None
+        with col2:
+            # Radio button to select plot type as ratio or not
+            ratio_button = st.radio(
+                "Plot type", ["Absolute", "Ratio"], index=1, horizontal=True
+            )
+            if ratio_button == "Ratio":
+                ratio = True
+            else:
+                ratio = False
 
-    with col2:
-        # Radio button to select plot type as ratio or not
-        ratio_button = st.radio(
-            "Plot type", ["Absolute", "Ratio"], index=1, horizontal=True
-        )
-        if ratio_button == "Ratio":
-            ratio = True
-        else:
-            ratio = False
-
-        # and finally plot!
-        if selected_benchmark and ref_lib and tally:
-            if selected_benchmark == "Sphere":
-                if isotope_material:
+            # and finally plot!
+            if selected_benchmark and ref_lib and tally:
+                if selected_benchmark == "Sphere":
+                    if isotope_material:
+                        fig = processor.get_plot(
+                            selected_benchmark,
+                            get_lib_suffix(ref_lib),
+                            selected_code,
+                            tally,
+                            # use the raw name
+                            isotope_material=get_mat_iso_code(isotope_material),
+                            ratio=ratio,
+                        )
+                    else:
+                        fig = None
+                else:
                     fig = processor.get_plot(
                         selected_benchmark,
                         get_lib_suffix(ref_lib),
                         selected_code,
                         tally,
-                        # use the raw name
-                        isotope_material=get_mat_iso_code(isotope_material),
                         ratio=ratio,
                     )
-                else:
-                    fig = None
             else:
-                fig = processor.get_plot(
-                    selected_benchmark,
-                    get_lib_suffix(ref_lib),
-                    selected_code,
-                    tally,
-                    ratio=ratio,
-                )
-        else:
-            fig = None
+                fig = None
 
-        if fig:
-            st.plotly_chart(fig, use_container_width=True)
+            if fig:
+                st.plotly_chart(fig, use_container_width=True)
+
+    with tab_info:
+        st.header("Available simulations (no activation)")
+        st.dataframe(pivot_no_sddr, use_container_width=True)
+
+        st.header("Available simulations (activation)")
+        st.dataframe(pivot_sddr, use_container_width=True)
+
+        st.header("Complete metadata on available simulations")
+        st.dataframe(sorted_df, use_container_width=True)
 
 
 if __name__ == "__main__":

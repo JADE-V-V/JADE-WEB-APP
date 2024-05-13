@@ -1,9 +1,12 @@
 """Contains useful constants and functions for the jadewa package.
 """
 
+from __future__ import annotations
 import re
 from f4enix.input.libmanager import LibManager
 import pandas as pd
+
+import jadewa
 
 
 LIB_NAMES = {
@@ -164,3 +167,45 @@ def string_ints_converter(df: pd.DataFrame, column: str) -> pd.DataFrame:
                 new_values.append(value)
         df[column] = new_values
         return df
+
+
+def get_info_dfs(
+    status: jadewa.Status,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Get the metadata DataFrames to be displayed in the app.
+
+    Parameters
+    ----------
+    status : Status
+        Jade webapp status object
+
+    Returns
+    -------
+    sorted_df: pd.DataFrame, df_sddr: pd.DataFrame, df_no_sddr: pd.DataFrame
+        the first DF is the complete list of ordered metadata, the second and
+        third are the pivot tables showing all the available raw data divided
+        by activation and non-activation benchmarks.
+    """
+    df = status.metadata_df
+    sorted_df = df.set_index(["benchmark_name", "library", "code"])
+
+    sddr_codes = ["d1s"]
+    df_sddr = df.set_index("code").loc[sddr_codes].reset_index()
+    df_no_sddr = df[~df["code"].isin(sddr_codes)]
+
+    sorted_df = df.set_index(["benchmark_name", "library", "code"])
+
+    for df in [df_sddr, df_no_sddr]:
+        df["Available"] = True
+
+    df_sddr = df_sddr.pivot(
+        index=["benchmark_name", "code"], columns=["library"], values=["Available"]
+    )["Available"]
+    df_sddr.fillna(False, inplace=True)
+
+    df_no_sddr = df_no_sddr.pivot(
+        index=["benchmark_name", "code"], columns=["library"], values=["Available"]
+    )["Available"]
+    df_sddr.fillna(False, inplace=True)
+
+    return sorted_df, df_sddr, df_no_sddr

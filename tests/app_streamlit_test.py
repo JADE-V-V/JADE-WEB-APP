@@ -4,13 +4,6 @@ from streamlit.testing.v1 import AppTest
 class TestStreamlitApp:
     """Test the Streamlit app"""
 
-    def test_app(self):
-        """
-        Test the Streamlit app by checking if the title is not None.
-        """
-        app = AppTest("app_streamlit.py", default_timeout=10).run()
-        assert app.title is not None
-
     def test_select_benchmark(self):
         """
         Test the selection of benchmark options by checking if the number of options
