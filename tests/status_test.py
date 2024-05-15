@@ -9,6 +9,17 @@ import tests.resources.status as res
 import pandas as pd
 
 
+class StatusMockup(Status):
+    def __init__(
+        self,
+    ) -> None:
+        metadata_paths = [
+            r"https://github.com/JADE-V-V/JADE-RAW-RESULTS/blob/main/ROOT/00c/ITER_1D/mcnp/Raw_Data/metadata.json?raw=true",
+            r"https://github.com/JADE-V-V/JADE-RAW-RESULTS/blob/main/ROOT/32c/FNG-W/mcnp/Raw_Data/metadata.json?raw=true",
+        ]
+        super().__init__({}, metadata_paths)
+
+
 class TestStatus:
     """test Status class"""
 
@@ -46,4 +57,6 @@ class TestStatus:
         csvs = status.get_results("Sphere", "32c", "mcnp")
         assert len(csvs[1]) > 100
         assert pd.read_csv(csvs[0] + "/" + csvs[1][0] + "?raw=true") is not None
+        assert status.metadata_df is None
+        status.get_metadata_df()
         assert len(status.metadata_df) > 1

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 import streamlit as st
+import pandas as pd
 from jadewa.processor import Processor
 from jadewa.utils import (
     get_mat_iso_code,
@@ -105,6 +106,19 @@ def select_ref_code(selected_benchmark: str, ref_lib: str, status: Status) -> st
             "Select reference code", code_options, index=0, key="code"
         )
     return selected_code
+
+
+def display_metadata(
+    pivot_no_sddr: pd.DataFrame, pivot_sddr: pd.DataFrame, sorted_df: pd.DataFrame
+) -> None:
+    st.header("Available simulations (no activation)")
+    st.dataframe(pivot_no_sddr, use_container_width=True)
+
+    st.header("Available simulations (activation)")
+    st.dataframe(pivot_sddr, use_container_width=True)
+
+    st.header("Complete metadata on available simulations")
+    st.dataframe(sorted_df, use_container_width=True)
 
 
 def select_isotope_material(
@@ -220,12 +234,16 @@ def main():
     st.set_page_config(layout="wide")
 
     status, processor = get_status_processor()
-    sorted_df, pivot_sddr, pivot_no_sddr = get_info_dfs(status)
 
     # Get available benchmarks
     available_benchmarks = status.get_benchmarks()
 
     # -- Application --
+    # initialization of app state
+    if "metadata_available" not in st.session_state:
+        st.session_state.metadata_available = False
+        st.session_state.metadata_df = None
+
     tab_plot, tab_info = st.tabs(["Plot", "Info"])
 
     with tab_plot:
@@ -309,14 +327,27 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
 
     with tab_info:
-        st.header("Available simulations (no activation)")
-        st.dataframe(pivot_no_sddr, use_container_width=True)
 
-        st.header("Available simulations (activation)")
-        st.dataframe(pivot_sddr, use_container_width=True)
+        # If the metadata is not available, show the button to compute it
+        if not st.session_state.metadata_available:
+            # If information have not been computed yet, do it
+            if st.button(
+                "Compute info on available results",
+                key="compute_metadata",
+                type="primary",
+                disabled=st.session_state.metadata_available,
+            ):
+                # If the button is pressed, compute the metadata
+                st.write("Computing metadata on available results...")
+                status.get_metadata_df()
+                st.session_state.metadata_available = True
+                st.session_state.metadata_df = status.metadata_df
 
-        st.header("Complete metadata on available simulations")
-        st.dataframe(sorted_df, use_container_width=True)
+        if st.session_state.metadata_available:
+            sorted_df, pivot_sddr, pivot_no_sddr = get_info_dfs(
+                st.session_state.metadata_df
+            )
+            display_metadata(pivot_no_sddr, pivot_sddr, sorted_df)
 
 
 if __name__ == "__main__":

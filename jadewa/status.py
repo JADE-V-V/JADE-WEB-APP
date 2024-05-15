@@ -14,7 +14,7 @@ class Status:
     def __init__(
         self,
         status: dict[str, dict[str, dict[str, tuple[str, list[str]]]]],
-        metadata_df: pd.DataFrame = None,
+        metadata_paths: pd.DataFrame = None,
     ) -> None:
         """Store information on what results are available and where.
 
@@ -34,10 +34,32 @@ class Status:
             library and third is code. The value is a tuple with the path to
             the results and a list of all files available.
         metadata_df : pd.DataFrame
-            DataFrame containing the metadata of the available results
+            DataFrame containing the metadata of the available results. Since
+            it is costly to build due to all the single requests to be made
+            to the individual json files, it is initialized as None and built
+            only if needed.
         """
         self.status = status
-        self.metadata_df = metadata_df
+        self.metadata_paths = metadata_paths
+        self.metadata_df = None
+
+    def get_metadata_df(self) -> None:
+        """Get the metadata from a list of paths
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        pd.DataFrame
+            DataFrame containing the metadata
+        """
+        metadata_rows = []
+        for path in self.metadata_paths:
+            r = requests.get(path, timeout=5)
+            metadata_rows.append(r.json())
+
+        self.metadata_df = pd.DataFrame(metadata_rows)
 
     @staticmethod
     def _github_walk(owner: str, repo: str, branch: str = "main"):
@@ -79,7 +101,7 @@ class Status:
 
         # create the nested dict for the status
         status = {}
-        metadata_rows = []
+        metadata_paths = []
         start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
         for path in allfiles:
             pieces = path.split("/")
@@ -101,12 +123,13 @@ class Status:
                 json_path = (
                     start_url + os.path.dirname(path) + r"/metadata.json?raw=true"
                 )
-                r = requests.get(json_path, timeout=5)
-                metadata_rows.append(r.json())
+                # r = requests.get(json_path, timeout=5)
+                # metadata_rows.append(r.json())
+                metadata_paths.append(json_path)
 
-        df = pd.DataFrame(metadata_rows)
+        # df = pd.DataFrame(metadata_rows)
 
-        return cls(status, df)
+        return cls(status, metadata_paths)
 
     @classmethod
     def from_root(cls, root: os.PathLike) -> Status:

@@ -170,14 +170,14 @@ def string_ints_converter(df: pd.DataFrame, column: str) -> pd.DataFrame:
 
 
 def get_info_dfs(
-    status: jadewa.Status,
+    metadata_df: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Get the metadata DataFrames to be displayed in the app.
 
     Parameters
     ----------
-    status : Status
-        Jade webapp status object
+    metadata_df : pd.DataFrame
+        metadata DataFrame
 
     Returns
     -------
@@ -186,7 +186,7 @@ def get_info_dfs(
         third are the pivot tables showing all the available raw data divided
         by activation and non-activation benchmarks.
     """
-    df = status.metadata_df
+    df = metadata_df
     sorted_df = df.set_index(["benchmark_name", "library", "code"])
 
     sddr_codes = ["d1s"]
