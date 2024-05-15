@@ -104,27 +104,6 @@
         },
         "only_ratio": true
     },
-    "Al 4": {
-        "tally_name": "Activation Foil - Al",
-        "substitutions": {
-            "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
-        },
-        "plot_type": "scatter",
-        "plot_args": {
-            "x": "Shielding thickness [cm]",
-            "y": "C/E",
-            "log_x": false,
-            "log_y": false
-        },
-        "y_axis_format": {"tickformat": ".2e"},
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": ["611", "614", "623", "633"],
-            "ticktext": [5, 15, 25, 35]
-        },
-        "only_ratio": true
-    },
     "Mn 4": {
         "tally_name": "Activation Foil - Mn",
         "substitutions": {
