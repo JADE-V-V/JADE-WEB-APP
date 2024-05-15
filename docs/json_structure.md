@@ -68,4 +68,7 @@ column names will be directly used for x and y labels on the graph.</dd>
   <dd>if set to `true`, all data coming from simulations (that is, not experimental data) will expect an `Energy` column in the raw dataframe and use it to convert the `Value` column (intended as a flux) in a flux per unit energy. $\phi_n = \phi_n/(E_{n} - E_{n-1})$</dd>
   <dt>subset</dt>
   <dd>a list [column_name, value] is expected. The effect is that from the total raw data table, only the rows that contain value in the specified column will be retained for plotting.</dd>
+  <dt>only_ratio</dt>
+  <dd>forces the plot always to be C/E (ratio). This is sometimes useful for
+  some of the experimental benchmarls where absolute values are not that important.</dd>
 </dl>

@@ -7,8 +7,8 @@ def get_figure(
     plot_type: str,
     data: pd.DataFrame,
     keyargs: dict,
-    y_axis_format: str = None,
-    x_axis_format: str = None,
+    y_axis_format: str = False,
+    x_axis_format: str = False,
 ) -> Figure:
     """Get a plotly figure depending on the plot type requested
 
@@ -45,9 +45,9 @@ def get_figure(
     else:
         raise ValueError(f"Plot type '{plot_type}' not supported")
 
-    if x_axis_format is not None:
+    if x_axis_format:
         fig.update_xaxes(**x_axis_format)
-    if y_axis_format is not None:
+    if y_axis_format:
         fig.update_yaxes(**y_axis_format)
 
     # fig.update_yaxes(tickformat=y_tickformat)
@@ -79,6 +79,7 @@ def _plot_scatter(data: pd.DataFrame, **keyargs) -> Figure:
         color="label",
         template="plotly_white",
         error_y=data["Error"] * data[keyargs["y"]],
+        opacity=0.7,
     )
     return fig
 

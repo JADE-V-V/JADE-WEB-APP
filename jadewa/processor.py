@@ -182,7 +182,14 @@ class Processor:
                 if x_vals_to_string:
                     df = string_ints_converter(df, x_vals_to_string)
 
-                dfs.append(df)
+                # if the library is exp, it needs to be the first one for
+                # better plots
+                if lib == "exp":
+                    temp = [df]
+                    temp.extend(dfs)
+                    dfs = temp
+                else:
+                    dfs.append(df)
 
         # normalize data to reflib/refcode if requested
         if ratio:
@@ -237,6 +244,14 @@ class Processor:
 
         return x_vals_to_string
 
+    def _get_optional_config(self, key: str, benchmark: str, tally: str) -> str | bool:
+        """helper to get optional configuration from the json file thay may not
+        be present"""
+        try:
+            return self.params[benchmark][tally][key]
+        except KeyError:
+            return False
+
     def get_plot(
         self,
         benchmark: str,
@@ -272,18 +287,20 @@ class Processor:
         for key, value in self.params[benchmark].items():
             if value["tally_name"] == tally:
                 tally = key
-        # check for lethargy computation optional input
-        try:
-            compute_lethargy = self.params[benchmark][tally]["compute_lethargy"]
-        except KeyError:
-            compute_lethargy = False
-        # check for unit energy optional input
-        try:
-            compute_energy = self.params[benchmark][tally]["compute_per_unit_energy"]
-        except KeyError:
-            compute_energy = False
 
-        # ratio = self.params[benchmark][tally]["ratio"]
+        # check for optional inputs
+        compute_lethargy = self._get_optional_config(
+            "compute_lethargy", benchmark, tally
+        )
+        compute_energy = self._get_optional_config(
+            "compute_per_unit_energy", benchmark, tally
+        )
+        x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
+        y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
+        only_ratio = self._get_optional_config("only_ratio", benchmark, tally)
+        if only_ratio:
+            ratio = True  # if only_ratio is set, ratio is forced to True
+
         if benchmark == "Sphere":
             iso_mat = isotope_material
         else:
@@ -319,15 +336,6 @@ class Processor:
                 f"[ratio vs {LIB_NAMES[reflib]}]", key_args["y"]
             )
 
-        # get some optional parameter
-        try:
-            x_axis_format = self.params[benchmark][tally]["x_axis_format"]
-        except KeyError:
-            x_axis_format = None
-        try:
-            y_axis_format = self.params[benchmark][tally]["y_axis_format"]
-        except KeyError:
-            y_axis_format = None
         # # combine columns before plot (if requested)
         # try:
         #     combine_columns = self.params[benchmark][tally]["combine_columns"]

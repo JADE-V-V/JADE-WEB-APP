@@ -1,0 +1,233 @@
+{
+    "Al 4": {
+        "tally_name": "Activation Foil - Al",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623", "633"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "TLD 6": {
+        "tally_name": "Gamma absorbed dose in TLD 300",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623", "633"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Ni-np 4": {
+        "tally_name": "Activation Foil - Ni np",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623", "633"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Ni-n2n 4": {
+        "tally_name": "Activation Foil - Ni n2n",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623"],
+            "ticktext": [5, 15, 25]
+        },
+        "only_ratio": true
+    },
+    "Nb 4": {
+        "tally_name": "Activation Foil - Nb",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["602", "613", "622", "632"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Al 4": {
+        "tally_name": "Activation Foil - Al",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623", "633"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Mn 4": {
+        "tally_name": "Activation Foil - Mn",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["641", "643", "645", "647"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "In 4": {
+        "tally_name": "Activation Foil - In",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["611", "614", "623"],
+            "ticktext": [5, 15, 25]
+        },
+        "only_ratio": true
+    },
+    "Fe 4": {
+        "tally_name": "Activation Foil - Fe",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["602", "613", "622", "632"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Zr 4": {
+        "tally_name": "Activation Foil - Zr",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["602", "613", "622", "632"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    },
+    "Au 4": {
+        "tally_name": "Activation Foil - Au",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["641", "643", "645", "647"],
+            "ticktext": [5, 15, 25, 35]
+        },
+        "only_ratio": true
+    }
+}
