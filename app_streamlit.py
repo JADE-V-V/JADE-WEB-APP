@@ -42,9 +42,15 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
     str
         selected benchmark
     """
-    selected_benchmark = st.selectbox(
-        "Select benchmark", available_benchmarks, index=None, key="benchmark"
-    )
+    flag_split, ctg_dict = _split_options(available_benchmarks)
+
+    if flag_split:
+        selected_benchmark = _get_split_selection(ctg_dict, "benchmark")
+    else:
+        selected_benchmark = st.selectbox(
+            "Select benchmark", available_benchmarks, index=None, key="benchmark"
+        )
+
     return selected_benchmark
 
 
@@ -157,6 +163,62 @@ def select_isotope_material(
     return isotope_material
 
 
+def _split_options(options: list[str]) -> tuple[bool, dict[str, list[str]]]:
+    """Split the options in categories and return a dictionary with the categories as keys."""
+    flag_split = False
+    ctg_dict = {}
+
+    for option in options:
+        if not "-" in option:
+            ctg = option
+            option = "default"
+        else:
+            # if there is even one, always split the options
+            flag_split = True
+            ctgs = option.split("-")
+            ctg = ctgs[0]
+            option = ctgs[1]
+
+        if ctg not in ctg_dict:
+            ctg_dict[ctg] = [option]
+        else:
+            ctg_dict[ctg].append(option)
+
+    return flag_split, ctg_dict
+
+
+def _get_split_selection(ctg_dict: dict[str, list[str]], key: str) -> str | None:
+    """perform a split selection of the category/options and return the full option selected."""
+    col3, col4 = st.columns([0.5, 0.5])
+    with col3:
+        ctg_selected = st.selectbox(
+            f"Select {key}",
+            list(ctg_dict.keys()),
+            key=f"{key}-ctg",
+            index=None,
+        )
+    with col4:
+        if ctg_selected:
+            option_selected = st.selectbox(
+                "",
+                ctg_dict[ctg_selected],
+                key=f"{key}-option",
+                index=None,
+            )
+        else:
+            option_selected = None
+
+    if option_selected and ctg_selected:
+        if option_selected == "default":
+            full_option = ctg_selected
+        else:
+            full_option = ctg_selected + "-" + option_selected
+    else:
+        full_option = None
+
+    return full_option
+
+
 def select_tally(
     selected_benchmark: str, ref_lib: str, selected_code: str, processor: Processor
 ) -> str:
@@ -183,46 +245,10 @@ def select_tally(
         get_lib_suffix(ref_lib),
         selected_code,
     )
-    flag_split = True
-    ctg_dict = {}
-
-    for option in tallies_options:
-        if not "-" in option:
-            flag_split = False
-            break
-        ctgs = option.split("-")
-        ctg = ctgs[0]
-        option = ctgs[1]
-
-        if ctg not in ctg_dict:
-            ctg_dict[ctg] = [option]
-        else:
-            ctg_dict[ctg].append(option)
+    flag_split, ctg_dict = _split_options(tallies_options)
 
     if flag_split:
-        col3, col4 = st.columns([0.5, 0.5])
-        with col3:
-            ctg_selected = st.selectbox(
-                "Select tally",
-                list(ctg_dict.keys()),
-                key="tally-ctg",
-                index=None,
-            )
-        with col4:
-            if ctg_selected:
-                option_selected = st.selectbox(
-                    "",
-                    ctg_dict[ctg_selected],
-                    key="tally-option",
-                    index=None,
-                )
-            else:
-                option_selected = None
-
-        if option_selected and ctg_selected:
-            tally = ctg_selected + "-" + option_selected
-        else:
-            tally = None
+        tally = _get_split_selection(ctg_dict, "tally")
     else:
         tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 
