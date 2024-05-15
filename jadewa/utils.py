@@ -209,3 +209,57 @@ def get_info_dfs(
     df_sddr.fillna(False, inplace=True)
 
     return sorted_df, df_sddr, df_no_sddr
+
+
+def find_dict_depth(dictionary: dict):
+    """Find the depth of a dictionary
+
+    Parameters
+    ----------
+    dictionary : dict
+        dictionary to be assessed
+
+    Returns
+    -------
+    int
+        depth of the dictionary
+    """
+    if isinstance(dictionary, dict):
+        return 1 + (max(map(find_dict_depth, dictionary.values())) if dictionary else 0)
+
+    return 0
+
+
+def safe_add_ctg_to_dict(dictionary: dict, keys: list[str], value: str) -> dict:
+    """Add a category to a dictionary if it does not exist
+
+    Parameters
+    ----------
+    dictionary : dict
+        dictionary to be assessed
+    key : str
+        key to be added
+    value : str
+        value to be added
+
+    Returns
+    -------
+    dict
+        dictionary with the added category
+    """
+    key = keys[0]
+
+    if len(keys) == 1:
+        if key in dictionary:
+            dictionary[key].append(value)
+        else:
+            dictionary[key] = [value]
+        return
+
+    # if we are not at the last value we need to create another layer and
+    # update the dict definition
+    if key not in dictionary:
+        dictionary[key] = {}
+
+    dictionary = dictionary[key]
+    safe_add_ctg_to_dict(dictionary, keys[1:], value)

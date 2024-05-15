@@ -11,6 +11,8 @@ from jadewa.utils import (
     get_lib_suffix,
     get_pretty_lib_names,
     get_info_dfs,
+    find_dict_depth,
+    safe_add_ctg_to_dict,
 )
 from jadewa.status import Status
 
@@ -163,56 +165,98 @@ def select_isotope_material(
     return isotope_material
 
 
-def _split_options(options: list[str]) -> tuple[bool, dict[str, list[str]]]:
+def _split_options(options: list[str]) -> tuple[bool, dict]:
     """Split the options in categories and return a dictionary with the categories as keys."""
     flag_split = False
     ctg_dict = {}
 
     for option in options:
-        if not "-" in option:
+        if not "-" in option or "Vitamin-J" in option:
             ctg = option
-            option = "default"
+            option = "N.A."
+            safe_add_ctg_to_dict(ctg_dict, [ctg], option)
         else:
             # if there is even one, always split the options
             flag_split = True
             ctgs = option.split("-")
-            ctg = ctgs[0]
-            option = ctgs[1]
-
-        if ctg not in ctg_dict:
-            ctg_dict[ctg] = [option]
-        else:
-            ctg_dict[ctg].append(option)
+            safe_add_ctg_to_dict(ctg_dict, ctgs[:-1], ctgs[-1])
 
     return flag_split, ctg_dict
 
 
-def _get_split_selection(ctg_dict: dict[str, list[str]], key: str) -> str | None:
+def _recursive_select_split_option(columns, ctg_dict, labels, selections=[]):
+    """Recursive function to perform a split selection of the category/options."""
+    # perform the selection
+    with columns[0]:
+
+        if isinstance(ctg_dict, list):
+            options_available = ctg_dict
+        else:
+            options_available = list(ctg_dict.keys())
+        if "N.A." in options_available:
+            index = 0
+        else:
+            index = None
+
+        option_selected = st.selectbox(
+            "",
+            options_available,
+            # key=f"{labels[0]}-option",
+            index=index,
+        )
+
+        # add selection to the list
+        selections.append(option_selected)
+
+        # if the last column or N.A. reached, the selection was successful
+        if len(columns) == 1 or option_selected == "N.A.":
+            if option_selected is None:
+                return False, selections
+            return True, selections
+        elif option_selected is None:
+            return False, selections
+        else:
+            # recursive function
+            _recursive_select_split_option(
+                columns[1:], ctg_dict[option_selected], labels[1:]
+            )
+
+
+def _get_split_selection(
+    ctg_dict: dict[str, list[str]], labels: list[str] = None
+) -> str | None:
     """perform a split selection of the category/options and return the full option selected."""
-    col3, col4 = st.columns([0.5, 0.5])
-    with col3:
+    max_depth = find_dict_depth(ctg_dict) + 1
+    columns = st.columns(max_depth)
+    with columns[0]:
+        if isinstance(labels, list) and len(labels) >= max_depth:
+            label = labels[0]
+        elif labels is None:
+            label = 0
+        elif isinstance(labels, str):
+            label = labels
+            labels = [label] + [""] * (max_depth - 1)
+        else:
+            raise ValueError("There is a problem with the selection labels")
+
         ctg_selected = st.selectbox(
-            f"Select {key}",
+            f"Select {label}",
             list(ctg_dict.keys()),
-            key=f"{key}-ctg",
+            key=label,
             index=None,
         )
-    with col4:
-        if ctg_selected:
-            option_selected = st.selectbox(
-                "",
-                ctg_dict[ctg_selected],
-                key=f"{key}-option",
-                index=None,
-            )
-        else:
-            option_selected = None
+    if ctg_selected:
+        success, selections = _recursive_select_split_option(
+            columns[1:], ctg_dict[ctg_selected], labels[1:], selections=[ctg_selected]
+        )
+    else:
+        success = False
 
-    if option_selected and ctg_selected:
-        if option_selected == "default":
-            full_option = ctg_selected
-        else:
-            full_option = ctg_selected + "-" + option_selected
+    if success:
+        full_option = selections[0]
+        for selection in selections[1:]:
+            if selection != "N.A.":
+                full_option = full_option + "-" + selection
     else:
         full_option = None
 

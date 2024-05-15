@@ -4,8 +4,11 @@ from jadewa.utils import (
     get_lib_suffix,
     get_pretty_lib_names,
     string_ints_converter,
+    find_dict_depth,
+    safe_add_ctg_to_dict,
 )
 import pandas as pd
+import pytest
 
 
 class TestUtils:
@@ -66,3 +69,25 @@ class TestUtils:
         df = string_ints_converter(df, "A")
         for value in df["A"].values:
             assert not isinstance(value, str)
+
+    @pytest.mark.parametrize(
+        ["dictionary", "expected_nested"],
+        [
+            [{"B": "A", "S": {"C": "D"}}, 2],
+            [{}, 1],
+            [{"B": "C"}, 1],
+        ],
+    )
+    def test_find_dict_depth(self, dictionary, expected_nested):
+        """Test the find_dict_depth function"""
+        assert find_dict_depth(dictionary) == expected_nested
+
+    def test_safe_add_ctg_to_dict(self):
+        """Test the safe_add_ctg_to_dict function"""
+        dictionary = {}
+        safe_add_ctg_to_dict(dictionary, ["A", "B", "C"], "D")
+        assert dictionary["A"]["B"]["C"] == ["D"]
+
+        dictionary = {"A": {"B": {"C": ["D"]}}}
+        safe_add_ctg_to_dict(dictionary, ["A", "B", "C"], "E")
+        assert dictionary["A"]["B"]["C"] == ["D", "E"]

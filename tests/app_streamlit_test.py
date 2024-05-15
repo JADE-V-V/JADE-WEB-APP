@@ -24,7 +24,7 @@ class TestStreamlitApp:
         assert "FENDL 3.2b" in app.selectbox(key="lib").options
 
         # Test an experiment
-        app.selectbox(key="benchmark").select("FNG-SDDR").run()
+        app.selectbox(key="benchmark").select("Oktavian").run()
         assert app.selectbox(key="lib").options == ["experiment"]
 
         # Test the selection of tally options by checking if the selected values
