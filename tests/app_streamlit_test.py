@@ -55,7 +55,6 @@ class TestStreamlitApp:
         app.selectbox(key="tally").select("Neutron Flux").run()
 
         # Test the sphere plot.
-        app = AppTest("app_streamlit.py", default_timeout=15).run()
         app.selectbox(key="benchmark").select("Sphere").run()
         app.selectbox(key="lib").select("FENDL 3.2b").run()
         # app.selectbox(key="code").select("openmc").run()
