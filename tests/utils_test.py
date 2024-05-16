@@ -91,3 +91,7 @@ class TestUtils:
         dictionary = {"A": {"B": {"C": ["D"]}}}
         safe_add_ctg_to_dict(dictionary, ["A", "B", "C"], "E")
         assert dictionary["A"]["B"]["C"] == ["D", "E"]
+
+        safe_add_ctg_to_dict(dictionary, ["A", "B", "X"], "E")
+        assert dictionary["A"]["B"]["X"] == ["E"]
+        assert list(dictionary["A"]["B"].keys()) == ["C", "X"]
