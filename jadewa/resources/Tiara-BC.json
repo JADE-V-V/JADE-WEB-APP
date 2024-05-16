@@ -1,0 +1,21 @@
+{
+    "general": {
+        "tally_options_labels": ["Material", "Source", "Shield", "Collimator", "Angle"]
+    },
+    "cc-43-25-40 14": {
+        "tally_name": "Concrete yield per lethargy - 43 MeV - 25 cm - 40 cm - on axis ",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Yield per lethargy [1/u]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Yield per lethargy [1/u]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "compute_lethargy": true
+    }
+}

@@ -198,10 +198,14 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=[]):
         else:
             index = None
 
+        if isinstance(labels, list):
+            label = labels[0]
+        else:
+            label = 0
+
         option_selected = st.selectbox(
-            "",
+            label,
             options_available,
-            # key=f"{labels[0]}-option",
             index=index,
         )
 
@@ -217,8 +221,11 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=[]):
             return False, selections
         else:
             # recursive function
-            _recursive_select_split_option(
-                columns[1:], ctg_dict[option_selected], labels[1:]
+            return _recursive_select_split_option(
+                columns[1:],
+                ctg_dict[option_selected],
+                labels[1:],
+                selections=selections,
             )
 
 
@@ -292,7 +299,14 @@ def select_tally(
     flag_split, ctg_dict = _split_options(tallies_options)
 
     if flag_split:
-        tally = _get_split_selection(ctg_dict, "tally")
+        # Ceck if there are labels for the tally options
+        try:
+            labels = processor.params[selected_benchmark]["general"][
+                "tally_options_labels"
+            ]
+        except KeyError:
+            labels = "tally"
+        tally = _get_split_selection(ctg_dict, labels)
     else:
         tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
 

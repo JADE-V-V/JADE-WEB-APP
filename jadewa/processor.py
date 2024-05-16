@@ -285,8 +285,9 @@ class Processor:
         """
         # Recover the tally code
         for key, value in self.params[benchmark].items():
-            if value["tally_name"] == tally:
-                tally = key
+            if key != "general":
+                if value["tally_name"] == tally:
+                    tally = key
 
         # check for optional inputs
         compute_lethargy = self._get_optional_config(
@@ -386,6 +387,8 @@ class Processor:
         available_csv = self.status.status[benchmark][library][code]
         csv_names = available_csv[1]
         supported = list(self.params[benchmark].keys())
+        # general is not part of the supported tallies, needs to be removed
+        supported = [i for i in supported if i != "general"]
 
         # Sphere benchmark raw data has a different structure
         if benchmark == "Sphere":
