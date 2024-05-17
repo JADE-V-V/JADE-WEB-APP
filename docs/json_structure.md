@@ -27,7 +27,9 @@ Adding a new benchmark to be supported by the web app is as easy as to add a .js
 
 where the key of the tally dictionary needs to be the name of the .csv file  in the raw data repository that contains the data to plot.
 
-The following are the available options for each benchmark configuration.
+At the same tally level, a `"general"` tally can be optionally specified. This contains parameters that are not related to the rendering of the single tally result, but are applicable to the benchmark itself. The only option available for the moment is `"tally_options_labels"`. This accepts a list of labels that will be used to give additional information in case the tally selection was to be split into subcategories.
+
+The following, instead, are the available options for each tally configuration.
 
 ## Mandatory configuration options
 
