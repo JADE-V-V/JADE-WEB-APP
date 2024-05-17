@@ -184,8 +184,10 @@ def _split_options(options: list[str]) -> tuple[bool, dict]:
     return flag_split, ctg_dict
 
 
-def _recursive_select_split_option(columns, ctg_dict, labels, selections=[]):
+def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
     """Recursive function to perform a split selection of the category/options."""
+    if selections is None:
+        selections = []
     # perform the selection
     with columns[0]:
 
