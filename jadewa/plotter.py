@@ -1,5 +1,6 @@
 from plotly.graph_objects import Figure
 import plotly.express as px
+import plotly.graph_objs as go
 import pandas as pd
 
 
@@ -69,6 +70,43 @@ def _plot_step(data: pd.DataFrame, **keyargs) -> Figure:
     fig = px.line(
         data, **keyargs, color="label", template="plotly_white", line_shape="hv"
     )
+    # Experimental data usually have siginificant error that should be traced
+    experimental_data = data[data["label"] == "experiment-experiment"]
+    if len(experimental_data) > 0:
+        x = experimental_data[keyargs["x"]].values
+        y = experimental_data[keyargs["y"]].values
+        y_upper = y + y * experimental_data["Error"].values
+        y_lower = y - y * experimental_data["Error"].values
+
+        fig.add_trace(
+            go.Scatter(
+                name="exp upper bound",
+                x=x,
+                y=y_upper,
+                # mode='lines',
+                line_shape="hv",
+                # marker=dict(color="#444"),
+                line=dict(width=0),
+                showlegend=False,
+            )
+        )
+        hexcol = px.colors.qualitative.Plotly[0].strip("#")
+        rgb = list(int(hexcol[i : i + 2], 16) for i in (0, 2, 4))
+        rgba = f"rgba({rgb[0]}, {rgb[1]}, {rgb[2]}, 0.2)"
+        fig.add_trace(
+            go.Scatter(
+                name="exp lower Bound",
+                x=x,
+                y=y_lower,
+                # marker=dict(color="#444"),
+                line=dict(width=0),
+                # mode="lines",
+                line_shape="hv",
+                fillcolor=rgba,
+                fill="tonexty",
+                showlegend=False,
+            )
+        )
     return fig
 
 
