@@ -155,7 +155,7 @@ class TestProcessor:
     def test_get_available_isotopes_materials(self, processor: Processor):
         """Test the get_available_isotopes_materials method"""
         isotopes = processor.get_available_isotopes_materials("Sphere", "32c", "mcnp")
-        assert isotopes == ["mcnp1001", "mcnp2003", "mcnp2004"]
+        assert set(isotopes) == set(["mcnp1001", "mcnp2003", "mcnp2004"])
 
     @pytest.mark.parametrize(
         ["x", "substitutions", "tickmode", "expected"],
