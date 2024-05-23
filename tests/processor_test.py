@@ -134,6 +134,10 @@ class TestProcessor:
             "Neutron current on plasma boundary - (inboard BLK#1 to #6)",
         )
 
+    def test_get_available_benchmarks(self, processor: Processor):
+        """Test the get_available_benchmarks method"""
+        assert "random" not in processor.get_available_benchmarks()
+
     def test_get_available_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""
         assert len(processor.get_available_tallies("ITER_1D", "00c", "mcnp")) == 5

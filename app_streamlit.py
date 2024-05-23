@@ -322,7 +322,7 @@ def main():
     status, processor = get_status_processor()
 
     # Get available benchmarks
-    available_benchmarks = status.get_benchmarks()
+    available_benchmarks = processor.get_available_benchmarks()
 
     # -- Application --
     # initialization of app state

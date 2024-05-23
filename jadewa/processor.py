@@ -364,6 +364,20 @@ class Processor:
         )
         return fig
 
+    def get_available_benchmarks(self) -> list[str]:
+        """Get a list of all benchmarks available. To be available, the raw data
+        need to be present and a json configuration file should be also present.
+
+        Returns
+        -------
+        list[str]
+            List of all benchmarks available
+        """
+        raw_data = self.status.get_benchmarks()
+        available_config = list(self.params.keys())
+        intersection = set(raw_data).intersection(set(available_config))
+        return list(intersection)
+
     def get_available_tallies(
         self, benchmark: str, library: str, code: str
     ) -> list[str]:
