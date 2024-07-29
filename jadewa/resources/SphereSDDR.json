@@ -1,0 +1,21 @@
+{
+    "general": {
+        "tally_options_labels": ["Parent", "MT channel", "Tally"],
+        "generic_tallies": true
+    },
+    "2": {
+        "tally_name": "{} - {} - Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"}
+    }
+}

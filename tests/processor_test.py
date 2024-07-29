@@ -142,6 +142,13 @@ class TestProcessor:
         """Test the get_available_tallies method"""
         assert len(processor.get_available_tallies("ITER_1D", "00c", "mcnp")) == 5
 
+    def test_get_available_generic_tallies(self, processor: Processor):
+        """Test the get_available_tallies method"""
+        assert (
+            processor.get_available_tallies("SphereSDDR", "99c", "d1s")[0]
+            == "9019-16-2"
+        )
+
     def test_get_available_tallies_github(self, processor_github: Processor):
         """Test the get_available_tallies method"""
         assert (

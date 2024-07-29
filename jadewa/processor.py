@@ -416,16 +416,31 @@ class Processor:
                 set(df["Tally Description"].to_list()).intersection(set(supported))
             )
 
-        available = []
-        for csv in csv_names:
-            available.append(csv[:-4])
-        tallies = list(set(available).intersection(set(supported)))
-
         tally_names = []
-        for tally in tallies:
-            for key, value in self.params[benchmark].items():
-                if key == tally:
-                    tally_names.append(value["tally_name"])
+        # check for XX-... general tallies
+        # the XX pattern will tell what to ignore and what is the actual tally
+        try:
+            generic = self.params[benchmark]["general"]["generic_tallies"]
+        except KeyError:
+            generic = False
+
+        if generic:
+            for csv in csv_names:
+                tally_num = csv.split("_")[-1][:-4]
+                if tally_num in supported:
+                    tally_names.append(csv[:-4].replace("_", "-"))
+        # normal 1 to 1 correspondence between tally in json and csv
+        else:
+            available = []
+            for csv in csv_names:
+                available.append(csv[:-4])
+            tallies = list(set(available).intersection(set(supported)))
+
+            for tally in tallies:
+                for key, value in self.params[benchmark].items():
+                    if key == tally:
+                        tally_names.append(value["tally_name"])
+
         return tally_names
 
     def get_available_isotopes_materials(
