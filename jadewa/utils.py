@@ -6,8 +6,6 @@ import re
 from f4enix.input.libmanager import LibManager
 import pandas as pd
 
-import jadewa
-
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
@@ -19,6 +17,7 @@ LIB_NAMES = {
     "34y": "IRDFF II",
     "03c": "JEFF 3.3",
     "99c": "D1SUNED (FENDL 3.1d+EAF2007)",
+    "93c": "D1SUNED (FENDL 3.2b+TENDL2017)",
     "exp": "experiment",
 }
 LIB_SUFFIXES = {v: k for k, v in LIB_NAMES.items()}
