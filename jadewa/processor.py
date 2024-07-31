@@ -78,7 +78,12 @@ class Processor:
                             self.params[benchmark][tally_key] = new_config
 
     def _get_csv(
-        self, path: str | os.PathLike, code: str, tally: str, isotope_material: bool
+        self,
+        path: str | os.PathLike,
+        code: str,
+        tally: str,
+        isotope_material: bool,
+        allow_not_found: bool = False,
     ) -> pd.DataFrame:
         # logic to determine the correct path (local or github)
         if "https" in path:
@@ -99,7 +104,7 @@ class Processor:
             else:
                 formatted_path = path.format(tally)
 
-        if isotope_material:
+        if allow_not_found:
             try:
                 df = pd.read_csv(formatted_path)
             except FileNotFoundError:
@@ -128,6 +133,8 @@ class Processor:
         compute_lethargy: bool = False,
         compute_per_unit_energy: bool = False,
         x_vals_to_string: bool = None,
+        sum_by: str = None,
+        subset: tuple[str, str] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -157,6 +164,11 @@ class Processor:
             Columns to convert. The x values will be converted to string, by default False.
             In this process, floats and int representation of integers will be
             converted to the same value.
+        sum_by: str, optional
+            if provided, the df is groubed by the specified column, sum and
+            index is then reserted, by default None.
+        subset: str, optional
+            if provided, the df is filtered by the specified column-value couple, by default None.
 
         Returns
         -------
@@ -173,10 +185,16 @@ class Processor:
 
         # get all dfs for the different codes-libraries combos
         dfs = []
+        if benchmark in ["Sphere", "SphereSDDR"]:
+            allow = True
+        else:
+            allow = False
         for lib, values in self.status.status[benchmark].items():
             for code, (path, _) in values.items():
                 # locate and read the csv file
-                df = self._get_csv(path, code, tally, isotope_material)
+                df = self._get_csv(
+                    path, code, tally, isotope_material, allow_not_found=allow
+                )
                 if df is None:
                     continue
 
@@ -186,6 +204,18 @@ class Processor:
                     .drop("total", errors="ignore")
                     .reset_index()
                 )
+
+                # Get only a subset of the data if requested
+                if subset:
+                    col = subset[0]
+                    index = subset[1]
+                    df = df[df[col].astype(str) == index]
+
+                # if sum_by is provided, group by the column and sum
+                if sum_by:
+                    df["abs err"] = df["Value"] * df["Error"]
+                    df = df.groupby(sum_by).sum(numeric_only=True).reset_index()
+                    df["Error"] = df["abs err"] / df["Value"]
 
                 # Add the label to the df
                 label = f"{LIB_NAMES[lib]}-{code}"
@@ -360,6 +390,8 @@ class Processor:
             compute_lethargy=compute_lethargy,
             compute_per_unit_energy=compute_energy,
             x_vals_to_string=x_vals_to_string,
+            sum_by=self._get_optional_config("sum_by", benchmark, tally),
+            subset=self._get_optional_config("subset", benchmark, tally),
         )
         # Mandatory keys
         try:
@@ -386,14 +418,6 @@ class Processor:
         #             data[key] = data[key].astype(str) + "-" + data[column].astype(str)
         # except KeyError:
         #     pass
-        # Get only a subset of the data if requested
-        try:
-            subset = self.params[benchmark][tally]["subset"]
-            col = subset[0]
-            index = subset[1]
-            data = data[data[col].astype(str) == index]
-        except KeyError:
-            pass  # no subset requested
 
         fig = get_figure(
             plot_type,

@@ -17,5 +17,43 @@
             "log_y": true
         },
         "y_axis_format": {"tickformat": ".2e"}
+    },
+    "32": {
+        "tally_name": "{} - {} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "sum_by": ["Time", "Energy"],
+        "subset": ["Time", "F1.0"]
+    },
+    "104": {
+        "tally_name": "{} - {} - Shutdown dose rate [Sv/h]",
+        "substitutions": {
+            "Time": "Cooldown time",
+            "Value": "SDDR [Sv/h]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Cooldown time",
+            "y": "SDDR [Sv/h]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {"tickformat": ".2e"},
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": ["D1.0", "D2.0", "D3.0", "D4.0", "D5.0", "D6.0"],
+            "ticktext": ["0s", "2.7h", "24h", "11.6d", "30d", "10y"]
+        },
+        "sum_by": "Time"
     }
 }

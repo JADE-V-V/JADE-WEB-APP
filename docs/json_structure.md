@@ -73,4 +73,9 @@ column names will be directly used for x and y labels on the graph.</dd>
   <dt>only_ratio</dt>
   <dd>forces the plot always to be C/E (ratio). This is sometimes useful for
   some of the experimental benchmarls where absolute values are not that important.</dd>
+  <dt>sum_by</dt>
+  <dd>allow to perform a `grouby().sum()` operation on the result dataframe
+  before processing. The grouby is done on the specified column. This operation is done before column name sostitutions. This function assumes
+  a Value and Error columns. Value will be re-computed as `grouby().sum()`, 
+  Error as the total absolute error divided by the total value. </dd>
 </dl>
