@@ -14,7 +14,7 @@ import jadewa.resources as res
 import json
 import re
 import logging
-from jadewa.utils import LIB_NAMES
+from jadewa.utils import LIB_NAMES, sorting_func_sphere_sddr
 from jadewa.errors import JsonSettingsError
 from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
 from copy import deepcopy
@@ -55,6 +55,8 @@ class Processor:
                     for code, available_csv in values.items():
                         csv_names.extend(available_csv[1])
                 csv_names = list(set(csv_names))
+                if benchmark == "SphereSDDR":
+                    csv_names.sort(key=sorting_func_sphere_sddr)
 
                 generic_tallies = list(self.params[benchmark].keys())
                 for csv in csv_names:
@@ -76,6 +78,7 @@ class Processor:
                                 *pieces[:-1]
                             )
                             self.params[benchmark][tally_key] = new_config
+                # in case of SphereSDDR, it is better to sort the tallies
 
     def _get_csv(
         self,
@@ -485,6 +488,8 @@ class Processor:
         for csv in csv_names:
             available.append(csv[:-4])
         tallies = list(set(available).intersection(set(supported)))
+        if benchmark == "SphereSDDR":
+            tallies.sort(key=sorting_func_sphere_sddr)
 
         for tally in tallies:
             for key, value in self.params[benchmark].items():

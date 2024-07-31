@@ -51,6 +51,18 @@ def sorting_func(option: str) -> int:
     return num
 
 
+def sorting_func_sphere_sddr(option: str) -> int:
+    """sorting function for the pretty names of materials and isotopes"""
+    # extract the isotope/material number from the pretty name
+    option = option.split("_")[0]
+    try:
+        num = int(MAT_ISO_PATTERN.search(option).group())
+    except ValueError:
+        # it is a material, return 0 so it is placed first
+        num = 0
+    return num
+
+
 def get_pretty_mat_iso_names(raw_names: list[str]) -> list[str]:
     """Get the pretty names of a list of materials/isotopes raw names
 
