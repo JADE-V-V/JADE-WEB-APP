@@ -35,6 +35,16 @@ class TestProcessor:
         assert isinstance(processor, Processor)
         assert processor.params["ITER_1D"]["204"]["plot_args"]["x"] == "Cell index"
 
+    def test_init_SphereSDDR(self, status: Status):
+        """Test the __init__ method"""
+        processor = Processor(status)
+        assert isinstance(processor, Processor)
+        assert (
+            processor.params["SphereSDDR"]["9019_16_2"]["tally_name"]
+            == "F19 - 16 - Neutron Flux at the external surface in VitaminJ 175 energy groups"
+        )
+        assert len(processor.params["SphereSDDR"]) == 3
+
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""
         data = processor._get_graph_data(
@@ -142,11 +152,11 @@ class TestProcessor:
         """Test the get_available_tallies method"""
         assert len(processor.get_available_tallies("ITER_1D", "00c", "mcnp")) == 5
 
-    def test_get_available_generic_tallies(self, processor: Processor):
+    def test_get_available_sddr_tallies(self, processor: Processor):
         """Test the get_available_tallies method"""
         assert (
             processor.get_available_tallies("SphereSDDR", "99c", "d1s")[0]
-            == "9019-16-2"
+            == "F19 - 16 - Neutron Flux at the external surface in VitaminJ 175 energy groups"
         )
 
     def test_get_available_tallies_github(self, processor_github: Processor):

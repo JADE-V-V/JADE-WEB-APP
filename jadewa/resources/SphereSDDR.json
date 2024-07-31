@@ -4,7 +4,7 @@
         "generic_tallies": true
     },
     "2": {
-        "tally_name": "{} - {} - Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+        "tally_name": "{} - {} - Neutron Flux at the external surface in VitaminJ 175 energy groups",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Neutron flux [n/cm^2/s]"

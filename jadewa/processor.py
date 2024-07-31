@@ -16,7 +16,8 @@ import re
 import logging
 from jadewa.utils import LIB_NAMES
 from jadewa.errors import JsonSettingsError
-from jadewa.utils import string_ints_converter
+from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
+from copy import deepcopy
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
@@ -35,6 +36,46 @@ class Processor:
                     with open(file, "r", encoding="utf-8") as infile:
                         benchmark_params = json.load(infile)
                         self.params[name] = benchmark_params
+        # if the tallies are generic, at runtime, new tally configuration must
+        # be created
+        # check for XX-... general tallies
+        # the XX pattern will tell what to ignore and what is the actual tally
+        available_benchmarks = self.get_available_benchmarks()
+        for benchmark in available_benchmarks:
+            try:
+                generic = self.params[benchmark]["general"]["generic_tallies"]
+            except KeyError:
+                generic = False
+
+            if generic:
+                # first of all check all possible tallies available across
+                # all libraries and codes
+                csv_names = []
+                for lib, values in self.status.status[benchmark].items():
+                    for code, available_csv in values.items():
+                        csv_names.extend(available_csv[1])
+                csv_names = list(set(csv_names))
+
+                generic_tallies = list(self.params[benchmark].keys())
+                for csv in csv_names:
+                    pieces = csv.split("_")
+                    tally_key = csv[:-4]
+                    # if SDDR the first piece is a material/isotope and needs
+                    # to be translated to something more useful
+                    if benchmark == "SphereSDDR":
+                        pieces[0] = get_pretty_mat_iso_names(pieces[:1])[0].replace(
+                            "-", ""
+                        )
+
+                    # A new ad hoc config tallyt must be created from the generic
+                    for gtally in generic_tallies:
+                        # Add the correct general tally
+                        if gtally == pieces[-1][:-4]:
+                            new_config = deepcopy(self.params[benchmark][gtally])
+                            new_config["tally_name"] = new_config["tally_name"].format(
+                                *pieces[:-1]
+                            )
+                            self.params[benchmark][tally_key] = new_config
 
     def _get_csv(
         self, path: str | os.PathLike, code: str, tally: str, isotope_material: bool
@@ -122,7 +163,6 @@ class Processor:
         pd.DataFrame
             data for plotting
         """
-
         # verify that the benchmark-tally combination is supported
         try:
             y_label = self.params[benchmark][tally]["plot_args"]["y"]
@@ -417,29 +457,15 @@ class Processor:
             )
 
         tally_names = []
-        # check for XX-... general tallies
-        # the XX pattern will tell what to ignore and what is the actual tally
-        try:
-            generic = self.params[benchmark]["general"]["generic_tallies"]
-        except KeyError:
-            generic = False
+        available = []
+        for csv in csv_names:
+            available.append(csv[:-4])
+        tallies = list(set(available).intersection(set(supported)))
 
-        if generic:
-            for csv in csv_names:
-                tally_num = csv.split("_")[-1][:-4]
-                if tally_num in supported:
-                    tally_names.append(csv[:-4].replace("_", "-"))
-        # normal 1 to 1 correspondence between tally in json and csv
-        else:
-            available = []
-            for csv in csv_names:
-                available.append(csv[:-4])
-            tallies = list(set(available).intersection(set(supported)))
-
-            for tally in tallies:
-                for key, value in self.params[benchmark].items():
-                    if key == tally:
-                        tally_names.append(value["tally_name"])
+        for tally in tallies:
+            for key, value in self.params[benchmark].items():
+                if key == tally:
+                    tally_names.append(value["tally_name"])
 
         return tally_names
 
