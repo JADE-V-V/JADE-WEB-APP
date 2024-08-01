@@ -27,7 +27,13 @@ Adding a new benchmark to be supported by the web app is as easy as to add a .js
 
 where the key of the tally dictionary needs to be the name of the .csv file  in the raw data repository that contains the data to plot.
 
-At the same tally level, a `"general"` tally can be optionally specified. This contains parameters that are not related to the rendering of the single tally result, but are applicable to the benchmark itself. The only option available for the moment is `"tally_options_labels"`. This accepts a list of labels that will be used to give additional information in case the tally selection was to be split into subcategories.
+At the same tally level, a `"general"` tally can be optionally specified. This contains parameters that are not related to the rendering of the single tally result, but are applicable to the benchmark itself. The only options available for the moment are:
+<dl>
+  <dt>tally_options_labels</dt>
+  <dd>This accepts a list of labels that will be used to give additional information in case the tally selection was to be split into subcategories</dd>
+  <dt>generic_tallies</dt>
+  <dd>This allows to define generic tallies instead of specific ones. more details can be found below in the tally_name option</dd>
+</dl>
 
 The following, instead, are the available options for each tally configuration.
 
@@ -35,7 +41,11 @@ The following, instead, are the available options for each tally configuration.
 
 <dl>
   <dt>tally_name</dt>
-  <dd>this is the name that will appear on the web app tally selection. If a "-" is contained, it will consider it a couple `category - option` and will split the selection into two parts. This is particularly useful for benchmarks with a huge list of available tallies which more often than not are just combination of different configuration of the same benhcmark (i.e. a change in geometry or materials) and actual available tallies.</dd>
+  <dd>this is the name that will appear on the web app tally selection. If a "-" is contained, it will consider it a couple `category - option` and will split the selection into two parts (or more). This is particularly useful for benchmarks with a huge list of available tallies which more often than not are just combination of different configuration of the same benhcmark (i.e. a change in geometry or materials) and actual available tallies.
+  
+  It is also possible to define "generic" tallies like for the Sphere SDDR benchmark (the correspondent general option must be set to true). This is to be used when different version of the same benchmarks
+  are run (for instance, different isotopes in the sphere) but they all have 
+  the same tallies. It is not useful all the tallies for each isotope (they can be hundreds), hence, a generic tally is defined. As an example, if all .csv results are provided as option1_option2_tallynum, then a generic tally should be provided with key = tallynum and tallyname as "{} - {} - quantity name". Internally, the code, during the initialization of the Processor class will add a tally config for each combination of option1 and option2 found across the .csv</dd>
   <dt>plot_type</dt>
   <dd>at the moment the available plot types are `step`, `scatter` and `grouped_bar`. You can check the webapp directly to have a feeling of how these plots look like.</dd>
   <dt>plot_args</dt>
