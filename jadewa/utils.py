@@ -6,8 +6,6 @@ import re
 from f4enix.input.libmanager import LibManager
 import pandas as pd
 
-import jadewa
-
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
@@ -19,6 +17,7 @@ LIB_NAMES = {
     "34y": "IRDFF II",
     "03c": "JEFF 3.3",
     "99c": "D1SUNED (FENDL 3.1d+EAF2007)",
+    "93c": "D1SUNED (FENDL 3.2b+TENDL2017)",
     "exp": "experiment",
 }
 LIB_SUFFIXES = {v: k for k, v in LIB_NAMES.items()}
@@ -44,6 +43,18 @@ LIB_MANAGER = LibManager()
 def sorting_func(option: str) -> int:
     """sorting function for the pretty names of materials and isotopes"""
     # extract the isotope/material number from the pretty name
+    try:
+        num = int(MAT_ISO_PATTERN.search(option).group())
+    except ValueError:
+        # it is a material, return 0 so it is placed first
+        num = 0
+    return num
+
+
+def sorting_func_sphere_sddr(option: str) -> int:
+    """sorting function for the pretty names of materials and isotopes"""
+    # extract the isotope/material number from the pretty name
+    option = option.split("_")[0]
     try:
         num = int(MAT_ISO_PATTERN.search(option).group())
     except ValueError:

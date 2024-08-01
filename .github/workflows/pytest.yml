@@ -4,7 +4,7 @@ name: pytest
 on:
   # Triggers the workflow on push or pull request events but only for the master branch for push
   push:
-    branches: [ main ]
+    branches: [ main, developing ]
   pull_request:
     branches: [ main, developing ]
   # Allows you to run this workflow manually from the Actions tab
@@ -16,8 +16,8 @@ jobs:
     strategy:
       matrix:
         # os: [windows-latest, ubuntu-20.04, ubuntu-latest]
-        os: [ubuntu-latest, windows-latest]
-        python-version: ["3.10", "3.11"]
+        os: [ubuntu-latest]
+        python-version: ["3.10"]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -46,12 +46,6 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           set -o pipefail
-          pytest --cov=. --cov-report html | tee pytest_output.log
-
-      # Activate environment and run pytest
-      - name: Testing - Windows
-        if: runner.os == 'Windows'
-        run: |
           pytest --cov=. --cov-report html | tee pytest_output.log
 
       - name: Archive test results

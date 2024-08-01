@@ -14,9 +14,10 @@ import jadewa.resources as res
 import json
 import re
 import logging
-from jadewa.utils import LIB_NAMES
+from jadewa.utils import LIB_NAMES, sorting_func_sphere_sddr
 from jadewa.errors import JsonSettingsError
-from jadewa.utils import string_ints_converter
+from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
+from copy import deepcopy
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
@@ -35,9 +36,57 @@ class Processor:
                     with open(file, "r", encoding="utf-8") as infile:
                         benchmark_params = json.load(infile)
                         self.params[name] = benchmark_params
+        # if the tallies are generic, at runtime, new tally configuration must
+        # be created
+        # check for XX-... general tallies
+        # the XX pattern will tell what to ignore and what is the actual tally
+        available_benchmarks = self.get_available_benchmarks()
+        for benchmark in available_benchmarks:
+            try:
+                generic = self.params[benchmark]["general"]["generic_tallies"]
+            except KeyError:
+                generic = False
+
+            if generic:
+                # first of all check all possible tallies available across
+                # all libraries and codes
+                csv_names = []
+                for lib, values in self.status.status[benchmark].items():
+                    for code, available_csv in values.items():
+                        csv_names.extend(available_csv[1])
+                csv_names = list(set(csv_names))
+                if benchmark == "SphereSDDR":
+                    csv_names.sort(key=sorting_func_sphere_sddr)
+
+                generic_tallies = list(self.params[benchmark].keys())
+                for csv in csv_names:
+                    pieces = csv.split("_")
+                    tally_key = csv[:-4]
+                    # if SDDR the first piece is a material/isotope and needs
+                    # to be translated to something more useful
+                    if benchmark == "SphereSDDR":
+                        pieces[0] = get_pretty_mat_iso_names(pieces[:1])[0].replace(
+                            "-", ""
+                        )
+
+                    # A new ad hoc config tallyt must be created from the generic
+                    for gtally in generic_tallies:
+                        # Add the correct general tally
+                        if gtally == pieces[-1][:-4]:
+                            new_config = deepcopy(self.params[benchmark][gtally])
+                            new_config["tally_name"] = new_config["tally_name"].format(
+                                *pieces[:-1]
+                            )
+                            self.params[benchmark][tally_key] = new_config
+                # in case of SphereSDDR, it is better to sort the tallies
 
     def _get_csv(
-        self, path: str | os.PathLike, code: str, tally: str, isotope_material: bool
+        self,
+        path: str | os.PathLike,
+        code: str,
+        tally: str,
+        isotope_material: bool,
+        allow_not_found: bool = False,
     ) -> pd.DataFrame:
         # logic to determine the correct path (local or github)
         if "https" in path:
@@ -58,7 +107,7 @@ class Processor:
             else:
                 formatted_path = path.format(tally)
 
-        if isotope_material:
+        if allow_not_found:
             try:
                 df = pd.read_csv(formatted_path)
             except FileNotFoundError:
@@ -87,6 +136,8 @@ class Processor:
         compute_lethargy: bool = False,
         compute_per_unit_energy: bool = False,
         x_vals_to_string: bool = None,
+        sum_by: str = None,
+        subset: tuple[str, str] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -116,13 +167,17 @@ class Processor:
             Columns to convert. The x values will be converted to string, by default False.
             In this process, floats and int representation of integers will be
             converted to the same value.
+        sum_by: str, optional
+            if provided, the df is groubed by the specified column, sum and
+            index is then reserted, by default None.
+        subset: str, optional
+            if provided, the df is filtered by the specified column-value couple, by default None.
 
         Returns
         -------
         pd.DataFrame
             data for plotting
         """
-
         # verify that the benchmark-tally combination is supported
         try:
             y_label = self.params[benchmark][tally]["plot_args"]["y"]
@@ -133,10 +188,16 @@ class Processor:
 
         # get all dfs for the different codes-libraries combos
         dfs = []
+        if benchmark in ["Sphere", "SphereSDDR"]:
+            allow = True
+        else:
+            allow = False
         for lib, values in self.status.status[benchmark].items():
             for code, (path, _) in values.items():
                 # locate and read the csv file
-                df = self._get_csv(path, code, tally, isotope_material)
+                df = self._get_csv(
+                    path, code, tally, isotope_material, allow_not_found=allow
+                )
                 if df is None:
                     continue
 
@@ -146,6 +207,18 @@ class Processor:
                     .drop("total", errors="ignore")
                     .reset_index()
                 )
+
+                # Get only a subset of the data if requested
+                if subset:
+                    col = subset[0]
+                    index = subset[1]
+                    df = df[df[col].astype(str) == index]
+
+                # if sum_by is provided, group by the column and sum
+                if sum_by:
+                    df["abs err"] = df["Value"] * df["Error"]
+                    df = df.groupby(sum_by).sum(numeric_only=True).reset_index()
+                    df["Error"] = df["abs err"] / df["Value"]
 
                 # Add the label to the df
                 label = f"{LIB_NAMES[lib]}-{code}"
@@ -320,6 +393,8 @@ class Processor:
             compute_lethargy=compute_lethargy,
             compute_per_unit_energy=compute_energy,
             x_vals_to_string=x_vals_to_string,
+            sum_by=self._get_optional_config("sum_by", benchmark, tally),
+            subset=self._get_optional_config("subset", benchmark, tally),
         )
         # Mandatory keys
         try:
@@ -346,14 +421,6 @@ class Processor:
         #             data[key] = data[key].astype(str) + "-" + data[column].astype(str)
         # except KeyError:
         #     pass
-        # Get only a subset of the data if requested
-        try:
-            subset = self.params[benchmark][tally]["subset"]
-            col = subset[0]
-            index = subset[1]
-            data = data[data[col].astype(str) == index]
-        except KeyError:
-            pass  # no subset requested
 
         fig = get_figure(
             plot_type,
@@ -416,16 +483,19 @@ class Processor:
                 set(df["Tally Description"].to_list()).intersection(set(supported))
             )
 
+        tally_names = []
         available = []
         for csv in csv_names:
             available.append(csv[:-4])
         tallies = list(set(available).intersection(set(supported)))
+        if benchmark == "SphereSDDR":
+            tallies.sort(key=sorting_func_sphere_sddr)
 
-        tally_names = []
         for tally in tallies:
             for key, value in self.params[benchmark].items():
                 if key == tally:
                     tally_names.append(value["tally_name"])
+
         return tally_names
 
     def get_available_isotopes_materials(
