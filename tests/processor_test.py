@@ -43,7 +43,7 @@ class TestProcessor:
             processor.params["SphereSDDR"]["9019_16_2"]["tally_name"]
             == "F19 - 16 - Neutron Flux at the external surface in VitaminJ 175 energy groups"
         )
-        assert len(processor.params["SphereSDDR"]) == 3
+        assert len(processor.params["SphereSDDR"]) == 5
 
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""
