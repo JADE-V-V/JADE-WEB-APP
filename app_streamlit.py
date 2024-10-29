@@ -19,7 +19,7 @@ from jadewa.status import Status
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
 REPO = "JADE-RAW-RESULTS"
-BRANCH = "main"
+BRANCH = "add-FNG-BKT"
 
 
 # Initialize status and processor
