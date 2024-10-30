@@ -6,7 +6,6 @@ import os
 import re
 from copy import deepcopy
 from importlib.resources import as_file, files
-from typing import Union
 from urllib.error import HTTPError
 
 import numpy as np
@@ -141,7 +140,7 @@ class Processor:
         compute_per_unit_energy: bool = False,
         x_vals_to_string: bool = None,
         sum_by: str = None,
-        subset: tuple[str, Union[str, list]] = None,
+        subset: tuple[str, str | list] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 

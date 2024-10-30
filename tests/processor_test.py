@@ -49,7 +49,7 @@ class TestProcessor:
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""
         data = processor._get_graph_data(
-            "ITER_1D", "21c", "204", subset=("Cells", "[2.0,3.0]")
+            "ITER_1D", "21c", "204", subset=("Cells", ["2.0", "3.0"])
         )
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
