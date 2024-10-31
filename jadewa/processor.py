@@ -173,7 +173,7 @@ class Processor:
         sum_by: str, optional
             if provided, the df is groubed by the specified column, sum and
             index is then reserted, by default None.
-        subset: str, optional
+        subset: tuple[str, str | list], optional
             if provided, the df is filtered by the specified column-value couple, by default None.
 
         Returns

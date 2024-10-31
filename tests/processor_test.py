@@ -54,6 +54,14 @@ class TestProcessor:
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
 
+        data = processor._get_graph_data(
+            "Oktavian",
+            "exp",
+            "Al 21",
+            subset=("Energy", "0.10109"),
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 1
+
         try:
             # processor._get_graph_data("ITER2D", "21c", "204")
             processor._get_graph_data("ITER_1D", "21c", "999")
