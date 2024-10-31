@@ -1,7 +1,7 @@
-from plotly.graph_objects import Figure
+import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
-import pandas as pd
+from plotly.graph_objects import Figure
 
 
 def get_figure(
