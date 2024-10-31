@@ -71,12 +71,12 @@
     "Au 4": {
         "tally_name": "Activation Foil - Au",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -143,12 +143,12 @@
     "Fe 4": {
         "tally_name": "Activation Foil - Fe",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -212,12 +212,12 @@
     "In 4": {
         "tally_name": "Activation Foil - In",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -282,12 +282,12 @@
     "Mn 4": {
         "tally_name": "Activation Foil - Mn",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -352,12 +352,12 @@
     "Nb 4": {
         "tally_name": "Activation Foil - Nb",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -424,12 +424,12 @@
     "Ni-n2n 4": {
         "tally_name": "Activation Foil - Ni n2n",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
@@ -487,12 +487,12 @@
     "Ni-np 4": {
         "tally_name": "Activation Foil - Ni np",
         "substitutions": {
-            "Cells": "Region",
+            "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
         },
         "plot_type": "scatter",
         "plot_args": {
-            "x": "Region",
+            "x": "Shielding thickness [cm]",
             "y": "C/E",
             "log_x": false,
             "log_y": false
