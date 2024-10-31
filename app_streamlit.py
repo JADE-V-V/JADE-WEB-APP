@@ -1,20 +1,21 @@
-"""Main streamlit app entry point.
-"""
+"""Main streamlit app entry point."""
 
 from __future__ import annotations
-import streamlit as st
+
 import pandas as pd
+import streamlit as st
+
 from jadewa.processor import Processor
+from jadewa.status import Status
 from jadewa.utils import (
-    get_mat_iso_code,
-    get_pretty_mat_iso_names,
-    get_lib_suffix,
-    get_pretty_lib_names,
-    get_info_dfs,
     find_dict_depth,
+    get_info_dfs,
+    get_lib_suffix,
+    get_mat_iso_code,
+    get_pretty_lib_names,
+    get_pretty_mat_iso_names,
     safe_add_ctg_to_dict,
 )
-from jadewa.status import Status
 
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
@@ -190,7 +191,6 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
         selections = []
     # perform the selection
     with columns[0]:
-
         if isinstance(ctg_dict, list):
             options_available = ctg_dict
         else:
@@ -413,7 +413,6 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
 
     with tab_info:
-
         # If the metadata is not available, show the button to compute it
         if not st.session_state.metadata_available:
             # If information have not been computed yet, do it

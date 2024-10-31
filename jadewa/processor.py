@@ -1,24 +1,27 @@
-""" Module to process the data and get the plot
-"""
+"""Module to process the data and get the plot"""
 
-from jadewa.status import Status
-from jadewa.plotter import get_figure
+import json
+import logging
+import os
+import re
+from copy import deepcopy
+from importlib.resources import as_file, files
 from urllib.error import HTTPError
 
-from plotly.graph_objects import Figure
-import pandas as pd
 import numpy as np
-import os
-from importlib.resources import files, as_file
-import jadewa.resources as res
-import json
-import re
-import logging
-from jadewa.utils import LIB_NAMES, sorting_func_sphere_sddr
-from jadewa.errors import JsonSettingsError
-from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
-from copy import deepcopy
+import pandas as pd
+from plotly.graph_objects import Figure
 
+import jadewa.resources as res
+from jadewa.errors import JsonSettingsError
+from jadewa.plotter import get_figure
+from jadewa.status import Status
+from jadewa.utils import (
+    LIB_NAMES,
+    get_pretty_mat_iso_names,
+    sorting_func_sphere_sddr,
+    string_ints_converter,
+)
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
 
@@ -137,7 +140,7 @@ class Processor:
         compute_per_unit_energy: bool = False,
         x_vals_to_string: bool = None,
         sum_by: str = None,
-        subset: tuple[str, str] = None,
+        subset: tuple[str, str | list] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -170,7 +173,7 @@ class Processor:
         sum_by: str, optional
             if provided, the df is groubed by the specified column, sum and
             index is then reserted, by default None.
-        subset: str, optional
+        subset: tuple[str, str | list], optional
             if provided, the df is filtered by the specified column-value couple, by default None.
 
         Returns
@@ -212,7 +215,8 @@ class Processor:
                 if subset:
                     col = subset[0]
                     index = subset[1]
-                    df = df[df[col].astype(str) == index]
+                    df[col] = list(map(str, df[col]))
+                    df = df[df[col].isin(np.array(index).flatten())]
 
                 # if sum_by is provided, group by the column and sum
                 if sum_by:
@@ -269,7 +273,7 @@ class Processor:
             newdfs = []
             for df in dfs:
                 newdf = df.copy()
-                newdf["Value"] = newdf["Value"] / ref_df["Value"]
+                newdf["Value"] = newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
                 newdfs.append(newdf)
         else:
             newdfs = dfs
