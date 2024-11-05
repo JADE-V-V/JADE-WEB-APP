@@ -1,0 +1,105 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Material",
+            "Thickness",
+            "Angle"
+        ],
+        "generic_tallies": true
+    },
+    "5": {
+        "tally_name": "{} - {} cm - 0°",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_lethargy": true,
+        "only_ratio": true
+    },
+    "15": {
+        "tally_name": "{} - {} cm - 12.2°",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_lethargy": true,
+        "only_ratio": true
+    },
+    "25": {
+        "tally_name": "{} - {} cm - 24.9°",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_lethargy": true,
+        "only_ratio": true
+    },
+    "35": {
+        "tally_name": "{} - {} cm - 41.8°",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_lethargy": true,
+        "only_ratio": true
+    },
+    "45": {
+        "tally_name": "{} - {} cm - 66.8°",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_lethargy": true,
+        "only_ratio": true
+    }
+}
