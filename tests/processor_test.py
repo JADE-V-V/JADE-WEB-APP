@@ -37,7 +37,7 @@ class TestProcessor:
         assert processor.params["ITER_1D"]["204"]["plot_args"]["x"] == "Cell index"
 
     def test_init_SphereSDDR(self, status: Status):
-        """Test the __init__ method"""
+        """Test the __init__ method for the SphereSDDR benchmark"""
         processor = Processor(status)
         assert isinstance(processor, Processor)
         assert (
@@ -45,6 +45,17 @@ class TestProcessor:
             == "F19 - 16 - Neutron Flux at the external surface in VitaminJ 175 energy groups"
         )
         assert len(processor.params["SphereSDDR"]) == 5
+
+    def test_init_FNSTOF(self, status: Status):
+        """Test the __init__ method for the FNS-TOF benchmark"""
+        processor = Processor(status)
+        assert isinstance(processor, Processor)
+        assert processor.params["FNS-TOF"]["general"]["generic_tallies"] is True
+        assert (
+            processor.params["FNS-TOF"]["Be-15 25"]["tally_name"]
+            == "Be - 15 cm - 24.9°"
+        )
+        assert len(processor.params["FNS-TOF"]) == 7
 
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""

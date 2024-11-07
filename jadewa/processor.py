@@ -63,7 +63,12 @@ class Processor:
 
                 generic_tallies = list(self.params[benchmark].keys())
                 for csv in csv_names:
-                    pieces = csv.split("_")
+                    if benchmark == "FNS-TOF":
+                        pieces = csv.split("-")
+                        pieces.append(pieces[1].split(" ")[1])
+                        pieces[1] = pieces[1].split(" ")[0]
+                    else:
+                        pieces = csv.split("_")
                     tally_key = csv[:-4]
                     # if SDDR the first piece is a material/isotope and needs
                     # to be translated to something more useful
