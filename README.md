@@ -1,5 +1,6 @@
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://jade-web-app-q4gmytmvbalfgbgjdnfifr.streamlit.app/)
 [![Testing](https://github.com/JADE-V-V/JADE-WEB-APP/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/JADE-V-V/JADE-WEB-APP/actions/workflows/pytest.yml)
+[![codecov](https://codecov.io/gh/JADE-V-V/JADE/graph/badge.svg?token=C0Q75M9FVH)](https://codecov.io/gh/JADE-V-V/JADE-WEB-APP)
 
 # JADE-WEB-APP
 
