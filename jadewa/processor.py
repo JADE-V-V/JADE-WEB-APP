@@ -142,7 +142,7 @@ class Processor:
         refcode: str = "mcnp",
         ratio: bool = False,
         compute_lethargy: bool = False,
-        compute_per_unit_energy: bool = False,
+        compute_per_unit_bin: str = None,
         x_vals_to_string: bool = None,
         sum_by: str = None,
         subset: tuple[str, str | list] = None,
@@ -167,8 +167,9 @@ class Processor:
             if True, the data will be converted to lethargy, by default False.
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
-        compute_per_unit_energy: bool, optional
-            if True, the data will be converted to per unit energy, by default False.
+        compute_per_unit_bin: str, optional
+            column name of the x-axis data used to convert the y-axis data
+            to per unit bin (e.g. Energy), by default None
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
         x_vals_to_string: str, optional
@@ -238,16 +239,27 @@ class Processor:
                     ref_df = df
 
                 # Compute lethargy or if needed
-                if lib != "exp" and (compute_lethargy or compute_per_unit_energy):
-                    # Get the energy array
-                    try:
-                        energies = df["Energy"].astype(float).values
-                    except KeyError as exc:
-                        raise JsonSettingsError(
-                            f"Lethargy cannot be computed for {benchmark} {tally}"
-                        ) from exc
-                    ergs = [1e-10]  # Additional "zero" energy
-                    ergs.extend(energies.tolist())
+                if lib != "exp" and (
+                    compute_lethargy or compute_per_unit_bin is not None
+                ):
+                    # Get the bins array, separating the cases by normalization type
+                    if compute_lethargy:
+                        try:
+                            # For lethargy, only energy is valid
+                            bins = df["Energy"].astype(float).values
+                        except KeyError as exc:
+                            raise JsonSettingsError(
+                                f"Lethargy cannot be computed for {benchmark} {tally}"
+                            ) from exc
+                    if compute_per_unit_bin is not None:
+                        try:
+                            bins = df[compute_per_unit_bin].astype(float).values
+                        except KeyError as exc:
+                            raise JsonSettingsError(
+                                f"Per bin unit normalization cannot be computed for {benchmark} {tally}"
+                            ) from exc
+                    ergs = [1e-10]  # Additional "zero" bin
+                    ergs.extend(bins.tolist())
                     ergs = np.array(ergs)
 
                     # compute lethargy if requested
@@ -256,8 +268,8 @@ class Processor:
                             np.log(ergs[1:] / ergs[:-1])
                         )
 
-                    # or compute per unit energy if requested
-                    elif compute_per_unit_energy:
+                    # or compute per unit bin if requested
+                    elif compute_per_unit_bin:
                         df["Value"] = df["Value"].values / (ergs[1:] - ergs[:-1])
 
                 # if requested, convert x values to string
@@ -375,8 +387,8 @@ class Processor:
         compute_lethargy = self._get_optional_config(
             "compute_lethargy", benchmark, tally
         )
-        compute_energy = self._get_optional_config(
-            "compute_per_unit_energy", benchmark, tally
+        compute_per_unit_bin = self._get_optional_config(
+            "compute_per_unit_bin", benchmark, tally
         )
         x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
         y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
@@ -400,7 +412,7 @@ class Processor:
             ratio=ratio,
             refcode=refcode,
             compute_lethargy=compute_lethargy,
-            compute_per_unit_energy=compute_energy,
+            compute_per_unit_bin=compute_per_unit_bin,
             x_vals_to_string=x_vals_to_string,
             sum_by=self._get_optional_config("sum_by", benchmark, tally),
             subset=self._get_optional_config("subset", benchmark, tally),
