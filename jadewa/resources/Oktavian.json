@@ -12,7 +12,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Co 21": {
@@ -28,7 +30,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Cr 21": {
@@ -44,7 +48,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Cu 21": {
@@ -60,7 +66,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "LiF 21": {
@@ -76,7 +84,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Mn 21": {
@@ -92,7 +102,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Mo 21": {
@@ -108,7 +120,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Si 21": {
@@ -124,7 +138,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Ti 21": {
@@ -140,7 +156,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "W 21": {
@@ -156,7 +174,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Zr 21": {
@@ -172,7 +192,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "compute_lethargy": true
     },
     "Al 41": {
@@ -188,10 +210,11 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
-
     "Co 41": {
         "tally_name": "Co - Photon leakage spectrum",
         "substitutions": {
@@ -205,8 +228,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Cr 41": {
         "tally_name": "Cr - Photon leakage spectrum",
@@ -221,8 +246,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Cu 41": {
         "tally_name": "Cu - Photon leakage spectrum",
@@ -237,8 +264,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "LiF 41": {
         "tally_name": "LiF - Photon leakage spectrum",
@@ -253,8 +282,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Mn 41": {
         "tally_name": "Mn - Photon leakage spectrum",
@@ -269,8 +300,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Mo 41": {
         "tally_name": "Mo - Photon leakage spectrum",
@@ -285,8 +318,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Si 41": {
         "tally_name": "Si - Photon leakage spectrum",
@@ -301,8 +336,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "Ti 41": {
         "tally_name": "Ti - Photon leakage spectrum",
@@ -317,8 +354,10 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     },
     "W 41": {
         "tally_name": "W - Photon leakage spectrum",
@@ -333,7 +372,9 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "compute_per_unit_energy": true
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
     }
 }

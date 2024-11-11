@@ -108,9 +108,9 @@ class TestProcessor:
             "TUD-Fe",
             "exp",
             "A0 15",
-            compute_lethargy="Time",
+            compute_per_unit_bin="Time",
         )
-        assert len(data[data["label"] == "ENDFB VIII.0"]) == 136
+        assert len(data[data["label"] == "ENDFB VIII.0-mcnp"]) == 136
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
