@@ -3,6 +3,7 @@ from importlib.resources import files
 import pytest
 
 import tests.resources.status as res
+from jadewa.errors import JsonSettingsError
 from jadewa.processor import Processor
 from jadewa.status import Status
 
@@ -101,6 +102,40 @@ class TestProcessor:
             compute_lethargy=True,
         )
         assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 134
+
+    def test_get_graph_data_unit_per_bin(self, processor: Processor):
+        """Test the get_graph_data method with unit per bin normalization"""
+        data = processor._get_graph_data(
+            "TUD-Fe",
+            "exp",
+            "A0 15",
+            compute_per_unit_bin="Time",
+        )
+        assert len(data[data["label"] == "ENDFB VIII.0-mcnp"]) == 136
+
+    def test_get_graph_data_json_error_lethargy(self, processor: Processor):
+        """Test the get_graph_data method when a JsonSettingsError is raised due to an error in compute_lethargy"""
+        with pytest.raises(JsonSettingsError) as info:
+            processor._get_graph_data(
+                # "A0 15.csv" does not have an "Energy" column
+                "TUD-Fe",
+                "exp",
+                "A0 15",
+                compute_lethargy=True,
+            )
+        assert info.type is JsonSettingsError
+
+    def test_get_graph_data_json_error_per_unit(self, processor: Processor):
+        """Test the get_graph_data method when a JsonSettingsError is raised due to an error in compute_per_unit_bin"""
+        with pytest.raises(JsonSettingsError) as info:
+            processor._get_graph_data(
+                # The data files of the Oktavian benchmark do not have a "Time" column
+                "Oktavian",
+                "exp",
+                "Al 21",
+                compute_per_unit_bin="Time",
+            )
+        assert info.type is JsonSettingsError
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""

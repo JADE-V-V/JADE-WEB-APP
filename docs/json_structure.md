@@ -19,7 +19,7 @@ Adding a new benchmark to be supported by the web app is as easy as to add a .js
         "log_y": true
     },
     "y_axis_format": {"tickformat": ".2e"},
-    "compute_per_unit_energy": true
+    "compute_per_unit_bin": "Energy"
 },
     ...
 }
@@ -76,8 +76,8 @@ column names will be directly used for x and y labels on the graph.</dd>
   <dd>these parameters allow you to customize the axis properties such as ticks number, labels, labels format, etc. You can see a complete list of the parameters that can be controlled at <a href=https://plotly.com/python/reference/layout/xaxis>this page</a> of the plotly API reference.</dd>
   <dt>compute_lethargy</dt>
   <dd>if set to `true`, all data coming from simulations (that is, not experimental data) will expect an `Energy` column in the raw dataframe and use it to convert the `Value` column (intended as a flux) in a flux per unit lethargy. $\phi_n = \phi_n/\log(E_{n}/E_{n-1})$</dd>
-  <dt>compute_per_unit_energy</dt>
-  <dd>if set to `true`, all data coming from simulations (that is, not experimental data) will expect an `Energy` column in the raw dataframe and use it to convert the `Value` column (intended as a flux) in a flux per unit energy. $\phi_n = \phi_n/(E_{n} - E_{n-1})$</dd>
+  <dt>compute_per_unit_bin</dt>
+  <dd>this parameter allows you to normalize the `Value` column (intended as a flux) from all data coming from simulations (that is, not experimental data) to flux per bin. $\phi_n = \phi_n/(V_{n} - V_{n-1})$. A string containing the name of the x-axis data column in the raw dataframe (e.g `Energy`, `Time`) is expected.</dd>
   <dt>subset</dt>
   <dd>a list [column_name, value] is expected. The effect is that from the total raw data table, only the rows that contain value in the specified column will be retained for plotting.</dd>
   <dt>only_ratio</dt>
