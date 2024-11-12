@@ -1,0 +1,81 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Shielding depth",
+            "Tally"
+        ],
+        "generic_tallies": true
+    },
+    "504": {
+        "tally_name": "41.5 cm - Neutron fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "514": {
+        "tally_name": "41.5 cm - Photon fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "524": {
+        "tally_name": "87.6 cm - Neutron fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "534": {
+        "tally_name": "87.6 cm - Photon fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    }
+}
