@@ -344,7 +344,7 @@ class Processor:
         try:
             return self.params[benchmark][tally][key]
         except KeyError:
-            return False
+            return None
 
     def get_plot(
         self,
@@ -387,12 +387,9 @@ class Processor:
         compute_lethargy = self._get_optional_config(
             "compute_lethargy", benchmark, tally
         )
-        if self._get_optional_config("compute_per_unit_bin", benchmark, tally) is False:
-            compute_per_unit_bin = None
-        else:
-            compute_per_unit_bin = self._get_optional_config(
-                "compute_per_unit_bin", benchmark, tally
-            )
+        compute_per_unit_bin = self._get_optional_config(
+            "compute_per_unit_bin", benchmark, tally
+        )
 
         x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
         y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
