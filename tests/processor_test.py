@@ -93,6 +93,22 @@ class TestProcessor:
         assert len(data.columns) == 4
         assert data.groupby("label").mean().iloc[-1][-1] == 1
 
+    def test_get_graph_data_TBM(self, processor: Processor):
+        """Test the get_graph_data method for the TBM benchmarks"""
+        data = processor._get_graph_data(
+            "HCPB_TBM_1D",
+            "32c",
+            "214",
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 78
+
+        data = processor._get_graph_data(
+            "WCLL_TBM_1D",
+            "32c",
+            "214",
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 78
+
     def test_get_graph_data_ratio_lethargy(self, processor: Processor):
         """Test the get_graph_data method with lethargy"""
         data = processor._get_graph_data(

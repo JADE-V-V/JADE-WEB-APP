@@ -217,11 +217,17 @@ class Processor:
                     .reset_index()
                 )
 
+                # The first row of data is removed for the TMB benchmarks
+                if benchmark in ("HCPB_TBM_1D", "WCLL_TBM_1D"):
+                    df = df.iloc[1:]
+
                 # Get only a subset of the data if requested
                 if subset:
                     col = subset[0]
                     index = subset[1]
+                    # transform the values contained in column col to strings
                     df[col] = list(map(str, df[col]))
+                    # keep the subset of the dataframe for which the col column matches the values in index
                     df = df[df[col].isin(np.array(index).flatten())]
 
                 # if sum_by is provided, group by the column and sum
