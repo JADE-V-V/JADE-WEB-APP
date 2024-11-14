@@ -45,6 +45,9 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
     str
         selected benchmark
     """
+    # Sort the available benchmarks alphabetically
+    available_benchmarks = sorted(available_benchmarks)
+
     flag_split, ctg_dict = _split_options(available_benchmarks)
 
     if flag_split:
