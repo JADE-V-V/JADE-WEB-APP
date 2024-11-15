@@ -1,6 +1,6 @@
 {
     "Al 4": {
-        "tally_name": "Activation Foil - Al",
+        "tally_name": "Activation Foil - Al27 (n,a) Na24",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -69,7 +69,7 @@
         ]
     },
     "Au 4": {
-        "tally_name": "Activation Foil - Au",
+        "tally_name": "Activation Foil - Au197 (n,g) Au198",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -141,7 +141,7 @@
         "only_ratio": true
     },
     "Fe 4": {
-        "tally_name": "Activation Foil - Fe",
+        "tally_name": "Activation Foil - Fe56 (n,p) Mn56",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -210,7 +210,7 @@
         "only_ratio": true
     },
     "In 4": {
-        "tally_name": "Activation Foil - In",
+        "tally_name": "Activation Foil - In115 (n,n’) In115m",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -280,7 +280,7 @@
         "only_ratio": true
     },
     "Mn 4": {
-        "tally_name": "Activation Foil - Mn",
+        "tally_name": "Activation Foil - Mn55 (n,g) Mn56",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -350,7 +350,7 @@
         "only_ratio": true
     },
     "Nb 4": {
-        "tally_name": "Activation Foil - Nb",
+        "tally_name": "Activation Foil - Nb93 (n,2n) Nb92",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -422,7 +422,7 @@
         "only_ratio": true
     },
     "Ni-n2n 4": {
-        "tally_name": "Activation Foil - Ni n2n",
+        "tally_name": "Activation Foil - Ni58 (n,2n) Ni57",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
@@ -485,7 +485,7 @@
         "only_ratio": true
     },
     "Ni-np 4": {
-        "tally_name": "Activation Foil - Ni np",
+        "tally_name": "Activation Foil - Ni58 (n,p) Co58",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
             "Value": "C/E"
