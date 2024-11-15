@@ -45,6 +45,9 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
     str
         selected benchmark
     """
+    # Sort the available benchmarks alphabetically
+    available_benchmarks = sorted(available_benchmarks)
+
     flag_split, ctg_dict = _split_options(available_benchmarks)
 
     if flag_split:
@@ -335,7 +338,7 @@ def main():
     with tab_plot:
         col01, col02 = st.columns([0.9, 0.1])
         with col01:
-            st.title("JADE results interactive plotter [BETA]")
+            st.title("JADE results interactive plotter")
         with col02:
             st.image(r"jadewa/assets/Jade.png", width=75)
 
