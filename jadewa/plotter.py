@@ -1,7 +1,11 @@
+import re
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
 from plotly.graph_objects import Figure
+
+from jadewa.utils import roman_to_arabic
 
 
 def get_figure(
@@ -45,6 +49,10 @@ def get_figure(
         fig = _plot_grouped_bars(data, **keyargs)
     else:
         raise ValueError(f"Plot type '{plot_type}' not supported")
+
+    # Check for the most recent version of the corresponding library and deselect the
+    # older versions from the plot legend
+    _deselect_old_libs(fig)
 
     if x_axis_format:
         fig.update_xaxes(**x_axis_format)
@@ -127,3 +135,96 @@ def _plot_grouped_bars(data: pd.DataFrame, **keyargs) -> Figure:
         data, **keyargs, color="label", template="plotly_white", barmode="group"
     )
     return fig
+
+
+def _deselect_old_libs(fig: Figure) -> None:
+    """
+    Check for the most recent version of the corresponding library and deselect
+    the older versions from the plot legend.
+
+    Parameters
+    ----------
+    fig : Figure
+        figure containing the traces to be processed.
+
+    Returns
+    -------
+    None
+    """
+    libraries = {"traces": [], "lib_name": [], "vers1": [], "vers2": []}
+    for trace in fig.data:
+        if (
+            isinstance(trace, (go.Scatter, go.Bar))
+            and trace.name != "experiment-experiment"
+            and bool(re.search("-", trace.name))
+        ):
+            # Obtain the trace name and separate the full library+version name
+            # (e.g "FENDL 3.2b") from the software used to compute it (e.g "mcnp")
+            libraries["traces"].append(trace)
+            full_lib = libraries["traces"][-1].name.split("-")[0]
+
+            # Extract the library name (e.g "FENDL") and version (e.g "3.2b") from the trace name
+            # For the version, divide in two components (e.g "3.2b" -> "3" and "2b")
+            if libraries["traces"][-1].name.split("-")[1] == "d1s":
+                lib_name = full_lib.split(" ")[1]
+                lib_name = lib_name.replace("(", "")
+                vers1, vers2 = full_lib.split(" ")[2].split("+")[0].split(".")
+            else:
+                lib_name = full_lib.split(" ")[0]
+                try:
+                    vers1, vers2 = full_lib.split(" ")[1].split(".")
+                except ValueError:
+                    vers1 = full_lib.split(" ")[1]
+                    vers2 = "0"
+
+            # Remove any letters from the second part of the version number (e.g "2b" -> "2")
+            vers2 = re.sub(r"[a-zA-Z]", "", vers2)
+
+            # Convert the roman numbers in the library version to arabic numbers (e.g "VIII" -> "8")
+            if bool(re.search(r"\d", vers1)):
+                pass
+            else:
+                vers1 = roman_to_arabic(vers1)
+
+            # Find the first index of lib_name in libraries["lib_name"] where the trace is not "legendonly"
+            idx = next(
+                (
+                    i
+                    for i, x in enumerate(libraries["lib_name"])
+                    if x == lib_name and libraries["traces"][i].visible != "legendonly"
+                ),
+                None,
+            )
+
+            # Compare the trace corresponding to the obtained index with the current
+            # trace and deselect the older version from the plot legend
+            if idx is not None and trace.visible != "legendonly":
+                # Compare the first part of the version number (e.g "3" in "3.2b")
+                if vers1 > libraries["vers1"][idx]:
+                    fig.update_traces(
+                        visible="legendonly",
+                        selector={"name": libraries["traces"][idx].name},
+                    )
+                # If the first part of the version is the same, compare the second part
+                # of the version number (e.g "2" in "3.2b")
+                elif vers1 == libraries["vers1"][idx]:
+                    if vers2 > libraries["vers2"][idx]:
+                        fig.update_traces(
+                            visible="legendonly",
+                            selector={"name": libraries["traces"][idx].name},
+                        )
+                    elif vers2 < libraries["vers2"][idx]:
+                        fig.update_traces(
+                            visible="legendonly",
+                            selector={"name": libraries["traces"][-1].name},
+                        )
+                elif vers1 < libraries["vers1"][idx]:
+                    fig.update_traces(
+                        visible="legendonly",
+                        selector={"name": libraries["traces"][-1].name},
+                    )
+
+            # Update the libraries dictionary with the trace name, library name and version
+            libraries["lib_name"].append(lib_name)
+            libraries["vers1"].append(vers1)
+            libraries["vers2"].append(vers2)
