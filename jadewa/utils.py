@@ -12,6 +12,7 @@ LIB_NAMES = {
     "30c": "FENDL 3.0",
     "31c": "FENDL 3.1d",
     "32c": "FENDL 3.2b",
+    "32d": "FENDL 3.2c",
     "70c": "ENDFB VII.0",
     "00c": "ENDFB VIII.0",
     "34y": "IRDFF II",

@@ -5,9 +5,11 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from jadewa.plotter import select_visible_libs
 from jadewa.processor import Processor
 from jadewa.status import Status
 from jadewa.utils import (
+    LIB_NAMES,
     find_dict_depth,
     get_info_dfs,
     get_lib_suffix,
@@ -413,7 +415,42 @@ def main():
                 fig = None
 
             if fig:
-                st.plotly_chart(fig, use_container_width=True)
+                plotly_chart = st.plotly_chart(fig, use_container_width=True)
+
+            st.write(
+                "Select libraries to display. If no libraries are selected, the most recent version of each library will be plotted."
+            )
+            libs = list(LIB_NAMES.values())
+
+            # Create checkboxes for all the libraries in LIB_NAMES
+            checks = []
+            # Fix a maximum of 6 checkboxes per row
+            for i in range(0, int(len(libs) / 6)):
+                checks.append(st.columns(6))
+            if len(libs) % 6 != 0:
+                checks.append(st.columns(int(len(libs) % 6)))
+
+            # Keep track of the selected libraries
+            clicks = list(range(0, len(libs)))
+            for i in range(0, len(checks)):
+                for j in range(0, len(checks[i])):
+                    with checks[i][j]:
+                        clicks[i * 6 + j] = st.checkbox(
+                            libs[i * 6 + j], key=libs[i * 6 + j]
+                        )
+
+            # The checkboxes will be used as a reference to plot if at least 1 library is selected
+            checkbox_selected = False
+            if any(clicks):
+                checkbox_selected = True
+
+            if fig and checkbox_selected:
+                # List the selected libraries
+                selected_libs = [libs[i] for i, _ in enumerate(clicks) if clicks[i]]
+                # Apply the selection to the plot legend
+                select_visible_libs(fig, selected_libs)
+                # Update the plot
+                plotly_chart.plotly_chart(fig)
 
     with tab_info:
         # If the metadata is not available, show the button to compute it
