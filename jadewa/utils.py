@@ -275,33 +275,3 @@ def safe_add_ctg_to_dict(dictionary: dict, keys: list[str], value: str) -> dict:
 
     dictionary = dictionary[key]
     safe_add_ctg_to_dict(dictionary, keys[1:], value)
-
-
-def roman_to_arabic(roman: str) -> int:
-    """Convert a roman numeral to an arabic number
-
-    Parameters
-    ----------
-    roman : str
-        roman numeral string to be converted
-
-    Returns
-    -------
-    int
-        corresponding arabic number
-    """
-    # Define a dictionary to map roman numerals to their corresponding arabic values
-    roman_numerals = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-    total = 0
-    prev_value = 0
-
-    # Process each character in the roman numeral string
-    for char in reversed(roman):
-        value = roman_numerals[char]
-        if value < prev_value:
-            total -= value
-        else:
-            total += value
-        prev_value = value
-
-    return total

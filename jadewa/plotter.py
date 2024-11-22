@@ -5,8 +5,6 @@ import plotly.express as px
 import plotly.graph_objs as go
 from plotly.graph_objects import Figure
 
-from jadewa.utils import roman_to_arabic
-
 
 def get_figure(
     plot_type: str,
