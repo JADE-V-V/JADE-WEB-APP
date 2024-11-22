@@ -1,17 +1,18 @@
-"""Contains useful constants and functions for the jadewa package.
-"""
+"""Contains useful constants and functions for the jadewa package."""
 
 from __future__ import annotations
-import re
-from f4enix.input.libmanager import LibManager
-import pandas as pd
 
+import re
+
+import pandas as pd
+from f4enix.input.libmanager import LibManager
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
     "30c": "FENDL 3.0",
     "31c": "FENDL 3.1d",
     "32c": "FENDL 3.2b",
+    "32d": "FENDL 3.2c",
     "70c": "ENDFB VII.0",
     "00c": "ENDFB VIII.0",
     "34y": "IRDFF II",
