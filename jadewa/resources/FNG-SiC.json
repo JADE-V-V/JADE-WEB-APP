@@ -1,0 +1,167 @@
+{
+    "Al 4": {
+        "tally_name": "Reaction Rates - Al27 (n,a) Na24",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "602",
+                "612",
+                "622",
+                "632"
+            ],
+            "ticktext": [
+                10.41,
+                25.65,
+                40.89,
+                56.13
+            ]
+        },
+        "only_ratio": true
+    },
+    "Au 4": {
+        "tally_name": "Reaction Rates - Au197 (n,g) Au198",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "602",
+                "612",
+                "622",
+                "632"
+            ],
+            "ticktext": [
+                10.41,
+                25.65,
+                40.89,
+                56.13
+            ]
+        },
+        "only_ratio": true
+    },
+    "Ni 4": {
+        "tally_name": "Reaction Rates - Ni58 (n,p) Co58",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "602",
+                "612",
+                "622",
+                "632"
+            ],
+            "ticktext": [
+                10.41,
+                25.65,
+                40.89,
+                56.13
+            ]
+        },
+        "only_ratio": true
+    },
+    "Nb 4": {
+        "tally_name": "Reaction Rates - Nb93 (n,2n) Nb92",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "602",
+                "612",
+                "622",
+                "632"
+            ],
+            "ticktext": [
+                10.41,
+                25.65,
+                40.89,
+                56.13
+            ]
+        },
+        "only_ratio": true
+    },
+    "TLD 6": {
+        "tally_name": "Nuclear Heating (TLDs)",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "602",
+                "612",
+                "622",
+                "632"
+            ],
+            "ticktext": [
+                14.99,
+                30.23,
+                45.47,
+                60.71
+            ]
+        },
+        "only_ratio": true
+    }
+}

@@ -272,6 +272,11 @@ def safe_add_ctg_to_dict(dictionary: dict, keys: list[str], value: str) -> dict:
     # update the dict definition
     if key not in dictionary:
         dictionary[key] = {}
+    # if the key already exists in the dictionary but its value is a list,
+    # we convert its value to a dictionary
+    elif isinstance(dictionary[key], list):
+        dictionary[key] = {
+            dictionary[key][i]: ["N.A."] for i in range(len(dictionary[key]))
+        }
 
-    dictionary = dictionary[key]
-    safe_add_ctg_to_dict(dictionary, keys[1:], value)
+    safe_add_ctg_to_dict(dictionary[key], keys[1:], value)

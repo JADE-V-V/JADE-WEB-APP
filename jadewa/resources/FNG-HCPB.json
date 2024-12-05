@@ -1,0 +1,396 @@
+{
+    "Al 4": {
+        "tally_name": "Reaction Rates - Al27 (n,a) Na24",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "48001.0",
+                "48002.0",
+                "48003.0",
+                "48004.0"
+            ],
+            "ticktext": [
+                4.10115,
+                10.40115,
+                16.70115,
+                23.00115
+            ]
+        },
+        "only_ratio": true
+    },
+    "Au 4": {
+        "tally_name": "Reaction Rates - Au197 (n,g) Au198",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "38001.0",
+                "38002.0",
+                "38003.0",
+                "38004.0"
+            ],
+            "ticktext": [
+                4.055,
+                10.355,
+                16.655,
+                22.955
+            ]
+        },
+        "only_ratio": true
+    },
+    "Nb 4": {
+        "tally_name": "Reaction Rates - Nb93 (n,2n) Nb92",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "28000.0",
+                "28001.0",
+                "28002.0",
+                "28003.0",
+                "28004.0"
+            ],
+            "ticktext": [
+                0,
+                4.055,
+                10.355,
+                16.655,
+                22.955
+            ]
+        },
+        "only_ratio": true
+    },
+    "Ni 4": {
+        "tally_name": "Reaction Rates - Ni58 (n,p) Co58",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "58001.0",
+                "58002.0",
+                "58003.0",
+                "58004.0"
+            ],
+            "ticktext": [
+                4.152,
+                10.452,
+                16.752,
+                23.052
+            ]
+        },
+        "only_ratio": true
+    },
+    "H3 84 ENEA2": {
+        "tally_name": "Tritium Activity - ENEA2",
+        "substitutions": {
+            "Cells": "Pellet n°",
+            "Value": "Activity [Bq/g]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Pellet n°",
+            "y": "Activity [Bq/g]",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "16016.0",
+                "16020.0",
+                "16024.0",
+                "16028.0",
+                "16032.0",
+                "16036.0",
+                "16040.0",
+                "16044.0",
+                "16048.0",
+                "16052.0",
+                "16056.0",
+                "16060.0"
+            ],
+            "ticktext": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+            ]
+        },
+        "subset": [
+            "Cells",
+            [
+                "16016.0",
+                "16020.0",
+                "16024.0",
+                "16028.0",
+                "16032.0",
+                "16036.0",
+                "16040.0",
+                "16044.0",
+                "16048.0",
+                "16052.0",
+                "16056.0",
+                "16060.0"
+            ]
+        ]
+    },
+    "H3 84 ENEA4": {
+        "tally_name": "Tritium Activity - ENEA4",
+        "substitutions": {
+            "Cells": "Pellet n°",
+            "Value": "Activity [Bq/g]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Pellet n°",
+            "y": "Activity [Bq/g]",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "16017.0",
+                "16021.0",
+                "16025.0",
+                "16029.0",
+                "16033.0",
+                "16037.0",
+                "16041.0",
+                "16045.0",
+                "16049.0",
+                "16053.0",
+                "16057.0",
+                "16061.0"
+            ],
+            "ticktext": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+            ]
+        },
+        "subset": [
+            "Cells",
+            [
+                "16017.0",
+                "16021.0",
+                "16025.0",
+                "16029.0",
+                "16033.0",
+                "16037.0",
+                "16041.0",
+                "16045.0",
+                "16049.0",
+                "16053.0",
+                "16057.0",
+                "16061.0"
+            ]
+        ]
+    },
+    "H3 84 ENEA6": {
+        "tally_name": "Tritium Activity - ENEA6",
+        "substitutions": {
+            "Cells": "Pellet n°",
+            "Value": "Activity [Bq/g]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Pellet n°",
+            "y": "Activity [Bq/g]",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "16018.0",
+                "16022.0",
+                "16026.0",
+                "16030.0",
+                "16034.0",
+                "16038.0",
+                "16042.0",
+                "16046.0",
+                "16050.0",
+                "16054.0",
+                "16058.0",
+                "16062.0"
+            ],
+            "ticktext": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+            ]
+        },
+        "subset": [
+            "Cells",
+            [
+                "16018.0",
+                "16022.0",
+                "16026.0",
+                "16030.0",
+                "16034.0",
+                "16038.0",
+                "16042.0",
+                "16046.0",
+                "16050.0",
+                "16054.0",
+                "16058.0",
+                "16062.0"
+            ]
+        ]
+    },
+    "H3 84 ENEA8": {
+        "tally_name": "Tritium Activity - ENEA8",
+        "substitutions": {
+            "Cells": "Pellet n°",
+            "Value": "Activity [Bq/g]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Pellet n°",
+            "y": "Activity [Bq/g]",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "16019.0",
+                "16023.0",
+                "16027.0",
+                "16031.0",
+                "16035.0",
+                "16039.0",
+                "16043.0",
+                "16047.0",
+                "16051.0",
+                "16055.0",
+                "16059.0",
+                "16063.0"
+            ],
+            "ticktext": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+            ]
+        },
+        "subset": [
+            "Cells",
+            [
+                "16019.0",
+                "16023.0",
+                "16027.0",
+                "16031.0",
+                "16035.0",
+                "16039.0",
+                "16043.0",
+                "16047.0",
+                "16051.0",
+                "16055.0",
+                "16059.0",
+                "16063.0"
+            ]
+        ]
+    }
+}
