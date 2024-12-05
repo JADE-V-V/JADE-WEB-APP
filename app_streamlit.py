@@ -22,7 +22,7 @@ from jadewa.utils import (
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
 REPO = "JADE-RAW-RESULTS"
-BRANCH = "add_FNG+ASPIS"
+BRANCH = "main"
 
 
 # Initialize status and processor
