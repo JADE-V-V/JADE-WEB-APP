@@ -65,6 +65,14 @@ class TestStreamlitApp:
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups"
         ).run()
 
+        # Test a benchmark that requires the selection of multiple selectboxes.
+        app.selectbox(key="benchmark").select("ASPIS").run()
+        assert app.selectbox(key="benchmark").value == "ASPIS"
+        app.selectbox(key="benchmark_1").select("PCA").run()
+        assert app.selectbox(key="benchmark_1").value == "PCA"
+        app.selectbox(key="benchmark_2").select("Replica_flux").run()
+        assert app.selectbox(key="benchmark_2").value == "Replica_flux"
+
         # Test the library checkboxes by selecting and deselecting one and
         # checking if it matches the expected bool values.
         app.checkbox(key="JEFF 3.3").check().run()

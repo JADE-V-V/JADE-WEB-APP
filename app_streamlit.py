@@ -231,9 +231,7 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
             label = 0
 
         option_selected = st.selectbox(
-            label,
-            options_available,
-            index=index,
+            label="", options=options_available, index=index, key=label
         )
 
         # add selection to the list
@@ -269,7 +267,7 @@ def _get_split_selection(
             label = 0
         elif isinstance(labels, str):
             label = labels
-            labels = [label] + [""] * (max_depth - 1)
+            labels = [label] + [f"{label}_{i+1}" for i in range(max_depth - 1)]
         else:
             raise ValueError("There is a problem with the selection labels")
 
