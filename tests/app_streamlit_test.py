@@ -1,5 +1,7 @@
 from streamlit.testing.v1 import AppTest
 
+from app_streamlit import _recursive_assign_na_option
+
 
 class TestStreamlitApp:
     """Test the Streamlit app. Better to reunite all tests in one class to avoid
@@ -65,9 +67,23 @@ class TestStreamlitApp:
             "Neutron Flux at the external surface in Vitamin-J 175 energy groups"
         ).run()
 
+        # Test a benchmark that requires the selection of more than one selectbox.
+        app.selectbox(key="benchmark").select("ASPIS").run()
+        assert app.selectbox(key="benchmark").value == "ASPIS"
+        app.selectbox(key="benchmark_1").select("Fe88").run()
+        assert app.selectbox(key="benchmark_1").value == "Fe88"
+
         # Test the library checkboxes by selecting and deselecting one and
         # checking if it matches the expected bool values.
         app.checkbox(key="JEFF 3.3").check().run()
         assert app.checkbox(key="JEFF 3.3").value is True
         app.checkbox(key="JEFF 3.3").uncheck().run()
         assert app.checkbox(key="JEFF 3.3").value is False
+
+        # Check the correct functioning of the _recursive_assign_na_option function
+        dict_test = _recursive_assign_na_option(
+            {"benchmark": {"benchmark_1": {"benchmark_2": ["benchmark_3"]}}}
+        )
+        assert dict_test == {
+            "benchmark": {"benchmark_1": {"benchmark_2": {"benchmark_3": ["N.A."]}}}
+        }
