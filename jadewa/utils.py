@@ -8,7 +8,8 @@ import pandas as pd
 from f4enix.input.libmanager import LibManager
 import pandas as pd
 import json
-
+import os
+import streamlit as st
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
@@ -48,8 +49,12 @@ try:
         secrets = json.load(f)
     github_token = secrets["github_token"]
 except FileNotFoundError:
-    raise NotImplementedError(
-        "The secrets.json file was not found. Please create it with the github token.")
+    # try to get it from the environment
+    try:
+        github_token = os.environ["ACCESS_RAW_RES"]
+    except KeyError:
+        # if it is not found, get it from streamlit
+        github_token = st.secrets["github_token"]
 
 GITHUB_HEADERS = {"Authorization": f"token {github_token}"}
 
