@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from f4enix.input.libmanager import LibManager
 import pandas as pd
+import json
 
 
 LIB_NAMES = {
@@ -12,6 +13,7 @@ LIB_NAMES = {
     "30c": "FENDL 3.0",
     "31c": "FENDL 3.1d",
     "32c": "FENDL 3.2b",
+    "32d": "FENDL 3.2c",
     "70c": "ENDFB VII.0",
     "00c": "ENDFB VIII.0",
     "34y": "IRDFF II",
@@ -38,6 +40,16 @@ MATERIAL_NAMES = {v: k for k, v in MATERIAL_NUMBERS.items()}
 MAT_ISO_PATTERN = re.compile(r"[mM]*\d+")
 
 LIB_MANAGER = LibManager()
+
+try:
+    with open("secrets.json", "r") as f:
+        secrets = json.load(f)
+    github_token = secrets["github_token"]
+except FileNotFoundError:
+    raise NotImplementedError(
+        "The secrets.json file was not found. Please create it with the github token.")
+
+GITHUB_HEADERS = {"Authorization": f"token {github_token}"}
 
 
 def sorting_func(option: str) -> int:

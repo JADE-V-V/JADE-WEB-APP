@@ -8,6 +8,7 @@ import os
 import requests
 import pandas as pd
 from jadewa.utils import LIB_NAMES
+from jadewa.utils import GITHUB_HEADERS
 
 
 class Status:
@@ -56,7 +57,8 @@ class Status:
         """
         metadata_rows = []
         for path in self.metadata_paths:
-            r = requests.get(path, timeout=5)
+            r = requests.get(path, timeout=5, headers=GITHUB_HEADERS)
+            r.raise_for_status()
             metadata_rows.append(r.json())
 
         self.metadata_df = pd.DataFrame(metadata_rows)
@@ -64,7 +66,7 @@ class Status:
     @staticmethod
     def _github_walk(owner: str, repo: str, branch: str = "main"):
         url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{branch}?recursive=1"
-        r = requests.get(url, timeout=10)
+        r = requests.get(url, timeout=10, headers=GITHUB_HEADERS)
         r.raise_for_status()
         data = r.json()
 
@@ -102,7 +104,8 @@ class Status:
         # create the nested dict for the status
         status = {}
         metadata_paths = []
-        start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
+        # start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
+        start_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/"
         for path in allfiles:
             pieces = path.split("/")
             library = pieces[-5]

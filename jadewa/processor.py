@@ -18,6 +18,9 @@ from jadewa.utils import LIB_NAMES, sorting_func_sphere_sddr
 from jadewa.errors import JsonSettingsError
 from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
 from copy import deepcopy
+from io import StringIO
+import requests
+from jadewa.utils import GITHUB_HEADERS
 
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
@@ -90,7 +93,7 @@ class Processor:
     ) -> pd.DataFrame:
         # logic to determine the correct path (local or github)
         if "https" in path:
-            path = path + r"/{}.csv?raw=true"
+            path = path + r"/{}.csv"
         else:
             path = path + os.sep + "{}.csv"
 
@@ -109,7 +112,14 @@ class Processor:
 
         if allow_not_found:
             try:
-                df = pd.read_csv(formatted_path)
+                if "https" in path:
+                    response = requests.get(formatted_path, headers=GITHUB_HEADERS)
+                    response.raise_for_status()  # Raise an error for HTTP issues
+                    csv_content = StringIO(response.text)  # Convert text to a file-like object
+                else:
+                    # if the file is local, just read it
+                    csv_content = formatted_path
+                df = pd.read_csv(csv_content)
             except FileNotFoundError:
                 # if everything went well, it means that the isotope
                 # or material is not available for this library
