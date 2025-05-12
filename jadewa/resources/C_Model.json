@@ -4,7 +4,10 @@
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -12,14 +15,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "21": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#7)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -27,14 +35,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "31": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#8)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -42,14 +55,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "41": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#9)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -57,14 +75,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "51": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#10)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -72,14 +95,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "61": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#11)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -87,14 +115,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "71": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#12)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -102,14 +135,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "81": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#13)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -117,14 +155,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "91": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#14)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -132,14 +175,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "101": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#15)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -147,14 +195,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "111": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#16)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -162,14 +215,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "121": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#17)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -177,14 +235,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "131": {
         "tally_name": "Neutron current on plasma boundary - (inboard BLK#18)",
         "substitutions": {
             "Value": "Neutron current [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -192,14 +255,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "12": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#1 to #6)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -207,14 +275,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "22": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#7)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -222,14 +295,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "32": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#8)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -237,14 +315,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "42": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#9)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -252,14 +335,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "52": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#10)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -267,14 +355,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "62": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#11)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -282,14 +375,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "72": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#12)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -297,14 +395,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "82": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#13)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -312,14 +415,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "92": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#14)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -327,14 +435,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "102": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#15)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -342,14 +455,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "112": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#16)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -357,14 +475,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "122": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#17)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -372,14 +495,19 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "132": {
         "tally_name": "Neutron flux on plasma boundary - (inboard BLK#18)",
         "substitutions": {
             "Value": "Neutron flux [n/cm^2/s]"
         },
-        "subset": ["User", "1.0"],
+        "subset": [
+            "User",
+            "1.0"
+        ],
         "plot_type": "grouped_bar",
         "plot_args": {
             "x": "Segments",
@@ -387,7 +515,9 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "16": {
         "tally_name": "Nuclear heating - Blanket and Divertor",
@@ -402,74 +532,77 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "x_axis_format": {
             "tickmode": "array",
             "tickvals": [
-                    4,
-                    5,
-                    6,
-                    7,
-                    8,
-                    9,
-                    10,
-                    11,
-                    12,
-                    13,
-                    14,
-                    15,
-                    16,
-                    17,
-                    18,
-                    19,
-                    20,
-                    21,
-                    22,
-                    23,
-                    24,
-                    25,
-                    26,
-                    27,
-                    28,
-                    29,
-                    30,
-                    31,
-                    32,
-                    33,
-                    34,
-                    35,
-                    36,
-                    37,
-                    38,
-                    39,
-                    40,
-                    41,
-                    42,
-                    43,
-                    44,
-                    45,
-                    46,
-                    47,
-                    48,
-                    49,
-                    50,
-                    51,
-                    52,
-                    53,
-                    54,
-                    55,
-                    56,
-                    57,
-                    58,
-                    59,
-                    60,
-                    61,
-                    62,
-                    63,
-                    64,
-                    65,
-                    66,
-                    67],
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                40,
+                41,
+                42,
+                43,
+                44,
+                45,
+                46,
+                47,
+                48,
+                49,
+                50,
+                51,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58,
+                59,
+                60,
+                61,
+                62,
+                63,
+                64,
+                65,
+                66,
+                67
+            ],
             "ticktext": [
                 "BLK1 - BM01_C03",
                 "BLK1 - BM01_C02",
@@ -536,7 +669,6 @@
                 "DIVERTOR, NO CCOR",
                 "DIVERTOR, NO CCOR"
             ]
-            
         }
     },
     "26": {
@@ -552,7 +684,9 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "x_axis_format": {
             "tickmode": "array",
             "tickvals": [
@@ -576,7 +710,8 @@
                 "126",
                 "127",
                 "Input 20",
-                "Input 21"],
+                "Input 21"
+            ],
             "ticktext": [
                 "(PS1) - INBOARD",
                 "(PS2) - UPPER FJ Y+",
@@ -598,136 +733,153 @@
                 "SHIELD ABOVE UPPER PORT - ODD Y+",
                 "SHIELD ABOVE UPPER PORT - ODD Y+",
                 "UPPER PORT EXT AND DUCT",
-                "EQU PORT EXT AND DUCT"]
-            }
+                "EQU PORT EXT AND DUCT"
+            ]
+        }
+    },
+    "36": {
+        "tally_name": "Nuclear heating - Thermal Shield",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
         },
-        "36": {
-            "tally_name": "Nuclear heating - Thermal Shield",
-            "substitutions": {
-                "Value": "Nuclear heating [W]",
-                "Cells": "Region"
-            },
-            "plot_type": "grouped_bar",
-            "plot_args": {
-                "x": "Region",
-                "y": "Nuclear heating [W]",
-                "log_x": false,
-                "log_y": true
-            },
-            "y_axis_format": {"tickformat": ".2e"}
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
         },
-        "46": {
-            "tally_name": "Nuclear heating - Cryostat",
-            "substitutions": {
-                "Value": "Nuclear heating [W]",
-                "Cells": "Region"
-            },
-            "plot_type": "grouped_bar",
-            "plot_args": {
-                "x": "Region",
-                "y": "Nuclear heating [W]",
-                "log_x": false,
-                "log_y": true
-            },
-            "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "46": {
+        "tally_name": "Nuclear heating - Cryostat",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
         },
-        "56": {
-            "tally_name": "Nuclear heating - Port Plugs",
-            "substitutions": {
-                "Value": "Nuclear heating [W]",
-                "Cells": "Region"
-            },
-            "plot_type": "grouped_bar",
-            "plot_args": {
-                "x": "Region",
-                "y": "Nuclear heating [W]",
-                "log_x": false,
-                "log_y": true
-            },
-            "y_axis_format": {"tickformat": ".2e"},
-            "x_axis_format": {
-                "tickmode": "array",
-                "tickvals": [
-                    "Input 1",
-                    "Input 2",
-                    "Input 3",
-                    "85",
-                    "Input 5"],
-                "ticktext": [
-                    "UPPER PORT ENVIRONMENTS",
-                    "UPPER PORT PLUGS +PI(ISS + BIOSHIELD)",
-                    "EQU PORT PLUGS +PI(ISS + BIOSHIELD)",
-                    "LOWER PORT & PENETRATION, PORT PLUG : CENTRAL",
-                    "LOWER PORT & PENETRATION: LATERALS (e.g. IVVS)"]
-                }
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
         },
-        "66": {
-            "tally_name": "Nuclear heating - PF Coils",
-            "substitutions": {
-                "Value": "Nuclear heating [W]",
-                "Cells": "Region"
-            },
-            "plot_type": "grouped_bar",
-            "plot_args": {
-                "x": "Region",
-                "y": "Nuclear heating [W]",
-                "log_x": false,
-                "log_y": true
-            },
-            "y_axis_format": {"tickformat": ".2e"},
-            "x_axis_format": {
-                "tickmode": "array",
-                "tickvals": [
-                    "Input 1",
-                    "Input 2",
-                    "Input 3",
-                    "Input 4",
-                    "Input 5",
-                    "Input 6",
-                    "Input 7"],
-                "ticktext": [
-                    "PF1",
-                    "PF2",
-                    "PF3",
-                    "PF4",
-                    "PF5",
-                    "PF6",
-                    "PF3-4 SUPPORTS"]
-                }
-            },
-            "76": {
-                "tally_name": "Nuclear heating - TF Coils",
-                "substitutions": {
-                    "Value": "Nuclear heating [W]",
-                    "Cells": "Region"
-                },
-                "plot_type": "grouped_bar",
-                "plot_args": {
-                    "x": "Region",
-                    "y": "Nuclear heating [W]",
-                    "log_x": false,
-                    "log_y": true
-                },
-                "y_axis_format": {"tickformat": ".2e"},
-                "x_axis_format": {
-                    "tickmode": "array",
-                    "tickvals": [
-                        "Input 1",
-                        "Input 2",
-                        "Input 3",
-                        "Input 4",
-                        "Input 5",
-                        "Input 6",
-                        "Input 7"],
-                    "ticktext": [
-                        "INBOARD STR",
-                        "INBOARD UPPER",
-                        "OUTBOARD UPPER",
-                        "OUTBOARD EQ",
-                        "OUTBOARD LOWER",
-                        "INBOARD LOWER",
-                        "GRAVITY SUPPORT"]
-                }
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "56": {
+        "tally_name": "Nuclear heating - Port Plugs",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "Input 1",
+                "Input 2",
+                "Input 3",
+                "85",
+                "Input 5"
+            ],
+            "ticktext": [
+                "UPPER PORT ENVIRONMENTS",
+                "UPPER PORT PLUGS +PI(ISS + BIOSHIELD)",
+                "EQU PORT PLUGS +PI(ISS + BIOSHIELD)",
+                "LOWER PORT & PENETRATION, PORT PLUG : CENTRAL",
+                "LOWER PORT & PENETRATION: LATERALS (e.g. IVVS)"
+            ]
+        }
+    },
+    "66": {
+        "tally_name": "Nuclear heating - PF Coils",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "Input 1",
+                "Input 2",
+                "Input 3",
+                "Input 4",
+                "Input 5",
+                "Input 6",
+                "Input 7"
+            ],
+            "ticktext": [
+                "PF1",
+                "PF2",
+                "PF3",
+                "PF4",
+                "PF5",
+                "PF6",
+                "PF3-4 SUPPORTS"
+            ]
+        }
+    },
+    "76": {
+        "tally_name": "Nuclear heating - TF Coils",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Region"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Region",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "Input 1",
+                "Input 2",
+                "Input 3",
+                "Input 4",
+                "Input 5",
+                "Input 6",
+                "Input 7"
+            ],
+            "ticktext": [
+                "INBOARD STR",
+                "INBOARD UPPER",
+                "OUTBOARD UPPER",
+                "OUTBOARD EQ",
+                "OUTBOARD LOWER",
+                "INBOARD LOWER",
+                "GRAVITY SUPPORT"
+            ]
+        }
     },
     "86": {
         "tally_name": "Nuclear heating - Correction Coils",
@@ -742,7 +894,9 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
     "96": {
         "tally_name": "Nuclear heating - Central Solenoid",
@@ -757,6 +911,8 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     }
 }

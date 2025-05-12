@@ -1,0 +1,269 @@
+{
+    "Al 4": {
+        "tally_name": "Reaction Rates - Al27 (n,a) Na24",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                4.95,
+                10.05,
+                20.15,
+                30.30,
+                40.50,
+                50.70,
+                55.90
+            ]
+        },
+        "only_ratio": true
+    },
+    "Au 4": {
+        "tally_name": "Reaction Rates - Au197 (n,g) Au198",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                5.0,
+                10.0,
+                20.0,
+                30.0,
+                40.0,
+                50.0,
+                60.0
+            ]
+        },
+        "only_ratio": true
+    },
+    "In 4": {
+        "tally_name": "Reaction Rates - In115 (n,n') In115m",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                4.95,
+                10.05,
+                20.15,
+                30.30,
+                40.50,
+                50.60,
+                60.90
+            ]
+        },
+        "only_ratio": true
+    },
+    "Mn 4": {
+        "tally_name": "Reaction Rates - Mn55 (n,g) Mn56",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                5.0,
+                10.0,
+                20.0,
+                30.0,
+                40.0,
+                50.0,
+                60.0
+            ]
+        },
+        "only_ratio": true
+    },
+    "Ni-np 4": {
+        "tally_name": "Reaction Rates - Ni58 (n,p) Co58",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                4.95,
+                10.05,
+                20.15,
+                30.30,
+                40.50,
+                50.70,
+                60.90
+            ]
+        },
+        "only_ratio": true
+    },
+    "Ni-n2n 4": {
+        "tally_name": "Reaction Rates - Ni58 (n,2n) Ni57",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503"
+            ],
+            "ticktext": [
+                4.95,
+                10.05,
+                20.15,
+                30.30
+            ]
+        },
+        "only_ratio": true
+    },
+    "Fe 4": {
+        "tally_name": "Reaction Rates - Fe56 (n,p) Mn56",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "500",
+                "501",
+                "502",
+                "503",
+                "504",
+                "505",
+                "506"
+            ],
+            "ticktext": [
+                4.95,
+                10.05,
+                20.15,
+                30.30,
+                40.50,
+                50.70,
+                60.90
+            ]
+        },
+        "only_ratio": true
+    }
+}

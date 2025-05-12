@@ -1,9 +1,11 @@
 from importlib.resources import files
+
 import pytest
 
+import tests.resources.status as res
+from jadewa.errors import JsonSettingsError
 from jadewa.processor import Processor
 from jadewa.status import Status
-import tests.resources.status as res
 
 
 class MockProcessorParams(Processor):
@@ -36,7 +38,7 @@ class TestProcessor:
         assert processor.params["ITER_1D"]["204"]["plot_args"]["x"] == "Cell index"
 
     def test_init_SphereSDDR(self, status: Status):
-        """Test the __init__ method"""
+        """Test the __init__ method for the SphereSDDR benchmark"""
         processor = Processor(status)
         assert isinstance(processor, Processor)
         assert (
@@ -45,15 +47,32 @@ class TestProcessor:
         )
         assert len(processor.params["SphereSDDR"]) == 5
 
+    def test_init_FNSTOF(self, status: Status):
+        """Test the __init__ method for the FNS-TOF benchmark"""
+        processor = Processor(status)
+        assert isinstance(processor, Processor)
+        assert processor.params["FNS-TOF"]["general"]["generic_tallies"] is True
+        assert (
+            processor.params["FNS-TOF"]["Be-15 25"]["tally_name"]
+            == "Be - 15 cm - 24.9°"
+        )
+        assert len(processor.params["FNS-TOF"]) == 7
+
     def test_get_graph_data(self, processor: Processor):
         """Test the get_graph_data method"""
         data = processor._get_graph_data(
-            "ITER_1D",
-            "21c",
-            "204",
+            "ITER_1D", "21c", "204", subset=("Cells", ["2.0", "3.0"])
         )
         assert set(data["label"]) == {"ENDFB VIII.0-mcnp", "FENDL 3.2b-mcnp"}
         assert len(data.columns) == 4
+
+        data = processor._get_graph_data(
+            "Oktavian",
+            "exp",
+            "Al 21",
+            subset=("Energy", "0.10109"),
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 1
 
         try:
             # processor._get_graph_data("ITER2D", "21c", "204")
@@ -74,6 +93,22 @@ class TestProcessor:
         assert len(data.columns) == 4
         assert data.groupby("label").mean().iloc[-1][-1] == 1
 
+    def test_get_graph_data_TBM(self, processor: Processor):
+        """Test the get_graph_data method for the TBM benchmarks"""
+        data = processor._get_graph_data(
+            "HCPB_TBM_1D",
+            "32c",
+            "214",
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 78
+
+        data = processor._get_graph_data(
+            "WCLL_TBM_1D",
+            "32c",
+            "214",
+        )
+        assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 78
+
     def test_get_graph_data_ratio_lethargy(self, processor: Processor):
         """Test the get_graph_data method with lethargy"""
         data = processor._get_graph_data(
@@ -83,6 +118,40 @@ class TestProcessor:
             compute_lethargy=True,
         )
         assert len(data[data["label"] == "FENDL 3.2b-mcnp"]) == 134
+
+    def test_get_graph_data_unit_per_bin(self, processor: Processor):
+        """Test the get_graph_data method with unit per bin normalization"""
+        data = processor._get_graph_data(
+            "TUD-Fe",
+            "exp",
+            "A0 15",
+            compute_per_unit_bin="Time",
+        )
+        assert len(data[data["label"] == "ENDFB VIII.0-mcnp"]) == 136
+
+    def test_get_graph_data_json_error_lethargy(self, processor: Processor):
+        """Test the get_graph_data method when a JsonSettingsError is raised due to an error in compute_lethargy"""
+        with pytest.raises(JsonSettingsError) as info:
+            processor._get_graph_data(
+                # "A0 15.csv" does not have an "Energy" column
+                "TUD-Fe",
+                "exp",
+                "A0 15",
+                compute_lethargy=True,
+            )
+        assert info.type is JsonSettingsError
+
+    def test_get_graph_data_json_error_per_unit(self, processor: Processor):
+        """Test the get_graph_data method when a JsonSettingsError is raised due to an error in compute_per_unit_bin"""
+        with pytest.raises(JsonSettingsError) as info:
+            processor._get_graph_data(
+                # The data files of the Oktavian benchmark do not have a "Time" column
+                "Oktavian",
+                "exp",
+                "Al 21",
+                compute_per_unit_bin="Time",
+            )
+        assert info.type is JsonSettingsError
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""

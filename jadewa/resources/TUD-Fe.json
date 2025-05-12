@@ -1,0 +1,171 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Geometry",
+            "Tally"
+        ],
+        "generic_tallies": true
+    },
+    "A0 5": {
+        "tally_name": "A0 - Neutron fluence (energy binned)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "A0 15": {
+        "tally_name": "A0 - Neutron fluence (time binned)",
+        "substitutions": {
+            "Time": "Time [shakes]",
+            "Value": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Time [shakes]",
+            "y": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Time"
+    },
+    "A0 25": {
+        "tally_name": "A0 - Photon fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "A1 5": {
+        "tally_name": "A1 - Neutron fluence (energy binned)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "A1 15": {
+        "tally_name": "A1 - Neutron fluence (time binned)",
+        "substitutions": {
+            "Time": "Time [shakes]",
+            "Value": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Time [shakes]",
+            "y": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Time"
+    },
+    "A1 25": {
+        "tally_name": "A1 - Photon fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "A2 5": {
+        "tally_name": "A2 - Neutron fluence (energy binned)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    },
+    "A2 15": {
+        "tally_name": "A2 - Neutron fluence (time binned)",
+        "substitutions": {
+            "Time": "Time [shakes]",
+            "Value": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Time [shakes]",
+            "y": "Neutron Spectral time-of-arrival fluence [1/shakes/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Time"
+    },
+    "A2 25": {
+        "tally_name": "A2 - Photon fluence",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon Spectral fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon Spectral fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "compute_per_unit_bin": "Energy"
+    }
+}

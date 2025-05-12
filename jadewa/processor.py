@@ -1,23 +1,27 @@
-""" Module to process the data and get the plot
-"""
+"""Module to process the data and get the plot"""
 
-from jadewa.status import Status
-from jadewa.plotter import get_figure
+import json
+import logging
+import os
+import re
+from copy import deepcopy
+from importlib.resources import as_file, files
 from urllib.error import HTTPError
 
-from plotly.graph_objects import Figure
-import pandas as pd
 import numpy as np
-import os
-from importlib.resources import files, as_file
+import pandas as pd
+from plotly.graph_objects import Figure
+
 import jadewa.resources as res
-import json
-import re
-import logging
-from jadewa.utils import LIB_NAMES, sorting_func_sphere_sddr
 from jadewa.errors import JsonSettingsError
-from jadewa.utils import string_ints_converter, get_pretty_mat_iso_names
-from copy import deepcopy
+from jadewa.plotter import get_figure
+from jadewa.status import Status
+from jadewa.utils import (
+    LIB_NAMES,
+    get_pretty_mat_iso_names,
+    sorting_func_sphere_sddr,
+    string_ints_converter,
+)
 from io import StringIO
 import requests
 from jadewa.utils import GITHUB_HEADERS
@@ -63,7 +67,12 @@ class Processor:
 
                 generic_tallies = list(self.params[benchmark].keys())
                 for csv in csv_names:
-                    pieces = csv.split("_")
+                    if benchmark == "FNS-TOF":
+                        pieces = csv.split("-")
+                        pieces.append(pieces[1].split(" ")[1])
+                        pieces[1] = pieces[1].split(" ")[0]
+                    else:
+                        pieces = csv.split("_")
                     tally_key = csv[:-4]
                     # if SDDR the first piece is a material/isotope and needs
                     # to be translated to something more useful
@@ -144,10 +153,10 @@ class Processor:
         refcode: str = "mcnp",
         ratio: bool = False,
         compute_lethargy: bool = False,
-        compute_per_unit_energy: bool = False,
+        compute_per_unit_bin: str = None,
         x_vals_to_string: bool = None,
         sum_by: str = None,
-        subset: tuple[str, str] = None,
+        subset: tuple[str, str | list] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
 
@@ -169,8 +178,9 @@ class Processor:
             if True, the data will be converted to lethargy, by default False.
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
-        compute_per_unit_energy: bool, optional
-            if True, the data will be converted to per unit energy, by default False.
+        compute_per_unit_bin: str, optional
+            column name of the x-axis data used to convert the y-axis data
+            to per unit bin (e.g. Energy), by default None
             This is true for every library except "exp" which is
             expected to be in the right format if needed.
         x_vals_to_string: str, optional
@@ -180,7 +190,7 @@ class Processor:
         sum_by: str, optional
             if provided, the df is groubed by the specified column, sum and
             index is then reserted, by default None.
-        subset: str, optional
+        subset: tuple[str, str | list], optional
             if provided, the df is filtered by the specified column-value couple, by default None.
 
         Returns
@@ -218,11 +228,18 @@ class Processor:
                     .reset_index()
                 )
 
+                # The first row of data is removed for the TMB benchmarks
+                if benchmark in ("HCPB_TBM_1D", "WCLL_TBM_1D"):
+                    df = df.iloc[1:]
+
                 # Get only a subset of the data if requested
                 if subset:
                     col = subset[0]
                     index = subset[1]
-                    df = df[df[col].astype(str) == index]
+                    # transform the values contained in column col to strings
+                    df[col] = list(map(str, df[col]))
+                    # keep the subset of the dataframe for which the col column matches the values in index
+                    df = df[df[col].isin(np.array(index).flatten())]
 
                 # if sum_by is provided, group by the column and sum
                 if sum_by:
@@ -239,16 +256,27 @@ class Processor:
                     ref_df = df
 
                 # Compute lethargy or if needed
-                if lib != "exp" and (compute_lethargy or compute_per_unit_energy):
-                    # Get the energy array
-                    try:
-                        energies = df["Energy"].astype(float).values
-                    except KeyError as exc:
-                        raise JsonSettingsError(
-                            f"Lethargy cannot be computed for {benchmark} {tally}"
-                        ) from exc
-                    ergs = [1e-10]  # Additional "zero" energy
-                    ergs.extend(energies.tolist())
+                if lib != "exp" and (
+                    compute_lethargy or compute_per_unit_bin is not None
+                ):
+                    # Get the bins array, separating the cases by normalization type
+                    if compute_lethargy:
+                        try:
+                            # For lethargy, only energy is valid
+                            bins = df["Energy"].astype(float).values
+                        except KeyError as exc:
+                            raise JsonSettingsError(
+                                f"Lethargy cannot be computed for {benchmark} {tally}"
+                            ) from exc
+                    if compute_per_unit_bin is not None:
+                        try:
+                            bins = df[compute_per_unit_bin].astype(float).values
+                        except KeyError as exc:
+                            raise JsonSettingsError(
+                                f"Per bin unit normalization cannot be computed for {benchmark} {tally}"
+                            ) from exc
+                    ergs = [1e-10]  # Additional "zero" bin
+                    ergs.extend(bins.tolist())
                     ergs = np.array(ergs)
 
                     # compute lethargy if requested
@@ -257,8 +285,8 @@ class Processor:
                             np.log(ergs[1:] / ergs[:-1])
                         )
 
-                    # or compute per unit energy if requested
-                    elif compute_per_unit_energy:
+                    # or compute per unit bin if requested
+                    elif compute_per_unit_bin:
                         df["Value"] = df["Value"].values / (ergs[1:] - ergs[:-1])
 
                 # if requested, convert x values to string
@@ -279,7 +307,7 @@ class Processor:
             newdfs = []
             for df in dfs:
                 newdf = df.copy()
-                newdf["Value"] = newdf["Value"] / ref_df["Value"]
+                newdf["Value"] = newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
                 newdfs.append(newdf)
         else:
             newdfs = dfs
@@ -333,7 +361,7 @@ class Processor:
         try:
             return self.params[benchmark][tally][key]
         except KeyError:
-            return False
+            return None
 
     def get_plot(
         self,
@@ -376,9 +404,10 @@ class Processor:
         compute_lethargy = self._get_optional_config(
             "compute_lethargy", benchmark, tally
         )
-        compute_energy = self._get_optional_config(
-            "compute_per_unit_energy", benchmark, tally
+        compute_per_unit_bin = self._get_optional_config(
+            "compute_per_unit_bin", benchmark, tally
         )
+
         x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
         y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
         only_ratio = self._get_optional_config("only_ratio", benchmark, tally)
@@ -401,7 +430,7 @@ class Processor:
             ratio=ratio,
             refcode=refcode,
             compute_lethargy=compute_lethargy,
-            compute_per_unit_energy=compute_energy,
+            compute_per_unit_bin=compute_per_unit_bin,
             x_vals_to_string=x_vals_to_string,
             sum_by=self._get_optional_config("sum_by", benchmark, tally),
             subset=self._get_optional_config("subset", benchmark, tally),

@@ -1,0 +1,273 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Activaction Foil",
+            "Tally"
+        ]
+    },
+    "Al 4": {
+        "tally_name": "Al27 (n,a) Na24 - 4",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113"
+            ],
+            "ticktext": [
+                0,
+                5.1,
+                10.22,
+                15.34,
+                20.44,
+                25.64,
+                30.79,
+                35.99,
+                41.19,
+                46.44,
+                51.62,
+                56.69,
+                61.81,
+                66.99
+            ]
+        },
+        "only_ratio": true
+    },
+    "Au 4": {
+        "tally_name": " Au197 (n,g) Au198 - 4",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113"
+            ],
+            "ticktext": [
+                0,
+                5.1,
+                10.22,
+                15.34,
+                20.44,
+                25.64,
+                30.79,
+                35.99,
+                41.19,
+                46.44,
+                51.62,
+                56.69,
+                61.81,
+                66.99
+            ]
+        },
+        "only_ratio": true
+    },
+    "In 4": {
+        "tally_name": "In115 (n,n’) In115m - 4",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113"
+            ],
+            "ticktext": [
+                0,
+                5.1,
+                10.22,
+                15.34,
+                20.44,
+                25.64,
+                30.79,
+                35.99,
+                41.19,
+                46.44,
+                51.62,
+                56.69,
+                61.81,
+                66.99
+            ]
+        },
+        "only_ratio": true
+    },
+    "Rh 4": {
+        "tally_name": "Rh103 (n,n’) Rh103 - 4",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113"
+            ],
+            "ticktext": [
+                0,
+                5.1,
+                10.22,
+                15.34,
+                20.44,
+                25.64,
+                30.79,
+                35.99,
+                41.19,
+                46.44,
+                51.62,
+                56.69,
+                61.81,
+                66.99
+            ]
+        },
+        "only_ratio": true
+    },
+    "S 4": {
+        "tally_name": "S32 (n,p) P32 - 4",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickmode": "array",
+            "tickvals": [
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113"
+            ],
+            "ticktext": [
+                0,
+                5.1,
+                10.22,
+                15.34,
+                20.44,
+                25.64,
+                30.79,
+                35.99,
+                41.19,
+                46.44,
+                51.62,
+                56.69,
+                61.81,
+                66.99
+            ]
+        },
+        "only_ratio": true
+    }
+}

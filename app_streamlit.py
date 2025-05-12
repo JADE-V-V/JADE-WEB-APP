@@ -1,20 +1,23 @@
-"""Main streamlit app entry point.
-"""
+"""Main streamlit app entry point."""
 
 from __future__ import annotations
-import streamlit as st
+
 import pandas as pd
+import streamlit as st
+
+from jadewa.plotter import select_visible_libs
 from jadewa.processor import Processor
+from jadewa.status import Status
 from jadewa.utils import (
-    get_mat_iso_code,
-    get_pretty_mat_iso_names,
-    get_lib_suffix,
-    get_pretty_lib_names,
-    get_info_dfs,
+    LIB_NAMES,
     find_dict_depth,
+    get_info_dfs,
+    get_lib_suffix,
+    get_mat_iso_code,
+    get_pretty_lib_names,
+    get_pretty_mat_iso_names,
     safe_add_ctg_to_dict,
 )
-from jadewa.status import Status
 
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
@@ -44,6 +47,9 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
     str
         selected benchmark
     """
+    # Sort the available benchmarks alphabetically
+    available_benchmarks = sorted(available_benchmarks)
+
     flag_split, ctg_dict = _split_options(available_benchmarks)
 
     if flag_split:
@@ -181,7 +187,25 @@ def _split_options(options: list[str]) -> tuple[bool, dict]:
             ctgs = option.split("-")
             safe_add_ctg_to_dict(ctg_dict, ctgs[:-1], ctgs[-1])
 
+    max_depth = find_dict_depth(ctg_dict)
+    # if the depth of the options is less than the maximum,
+    # add N.A. to an additional layer of options
+    for key in ctg_dict:
+        depth_key = find_dict_depth(ctg_dict[key])
+        if depth_key < max_depth - 1:
+            ctg_dict[key] = _recursive_assign_na_option(ctg_dict[key])
+
     return flag_split, ctg_dict
+
+
+def _recursive_assign_na_option(dict_key):
+    """Recursive function to add "N.A." as the most inner layer of the dictionary of options."""
+    if isinstance(dict_key, list):
+        dict_key = {dict_key[i]: ["N.A."] for i in range(len(dict_key))}
+    else:
+        for key in dict_key.keys():
+            dict_key[key] = _recursive_assign_na_option(dict_key[key])
+    return dict_key
 
 
 def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
@@ -190,13 +214,14 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
         selections = []
     # perform the selection
     with columns[0]:
-
         if isinstance(ctg_dict, list):
             options_available = ctg_dict
         else:
             options_available = list(ctg_dict.keys())
+        # if N.A. is reached, the selection was successful
         if "N.A." in options_available:
-            index = 0
+            selections.append("N.A.")
+            return True, selections
         else:
             index = None
 
@@ -206,16 +231,14 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
             label = 0
 
         option_selected = st.selectbox(
-            label,
-            options_available,
-            index=index,
+            label="", options=options_available, index=index, key=label
         )
 
         # add selection to the list
         selections.append(option_selected)
 
-        # if the last column or N.A. reached, the selection was successful
-        if len(columns) == 1 or option_selected == "N.A.":
+        # if the last column is reached, the selection was successful
+        if len(columns) == 1:
             if option_selected is None:
                 return False, selections
             return True, selections
@@ -244,7 +267,7 @@ def _get_split_selection(
             label = 0
         elif isinstance(labels, str):
             label = labels
-            labels = [label] + [""] * (max_depth - 1)
+            labels = [label] + [f"{label}_{i+1}" for i in range(max_depth - 1)]
         else:
             raise ValueError("There is a problem with the selection labels")
 
@@ -335,7 +358,7 @@ def main():
     with tab_plot:
         col01, col02 = st.columns([0.9, 0.1])
         with col01:
-            st.title("JADE results interactive plotter [BETA]")
+            st.title("JADE results interactive plotter")
         with col02:
             st.image(r"jadewa/assets/Jade.png", width=75)
 
@@ -410,10 +433,44 @@ def main():
                 fig = None
 
             if fig:
-                st.plotly_chart(fig, use_container_width=True)
+                plotly_chart = st.plotly_chart(fig, use_container_width=True)
+
+            st.write(
+                "Select libraries to display. If no libraries are selected, the most recent version of each library will be plotted."
+            )
+            libs = list(LIB_NAMES.values())
+
+            # Create checkboxes for all the libraries in LIB_NAMES
+            checks = []
+            # Fix a maximum of 6 checkboxes per row
+            for i in range(0, int(len(libs) / 6)):
+                checks.append(st.columns(6))
+            if len(libs) % 6 != 0:
+                checks.append(st.columns(int(len(libs) % 6)))
+
+            # Keep track of the selected libraries
+            clicks = list(range(0, len(libs)))
+            for i in range(0, len(checks)):
+                for j in range(0, len(checks[i])):
+                    with checks[i][j]:
+                        clicks[i * 6 + j] = st.checkbox(
+                            libs[i * 6 + j], key=libs[i * 6 + j]
+                        )
+
+            # The checkboxes will be used as a reference to plot if at least 1 library is selected
+            checkbox_selected = False
+            if any(clicks):
+                checkbox_selected = True
+
+            if fig and checkbox_selected:
+                # List the selected libraries
+                selected_libs = [libs[i] for i, _ in enumerate(clicks) if clicks[i]]
+                # Apply the selection to the plot legend
+                select_visible_libs(fig, selected_libs)
+                # Update the plot
+                plotly_chart.plotly_chart(fig)
 
     with tab_info:
-
         # If the metadata is not available, show the button to compute it
         if not st.session_state.metadata_available:
             # If information have not been computed yet, do it

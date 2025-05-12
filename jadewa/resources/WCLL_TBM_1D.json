@@ -1,0 +1,92 @@
+{
+    "214": {
+        "tally_name": "Neutron Heating",
+        "substitutions": {
+            "Cor A": "Radial distance [cm]",
+            "Value": "Ratio of Neutron Heating"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Radial distance [cm]",
+            "y": "Ratio of Neutron Heating",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "224": {
+        "tally_name": "Photon Heating",
+        "substitutions": {
+            "Cor A": "Radial distance [cm]",
+            "Value": "Ratio of Photon Heating"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Radial distance [cm]",
+            "y": "Ratio of Photon Heating",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "234": {
+        "tally_name": "Tritium Production",
+        "substitutions": {
+            "Cor A": "Radial distance [cm]",
+            "Value": "Ratio of Tritium Production"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Radial distance [cm]",
+            "y": "Ratio of Tritium Production",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "244": {
+        "tally_name": "Neutron Flux",
+        "substitutions": {
+            "Cor A": "Radial distance [cm]",
+            "Value": "Ratio of Neutron Flux"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Radial distance [cm]",
+            "y": "Ratio of Neutron Flux",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "254": {
+        "tally_name": "Photon Flux",
+        "substitutions": {
+            "Cor A": "Radial distance [cm]",
+            "Value": "Ratio of Photon Flux"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Radial distance [cm]",
+            "y": "Ratio of Photon Flux",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    }
+}
