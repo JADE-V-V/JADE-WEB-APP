@@ -22,7 +22,7 @@ from jadewa.utils import (
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
 REPO = "JADE-RAW-RESULTS"
-BRANCH = "main"
+BRANCH = "jade_v4_raw_results"
 
 
 # Initialize status and processor
@@ -435,40 +435,46 @@ def main():
             if fig:
                 plotly_chart = st.plotly_chart(fig, use_container_width=True)
 
-            st.write(
-                "Select libraries to display. If no libraries are selected, the most recent version of each library will be plotted."
+            expander = st.expander(
+                "Select specific libraries across benchmarks.",
+                expanded=False,
             )
-            libs = list(LIB_NAMES.values())
 
-            # Create checkboxes for all the libraries in LIB_NAMES
-            checks = []
-            # Fix a maximum of 6 checkboxes per row
-            for i in range(0, int(len(libs) / 6)):
-                checks.append(st.columns(6))
-            if len(libs) % 6 != 0:
-                checks.append(st.columns(int(len(libs) % 6)))
+            with expander:
+                st.write(
+                    "Select the checkboxes for the libraries to display in the plot. If none are selected, the latest version of each library will be plotted. If a selected library is unavailable for the selected benchmark, its data won't be plotted."
+                )
+                libs = list(LIB_NAMES.values())
 
-            # Keep track of the selected libraries
-            clicks = list(range(0, len(libs)))
-            for i in range(0, len(checks)):
-                for j in range(0, len(checks[i])):
-                    with checks[i][j]:
-                        clicks[i * 6 + j] = st.checkbox(
-                            libs[i * 6 + j], key=libs[i * 6 + j]
-                        )
+                # Create checkboxes for all the libraries in LIB_NAMES
+                checks = []
+                # Fix a maximum of 6 checkboxes per row
+                for i in range(0, int(len(libs) / 6)):
+                    checks.append(st.columns(6))
+                if len(libs) % 6 != 0:
+                    checks.append(st.columns(int(len(libs) % 6)))
 
-            # The checkboxes will be used as a reference to plot if at least 1 library is selected
-            checkbox_selected = False
-            if any(clicks):
-                checkbox_selected = True
+                # Keep track of the selected libraries
+                clicks = list(range(0, len(libs)))
+                for i in range(0, len(checks)):
+                    for j in range(0, len(checks[i])):
+                        with checks[i][j]:
+                            clicks[i * 6 + j] = st.checkbox(
+                                libs[i * 6 + j], key=libs[i * 6 + j]
+                            )
 
-            if fig and checkbox_selected:
-                # List the selected libraries
-                selected_libs = [libs[i] for i, _ in enumerate(clicks) if clicks[i]]
-                # Apply the selection to the plot legend
-                select_visible_libs(fig, selected_libs)
-                # Update the plot
-                plotly_chart.plotly_chart(fig)
+                # The checkboxes will be used as a reference to plot if at least 1 library is selected
+                checkbox_selected = False
+                if any(clicks):
+                    checkbox_selected = True
+
+                if fig and checkbox_selected:
+                    # List the selected libraries
+                    selected_libs = [libs[i] for i, _ in enumerate(clicks) if clicks[i]]
+                    # Apply the selection to the plot legend
+                    select_visible_libs(fig, selected_libs)
+                    # Update the plot
+                    plotly_chart.plotly_chart(fig)
 
     with tab_info:
         # If the metadata is not available, show the button to compute it
