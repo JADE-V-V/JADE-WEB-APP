@@ -1,14 +1,13 @@
-from jadewa.utils import (
-    get_pretty_mat_iso_names,
-    get_mat_iso_code,
-    get_lib_suffix,
-    get_pretty_lib_names,
-    string_ints_converter,
-    find_dict_depth,
-    safe_add_ctg_to_dict,
-)
 import pandas as pd
 import pytest
+
+from jadewa.utils import (
+    find_dict_depth,
+    get_mat_iso_code,
+    get_pretty_mat_iso_names,
+    safe_add_ctg_to_dict,
+    string_ints_converter,
+)
 
 
 class TestUtils:
@@ -22,27 +21,12 @@ class TestUtils:
         for pretty_name, code in zip(pretty_names, names):
             assert get_mat_iso_code(pretty_name) == code
 
-    def test_get_pretty_lib_names(self):
-        """Test the get_pretty_lib_names function"""
-        names = ["21c", "30c", "31c"]
-        pretty_names = get_pretty_lib_names(names)
-        assert pretty_names == ["FENDL 2.1c", "FENDL 3.0", "FENDL 3.1d"]
-        for pretty_name, code in zip(pretty_names, names):
-            assert get_lib_suffix(pretty_name) == code
-
     def test_get_mat_iso_code(self):
         """Test the get_mat_iso_code function"""
         names = ["Natural Silicon", "H-1", "Ne-1"]
         codes = ["M900", "1001", "10001"]
         for name, code in zip(names, codes):
             assert get_mat_iso_code(name) == code
-
-    def test_get_lib_suffix(self):
-        """Test the get_lib_suffix function"""
-        names = ["FENDL 2.1c", "FENDL 3.0", "FENDL 3.1d"]
-        codes = ["21c", "30c", "31c"]
-        for name, code in zip(names, codes):
-            assert get_lib_suffix(name) == code
 
     def test_string_ints_converter(self):
         """Test the string_ints_converter function"""

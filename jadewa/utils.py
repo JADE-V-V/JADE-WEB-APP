@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
+import json
+import os
 import re
 
 import pandas as pd
-from f4enix.input.libmanager import LibManager
-import pandas as pd
-import json
-import os
 import streamlit as st
+from f4enix.input.libmanager import LibManager
 
 LIB_NAMES = {
     "21c": "FENDL 2.1c",
@@ -64,19 +63,7 @@ def sorting_func(option: str) -> int:
     # extract the isotope/material number from the pretty name
     try:
         num = int(MAT_ISO_PATTERN.search(option).group())
-    except ValueError:
-        # it is a material, return 0 so it is placed first
-        num = 0
-    return num
-
-
-def sorting_func_sphere_sddr(option: str) -> int:
-    """sorting function for the pretty names of materials and isotopes"""
-    # extract the isotope/material number from the pretty name
-    option = option.split("_")[0]
-    try:
-        num = int(MAT_ISO_PATTERN.search(option).group())
-    except ValueError:
+    except (AttributeError, ValueError):
         # it is a material, return 0 so it is placed first
         num = 0
     return num
@@ -112,25 +99,6 @@ def get_pretty_mat_iso_names(raw_names: list[str]) -> list[str]:
     return pretty_names
 
 
-def get_pretty_lib_names(raw_names: list[str]) -> list[str]:
-    """Get the pretty names of a list of libraries suffixes
-
-    Parameters
-    ----------
-    raw_names : list[str]
-        libary suffixes (e.g. 21c, 30c, 31c)
-
-    Returns
-    -------
-    list[str]
-        pretty names of the libraries (e.g. FENDL 2.1c, FENDL 3.0, FENDL 3.1d)
-    """
-    libs = []
-    for lib in raw_names:
-        libs.append(LIB_NAMES[lib])
-    return libs
-
-
 def get_mat_iso_code(name: str) -> str:
     """Get the code of a material/isotope from its pretty name
 
@@ -150,24 +118,8 @@ def get_mat_iso_code(name: str) -> str:
         return LIB_MANAGER.get_zaidnum(name)
 
 
-def get_lib_suffix(name: str) -> str:
-    """Get the suffix of a library from its pretty name
-
-    Parameters
-    ----------
-    name : str
-        pretty name of the library (e.g. FENDL 2.1c, FENDL 3.0, FENDL 3.1d)
-
-    Returns
-    -------
-    str
-        suffix of the library (e.g. 21c, 30c, 31c)
-    """
-    return LIB_SUFFIXES[name]
-
-
 def string_ints_converter(df: pd.DataFrame, column: str) -> pd.DataFrame:
-    """Take the selected column of a Dataframe, connvert all elements to int
+    """Take the selected column of a Dataframe, convert all elements to int
     if possible and then reconvert to string. This allows '1.0' and '1' to be
     the same index. If no element was a string in the first place, do not change
     anything.
