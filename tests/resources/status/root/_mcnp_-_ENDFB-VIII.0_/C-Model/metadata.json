@@ -1,0 +1,9 @@
+{
+    "benchmark_version": "1.0",
+    "jade_run_version": "3.0.1",
+    "benchmark_name": "C-Model",
+    "library": "ENDFB-VIII.0",
+    "code": "mcnp",
+    "jade_version": "4.3.0",
+    "code_version": "d1suned411"
+}

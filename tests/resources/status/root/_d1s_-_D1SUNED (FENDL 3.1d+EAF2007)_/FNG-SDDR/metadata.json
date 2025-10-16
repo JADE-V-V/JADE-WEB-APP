@@ -1,0 +1,10 @@
+{
+    "benchmark_version": "1.0",
+    "jade_run_version": "3.0.1",
+    "benchmark_name": "FNG-SDDR",
+    "library": "D1SUNED (FENDL 3.1d+EAF2007)",
+    "code": "d1s",
+    "jade_version": "4.3.0",
+    "code_version": "d1suned3",
+    "transport_lib": "FENDL 3.1d"
+}
