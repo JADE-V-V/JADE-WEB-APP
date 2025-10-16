@@ -103,7 +103,7 @@ class Status:
         # create the nested dict for the status
         status = {}
         metadata_paths = []
-        start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
+        start_url = f"https://github.com/{owner}/{repo}/raw/{branch}/"
         for path in allfiles:
             pieces = path.split("/")
             # handle libraries with hyphens and spaces in the name differently
@@ -139,7 +139,6 @@ class Status:
                 # r = requests.get(json_path, timeout=5)
                 # metadata_rows.append(r.json())
                 metadata_paths.append(json_path)
-
         # df = pd.DataFrame(metadata_rows)
 
         return cls(status, metadata_paths)
@@ -174,9 +173,9 @@ class Status:
             path = os.path.normpath(path)
             pieces = path.split(os.sep)
             # handle libraries with hyphens and spaces in the name differently
-            if len(pieces[-3].split("-")) > 2:
+            if len(pieces[-2].split("-")) > 2:
                 library = (
-                    pieces[-3].split("-")[-2] + "-" + pieces[-3].split("-")[-1]
+                    pieces[-2].split("-")[-2] + "-" + pieces[-2].split("-")[-1]
                 ).replace("_", "")
             else:
                 library = (
@@ -186,8 +185,8 @@ class Status:
                     .replace("%20", " ")
                     .replace("%2B", "+")
                 )
-            benchmark = pieces[-2]
-            code = pieces[-3].split("-")[0].replace("_", "")
+            benchmark = pieces[-1]
+            code = pieces[-2].split("-")[0].replace("_", "")
             # retain only .csv files
             newfiles = []
             for file in files:

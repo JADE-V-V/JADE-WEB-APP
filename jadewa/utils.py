@@ -10,21 +10,20 @@ import pandas as pd
 import streamlit as st
 from f4enix.input.libmanager import LibManager
 
-LIB_NAMES = {
-    "21c": "FENDL 2.1c",
-    "30c": "FENDL 3.0",
-    "31c": "FENDL 3.1d",
-    "32c": "FENDL 3.2b",
-    "32d": "FENDL 3.2c",
-    "70c": "ENDFB VII.0",
-    "00c": "ENDFB VIII.0",
-    "34y": "IRDFF II",
-    "03c": "JEFF 3.3",
-    "99c": "D1SUNED (FENDL 3.1d+EAF2007)",
-    "93c": "D1SUNED (FENDL 3.2b+TENDL2017)",
-    "exp": "experiment",
-}
-LIB_SUFFIXES = {v: k for k, v in LIB_NAMES.items()}
+LIB_NAMES = [
+    "FENDL 2.1c",
+    "FENDL 3.0",
+    "FENDL 3.1d",
+    "FENDL 3.2b",
+    "FENDL 3.2c",
+    "ENDFB VII.0",
+    "ENDFB VIII.0",
+    "IRDFF II",
+    "JEFF 3.3",
+    "D1SUNED (FENDL 3.1d+EAF2007)",
+    "D1SUNED (FENDL 3.2b+TENDL2017)",
+    "exp",
+]
 
 MATERIAL_NUMBERS = {
     "SS316L(N)-IG": "M101",
