@@ -5,11 +5,13 @@ import logging
 import os
 import re
 from copy import deepcopy
-from importlib.resources import as_file, files
+from importlib.resources import as_file, files, path
+from io import StringIO
 from urllib.error import HTTPError
 
 import numpy as np
 import pandas as pd
+import requests
 from plotly.graph_objects import Figure
 
 import jadewa.resources as res
@@ -17,15 +19,11 @@ from jadewa.errors import JsonSettingsError
 from jadewa.plotter import get_figure
 from jadewa.status import Status
 from jadewa.utils import (
-    LIB_NAMES,
+    GITHUB_HEADERS,
     get_pretty_mat_iso_names,
-    sorting_func_sphere_sddr,
+    sorting_func,
     string_ints_converter,
 )
-from io import StringIO
-import requests
-from jadewa.utils import GITHUB_HEADERS
-
 
 UNIT_PATTERN = re.compile(r"\[.*\]")
 
@@ -63,48 +61,58 @@ class Processor:
                         csv_names.extend(available_csv[1])
                 csv_names = list(set(csv_names))
                 if benchmark == "SphereSDDR":
-                    csv_names.sort(key=sorting_func_sphere_sddr)
+                    csv_names.sort(key=sorting_func)
 
-                generic_tallies = list(self.params[benchmark].keys())
+                generic_tally_names = list(self.params[benchmark].keys())
                 for csv in csv_names:
-                    if benchmark == "FNS-TOF":
-                        pieces = csv.split("-")
-                        pieces.append(pieces[1].split(" ")[1])
-                        pieces[1] = pieces[1].split(" ")[0]
-                    else:
-                        pieces = csv.split("_")
-                    tally_key = csv[:-4]
-                    # if SDDR the first piece is a material/isotope and needs
+                    # split only on the first underscore to separate the benchmark
+                    # name from the rest
+                    pieces = csv.split("_", 1)
+
+                    # now separate the case name from the tally name
+                    pieces[-1] = pieces[-1].split(" ", 1)
+                    # generic tallies should only be used for benchmarks with cases, so
+                    # pieces[0] = benchmark, pieces[1][0] = case name,
+                    # pieces[1][1] = tally name
+                    pieces = [pieces[0], pieces[-1][0], pieces[-1][1]]
+
+                    # if SDDR the second piece is a material/isotope and needs
                     # to be translated to something more useful
                     if benchmark == "SphereSDDR":
-                        pieces[0] = get_pretty_mat_iso_names(pieces[:1])[0].replace(
+                        pieces[0] = get_pretty_mat_iso_names([pieces[1]])[0].replace(
                             "-", ""
                         )
-
-                    # A new ad hoc config tallyt must be created from the generic
-                    for gtally in generic_tallies:
+                    # A new ad hoc config tally must be created from the generic
+                    for gtally_name in generic_tally_names:
                         # Add the correct general tally
-                        if gtally == pieces[-1][:-4]:
-                            new_config = deepcopy(self.params[benchmark][gtally])
-                            new_config["tally_name"] = new_config["tally_name"].format(
-                                *pieces[:-1]
-                            )
-                            self.params[benchmark][tally_key] = new_config
-                # in case of SphereSDDR, it is better to sort the tallies
+                        if (
+                            gtally_name != "general"
+                            and self.params[benchmark][gtally_name]["result"]
+                            == pieces[-1][:-4]
+                        ):
+                            self.params[benchmark][
+                                gtally_name.format(*pieces[1].split("-"))
+                            ] = self.params[benchmark][gtally_name]
+                            self.params[benchmark][
+                                gtally_name.format(*pieces[1].split("-"))
+                            ]["csv"] = csv
+                for key in generic_tally_names:
+                    if key != "general":
+                        self.params[benchmark].pop(key)
 
     def _get_csv(
         self,
         path: str | os.PathLike,
         code: str,
-        tally: str,
+        csv: str,
         isotope_material: bool,
         allow_not_found: bool = False,
     ) -> pd.DataFrame:
         # logic to determine the correct path (local or github)
         if "https" in path:
-            path = path + r"/{}.csv"
+            path = path + r"/{}"
         else:
-            path = path + os.sep + "{}.csv"
+            path = path + os.sep + "{}"
 
         if isotope_material:
             if "https" in path:
@@ -115,16 +123,17 @@ class Processor:
                 formatted_path = path.format(code + isotope_material)
         else:
             if "https" in path:
-                formatted_path = path.format(tally).replace(" ", "%20")
+                formatted_path = path.format(csv).replace(" ", "%20")
             else:
-                formatted_path = path.format(tally)
-
+                formatted_path = path.format(csv)
         if allow_not_found:
             try:
                 if "https" in path:
                     response = requests.get(formatted_path, headers=GITHUB_HEADERS)
                     response.raise_for_status()  # Raise an error for HTTP issues
-                    csv_content = StringIO(response.text)  # Convert text to a file-like object
+                    csv_content = StringIO(
+                        response.text
+                    )  # Convert text to a file-like object
                 else:
                     # if the file is local, just read it
                     csv_content = formatted_path
@@ -152,8 +161,6 @@ class Processor:
         isotope_material: str = None,
         refcode: str = "mcnp",
         ratio: bool = False,
-        compute_lethargy: bool = False,
-        compute_per_unit_bin: str = None,
         x_vals_to_string: bool = None,
         sum_by: str = None,
         subset: tuple[str, str | list] = None,
@@ -165,7 +172,7 @@ class Processor:
         benchmark : str
             benchmark name
         reflib : str
-            suffix of the library to be used as reference (e.g. 21c)
+            library to be used as reference (e.g. FENDL 2.1c)
         tally : str
             tally to be plotted (code).
         isotope_material : str, optional
@@ -174,15 +181,6 @@ class Processor:
             code to be used as reference, by default 'mcnp'
         ratio : bool, optional
             if True, the data will be normalized to the ref-lib and ref-code, by default False
-        compute_lethargy: bool, optional
-            if True, the data will be converted to lethargy, by default False.
-            This is true for every library except "exp" which is
-            expected to be in the right format if needed.
-        compute_per_unit_bin: str, optional
-            column name of the x-axis data used to convert the y-axis data
-            to per unit bin (e.g. Energy), by default None
-            This is true for every library except "exp" which is
-            expected to be in the right format if needed.
         x_vals_to_string: str, optional
             Columns to convert. The x values will be converted to string, by default False.
             In this process, floats and int representation of integers will be
@@ -213,10 +211,22 @@ class Processor:
         else:
             allow = False
         for lib, values in self.status.status[benchmark].items():
-            for code, (path, _) in values.items():
+            for code, (path, csvs) in values.items():
                 # locate and read the csv file
+                try:
+                    csv = [self.params[benchmark][tally]["csv"]]
+                except KeyError:
+                    csv = [
+                        csv
+                        for csv in csvs
+                        if self.params[benchmark][tally]["result"] in csv
+                    ]
                 df = self._get_csv(
-                    path, code, tally, isotope_material, allow_not_found=allow
+                    path,
+                    code,
+                    csv[0],
+                    isotope_material,
+                    allow_not_found=allow,
                 )
                 if df is None:
                     continue
@@ -227,10 +237,6 @@ class Processor:
                     .drop("total", errors="ignore")
                     .reset_index()
                 )
-
-                # The first row of data is removed for the TMB benchmarks
-                if benchmark in ("HCPB_TBM_1D", "WCLL_TBM_1D"):
-                    df = df.iloc[1:]
 
                 # Get only a subset of the data if requested
                 if subset:
@@ -248,46 +254,12 @@ class Processor:
                     df["Error"] = df["abs err"] / df["Value"]
 
                 # Add the label to the df
-                label = f"{LIB_NAMES[lib]}-{code}"
+                label = f"{lib}-{code}"
                 df["label"] = label
 
                 # Memorize the reference df to compute ratios
                 if reflib == lib and refcode == code:
                     ref_df = df
-
-                # Compute lethargy or if needed
-                if lib != "exp" and (
-                    compute_lethargy or compute_per_unit_bin is not None
-                ):
-                    # Get the bins array, separating the cases by normalization type
-                    if compute_lethargy:
-                        try:
-                            # For lethargy, only energy is valid
-                            bins = df["Energy"].astype(float).values
-                        except KeyError as exc:
-                            raise JsonSettingsError(
-                                f"Lethargy cannot be computed for {benchmark} {tally}"
-                            ) from exc
-                    if compute_per_unit_bin is not None:
-                        try:
-                            bins = df[compute_per_unit_bin].astype(float).values
-                        except KeyError as exc:
-                            raise JsonSettingsError(
-                                f"Per bin unit normalization cannot be computed for {benchmark} {tally}"
-                            ) from exc
-                    ergs = [1e-10]  # Additional "zero" bin
-                    ergs.extend(bins.tolist())
-                    ergs = np.array(ergs)
-
-                    # compute lethargy if requested
-                    if compute_lethargy:
-                        df["Value"] = df["Value"].values / (
-                            np.log(ergs[1:] / ergs[:-1])
-                        )
-
-                    # or compute per unit bin if requested
-                    elif compute_per_unit_bin:
-                        df["Value"] = df["Value"].values / (ergs[1:] - ergs[:-1])
 
                 # if requested, convert x values to string
                 if x_vals_to_string:
@@ -307,7 +279,38 @@ class Processor:
             newdfs = []
             for df in dfs:
                 newdf = df.copy()
-                newdf["Value"] = newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
+                if len(newdf["Value"]) == len(ref_df["Value"]):
+                    newdf["Value"] = (
+                        newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
+                    )
+                else:
+                    # Find the matching key column
+                    key_col = None
+                    for col in ["Cells", "Energy", "Time"]:
+                        if col in newdf.columns and col in ref_df.columns:
+                            key_col = col
+                            break
+                    if key_col is None:
+                        raise ValueError(
+                            "No matching key column found in both dataframes."
+                        )
+
+                    # Merge on the key column, keeping only rows present in both
+                    merged = pd.merge(
+                        newdf,
+                        ref_df[[key_col, "Value"]],
+                        on=key_col,
+                        suffixes=("", "_ref"),
+                    )
+
+                    # Divide the values and keep only matched rows
+                    merged["Value"] = merged["Value"] / merged["Value_ref"]
+
+                    # Drop the reference value column
+                    merged = merged.drop(columns=["Value_ref"])
+
+                    # Update newdf to be only the merged, matched rows
+                    newdf = merged
                 newdfs.append(newdf)
         else:
             newdfs = dfs
@@ -318,7 +321,12 @@ class Processor:
         for old, new in self.params[benchmark][tally]["substitutions"].items():
             # if ratio was requested, change y unit
             if ratio and new == y_label:
-                new = UNIT_PATTERN.sub(f"[ratio vs {LIB_NAMES[reflib]}]", new)
+                if reflib == "exp":
+                    new = UNIT_PATTERN.sub("[C/E]", new)
+                elif "C/E" in new:
+                    new = new.replace("C/E", f"Ratio vs {reflib}-{refcode}")
+                else:
+                    new = UNIT_PATTERN.sub(f"[ratio vs {reflib}-{refcode}]", new)
             newdf[new] = newdf[old]
             del newdf[old]
 
@@ -394,20 +402,15 @@ class Processor:
         Figure
             plotly Figure
         """
+        """
         # Recover the tally code
         for key, value in self.params[benchmark].items():
             if key != "general":
                 if value["tally_name"] == tally:
                     tally = key
+        """
 
         # check for optional inputs
-        compute_lethargy = self._get_optional_config(
-            "compute_lethargy", benchmark, tally
-        )
-        compute_per_unit_bin = self._get_optional_config(
-            "compute_per_unit_bin", benchmark, tally
-        )
-
         x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
         y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
         only_ratio = self._get_optional_config("only_ratio", benchmark, tally)
@@ -429,8 +432,6 @@ class Processor:
             isotope_material=iso_mat,
             ratio=ratio,
             refcode=refcode,
-            compute_lethargy=compute_lethargy,
-            compute_per_unit_bin=compute_per_unit_bin,
             x_vals_to_string=x_vals_to_string,
             sum_by=self._get_optional_config("sum_by", benchmark, tally),
             subset=self._get_optional_config("subset", benchmark, tally),
@@ -447,9 +448,16 @@ class Processor:
         # be sure to deactivate log if ratio is on
         if ratio:
             key_args["log_y"] = False
-            key_args["y"] = UNIT_PATTERN.sub(
-                f"[ratio vs {LIB_NAMES[reflib]}]", key_args["y"]
-            )
+            if reflib == "exp":
+                key_args["y"] = UNIT_PATTERN.sub("[C/E]", key_args["y"])
+            elif "C/E" in key_args["y"]:
+                key_args["y"] = key_args["y"].replace(
+                    "C/E", f"Ratio vs {reflib}-{refcode}"
+                )
+            else:
+                key_args["y"] = UNIT_PATTERN.sub(
+                    f"[ratio vs {reflib}-{refcode}]", key_args["y"]
+                )
 
         # # combine columns before plot (if requested)
         # try:
@@ -495,7 +503,7 @@ class Processor:
         benchmark : str
             Benchmark name
         library : str
-            Library suffix (e.g. 21c, 30c, 31c)
+            Library name
         code : str
             Code name
 
@@ -506,13 +514,17 @@ class Processor:
         """
         available_csv = self.status.status[benchmark][library][code]
         csv_names = available_csv[1]
-        supported = list(self.params[benchmark].keys())
+
+        supported = [
+            value["result"]
+            for key, value in self.params[benchmark].items()
+            if "result" in value
+        ]
         # general is not part of the supported tallies, needs to be removed
-        supported = [i for i in supported if i != "general"]
 
         # Sphere benchmark raw data has a different structure
         if benchmark == "Sphere":
-            # get the first availeble csv file
+            # get the first available csv file
             if "https" in available_csv[0]:
                 path_csv = available_csv[0] + r"/" + csv_names[0] + r"?raw=true"
             else:
@@ -526,15 +538,16 @@ class Processor:
         available = []
         for csv in csv_names:
             available.append(csv[:-4])
+            csv = csv[:-4].split(" ", 1)
+            available.append(csv[-1])
         tallies = list(set(available).intersection(set(supported)))
-        if benchmark == "SphereSDDR":
-            tallies.sort(key=sorting_func_sphere_sddr)
 
+        if benchmark == "SphereSDDR":
+            tallies.sort(key=sorting_func)
         for tally in tallies:
             for key, value in self.params[benchmark].items():
-                if key == tally:
-                    tally_names.append(value["tally_name"])
-
+                if "result" in value and value["result"] == tally:
+                    tally_names.append(key)
         return tally_names
 
     def get_available_isotopes_materials(
