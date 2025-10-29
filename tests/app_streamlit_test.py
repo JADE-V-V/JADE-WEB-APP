@@ -1,4 +1,5 @@
 from streamlit.testing.v1 import AppTest
+import pytest
 
 from app_streamlit import _recursive_assign_na_option
 
@@ -7,6 +8,7 @@ class TestStreamlitApp:
     """Test the Streamlit app. Better to reunite all tests in one class to avoid
     multiple executions of the app."""
 
+    @pytest.mark.skip(reason="Requires GitHub authentication - run manually with credentials")
     def test_all_app(self):
         """
         Test needs to be put toghether since the initialization of the app can
