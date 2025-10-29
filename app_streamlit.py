@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from cProfile import label
+
 import pandas as pd
 import streamlit as st
 
@@ -10,12 +12,9 @@ from jadewa.processor import Processor
 from jadewa.status import Status
 from jadewa.utils import (
     LIB_NAMES,
+    PROTECTED_STRINGS,
     find_dict_depth,
     get_info_dfs,
-    get_lib_suffix,
-    get_mat_iso_code,
-    get_pretty_lib_names,
-    get_pretty_mat_iso_names,
     safe_add_ctg_to_dict,
 )
 
@@ -49,8 +48,7 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
     """
     # Sort the available benchmarks alphabetically
     available_benchmarks = sorted(available_benchmarks)
-
-    flag_split, ctg_dict = _split_options(available_benchmarks)
+    flag_split, ctg_dict = _split_options(available_benchmarks, divisions=None)
 
     if flag_split:
         selected_benchmark = _get_split_selection(ctg_dict, "benchmark")
@@ -63,8 +61,9 @@ def select_benchmark(available_benchmarks: list[str]) -> str:
 
 
 def select_ref_lib(selected_benchmark: str, status: Status) -> str:
-    """Create a selectbox for the reference library selection and return the selected library..
-    In case of an experimental benchmark, the reference library is set to "experiment".
+    """Create a selectbox for the reference library selection and return the selected library.
+    In case of an experimental benchmark, the reference library is set to "exp" by default,
+    but the user can change it.
 
     Parameters
     ----------
@@ -79,24 +78,24 @@ def select_ref_lib(selected_benchmark: str, status: Status) -> str:
         selected reference library
     """
     lib_options = status.get_libraries(selected_benchmark)
-    # before even getting the pretty names, if experimental data is
-    # available, set is as the reference and disable changing it
+    # if experimental data is available, set is as the reference
+    # but allow the user to change it
     if "exp" in lib_options:
-        ref_lib = st.selectbox(
-            "experiment set as reference", ["experiment"], index=0, key="lib"
-        )
+        index = lib_options.index("exp")
+        lib_options[index] = "Experiment"
     else:
-        #  get pretty names for the libraries
-        lib_options = get_pretty_lib_names(lib_options)
-        ref_lib = st.selectbox(
-            "Select reference library", lib_options, index=None, key="lib"
-        )
+        index = None
+    ref_lib = st.selectbox(
+        "Select reference library", lib_options, index=index, key="lib"
+    )
+    if ref_lib == "Experiment":
+        ref_lib = "exp"
     return ref_lib
 
 
 def select_ref_code(selected_benchmark: str, ref_lib: str, status: Status) -> str:
     """Create a selectbox for the reference code selection and return the selected code.
-    In case of an experimental benchmark, the reference code is set to "experiment".
+    In case of an experimental benchmark, the reference code is set to "exp".
 
     Parameters
     ----------
@@ -112,10 +111,10 @@ def select_ref_code(selected_benchmark: str, ref_lib: str, status: Status) -> st
     str
         selected reference code
     """
-    if ref_lib == "experiment":
-        selected_code = "experiment"
+    if ref_lib == "exp":
+        selected_code = "exp"
     else:
-        code_options = status.get_codes(selected_benchmark, get_lib_suffix(ref_lib))
+        code_options = status.get_codes(selected_benchmark, ref_lib)
         selected_code = st.selectbox(
             "Select reference code", code_options, index=0, key="code"
         )
@@ -135,77 +134,72 @@ def display_metadata(
     st.dataframe(sorted_df, use_container_width=True)
 
 
-def select_isotope_material(
-    selected_benchmark: str, ref_lib: str, selected_code: str, processor: Processor
-) -> str:
-    """Create a selectbox for the isotope or material selection and return the selected value.
-
-    Parameters
-    ----------
-    selected_benchmark : str
-        selected benchmark
-    ref_lib : str
-        selected reference library
-    selected_code : str
-        selected reference code
-    processor : Processor
-        processor object to get the available isotopes/materials
-
-    Returns
-    -------
-    str
-        _description_
-    """
-    isotope_material_options = processor.get_available_isotopes_materials(
-        selected_benchmark, get_lib_suffix(ref_lib), selected_code
-    )
-    # get pretty names
-    pretty_options = get_pretty_mat_iso_names(isotope_material_options)
-
-    isotope_material = st.selectbox(
-        "Select isotope or material",
-        pretty_options,
-        index=None,
-        key="isotope",
-    )
-    return isotope_material
-
-
-def _split_options(options: list[str]) -> tuple[bool, dict]:
+def _split_options(
+    options: list[str], divisions: list[int | None] | None
+) -> tuple[bool, dict]:
     """Split the options in categories and return a dictionary with the categories as keys."""
     flag_split = False
     ctg_dict = {}
 
-    for option in options:
-        if not "-" in option or "Vitamin-J" in option:
+    for i, option in enumerate(options):
+        div = divisions[i] if divisions is not None else None
+        # Replace protected substrings if present
+        for orig, temp in PROTECTED_STRINGS.items():
+            option = option.replace(orig, temp)
+
+        # If there is no "-" in the option, add it as a single category with "N.A." as option
+        if not "-" in option:
             ctg = option
             option = "N.A."
+            # restore original protected substrings
+            for orig, temp in PROTECTED_STRINGS.items():
+                ctg = ctg.replace(temp, orig)
             safe_add_ctg_to_dict(ctg_dict, [ctg], option)
         else:
-            # if there is even one, always split the options
             flag_split = True
-            ctgs = option.split("-")
+            if div:
+                # if there is a number of divisions specified for this option
+                # (different to the number of "-" in the string), split accordingly
+                ctgs = option.rsplit("-", maxsplit=divisions[i])
+            else:
+                # else, if no divisions specified, split normally by "-"
+                ctgs = option.split("-")
+
+            # restore original protected substrings
+            for i, ctg in enumerate(ctgs):
+                for orig, temp in PROTECTED_STRINGS.items():
+                    ctgs[i] = ctgs[i].replace(temp, orig)
+
             safe_add_ctg_to_dict(ctg_dict, ctgs[:-1], ctgs[-1])
 
     max_depth = find_dict_depth(ctg_dict)
     # if the depth of the options is less than the maximum,
     # add N.A. to an additional layer of options
+
     for key in ctg_dict:
-        depth_key = find_dict_depth(ctg_dict[key])
-        if depth_key < max_depth - 1:
-            ctg_dict[key] = _recursive_assign_na_option(ctg_dict[key])
+        # depth_key = find_dict_depth(ctg_dict[key])
+        ctg_dict[key] = _recursive_assign_na_option(ctg_dict[key], max_depth)
 
     return flag_split, ctg_dict
 
 
-def _recursive_assign_na_option(dict_key):
+def _recursive_assign_na_option(dict_key, max_depth, counter=0):
     """Recursive function to add "N.A." as the most inner layer of the dictionary of options."""
+    counter += 1
     if isinstance(dict_key, list):
-        dict_key = {dict_key[i]: ["N.A."] for i in range(len(dict_key))}
+        # Only convert if not at max_depth
+        if counter < max_depth:
+            return {item: ["N.A."] for item in dict_key}
+        else:
+            return dict_key
+    elif isinstance(dict_key, dict):
+        for key in dict_key:
+            dict_key[key] = _recursive_assign_na_option(
+                dict_key[key], max_depth, counter
+            )
+        return dict_key
     else:
-        for key in dict_key.keys():
-            dict_key[key] = _recursive_assign_na_option(dict_key[key])
-    return dict_key
+        return dict_key
 
 
 def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
@@ -230,10 +224,13 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
         else:
             label = 0
 
-        option_selected = st.selectbox(
-            label="", options=options_available, index=index, key=label
-        )
+        # Build a unique key for the selectbox
+        path_key = "-".join(map(str, selections))
+        unique_key = f"{label}_{path_key}"
 
+        option_selected = st.selectbox(
+            label=label, options=options_available, index=index, key=unique_key
+        )
         # add selection to the list
         selections.append(option_selected)
 
@@ -267,14 +264,18 @@ def _get_split_selection(
             label = 0
         elif isinstance(labels, str):
             label = labels
-            labels = [label] + [f"{label}_{i+1}" for i in range(max_depth - 1)]
+            labels = [label] + [" " for i in range(max_depth - 1)]
         else:
             raise ValueError("There is a problem with the selection labels")
+
+        # Build a unique key for the selectbox
+        depth = max_depth - len(columns)
+        unique_key = f"{label}_{depth}"
 
         ctg_selected = st.selectbox(
             f"Select {label}",
             list(ctg_dict.keys()),
-            key=label,
+            key=unique_key,
             index=None,
         )
     if ctg_selected:
@@ -318,23 +319,39 @@ def select_tally(
     """
     tallies_options = processor.get_available_tallies(
         selected_benchmark,
-        get_lib_suffix(ref_lib),
+        ref_lib,
         selected_code,
     )
-    flag_split, ctg_dict = _split_options(tallies_options)
+
+    divisions = []
+    for i, tally in enumerate(tallies_options):
+        try:
+            divisions.append(
+                processor.params[selected_benchmark][tally]["tally_options_divisions"]
+            )
+        except KeyError:
+            divisions = None
+            break
+            # If one of the tallies_options does not have divisions, this benchmark will
+            # not have any general tallies and, therefore, none of its tallies_options
+            # will have the "tally_options_divisions" key associated.
+
+    flag_split, ctg_dict = _split_options(tallies_options, divisions=divisions)
+
+    # Check if there are labels for the tally options
+    try:
+        labels = processor.params[selected_benchmark]["general"]["tally_options_labels"]
+    except KeyError:
+        labels = "tally"
 
     if flag_split:
-        # Ceck if there are labels for the tally options
-        try:
-            labels = processor.params[selected_benchmark]["general"][
-                "tally_options_labels"
-            ]
-        except KeyError:
-            labels = "tally"
         tally = _get_split_selection(ctg_dict, labels)
     else:
-        tally = st.selectbox("Select tally", tallies_options, index=None, key="tally")
-
+        if isinstance(labels, list):
+            labels = labels[0]
+        tally = st.selectbox(
+            "Select " + labels, tallies_options, index=None, key="tally"
+        )
     return tally
 
 
@@ -379,15 +396,6 @@ def main():
             else:
                 selected_code = None
 
-            # optional, select the isotope or material for the selected benchmark
-            if selected_benchmark == "Sphere":
-                if ref_lib and selected_code:
-                    isotope_material = select_isotope_material(
-                        selected_benchmark, ref_lib, selected_code, processor
-                    )
-            else:
-                isotope_material = None
-
             # select the tally
             if selected_benchmark and ref_lib and selected_code:
                 tally = select_tally(
@@ -408,27 +416,13 @@ def main():
 
             # and finally plot!
             if selected_benchmark and ref_lib and tally:
-                if selected_benchmark == "Sphere":
-                    if isotope_material:
-                        fig = processor.get_plot(
-                            selected_benchmark,
-                            get_lib_suffix(ref_lib),
-                            selected_code,
-                            tally,
-                            # use the raw name
-                            isotope_material=get_mat_iso_code(isotope_material),
-                            ratio=ratio,
-                        )
-                    else:
-                        fig = None
-                else:
-                    fig = processor.get_plot(
-                        selected_benchmark,
-                        get_lib_suffix(ref_lib),
-                        selected_code,
-                        tally,
-                        ratio=ratio,
-                    )
+                fig = processor.get_plot(
+                    selected_benchmark,
+                    ref_lib,
+                    selected_code,
+                    tally,
+                    ratio=ratio,
+                )
             else:
                 fig = None
 
@@ -444,7 +438,7 @@ def main():
                 st.write(
                     "Select the checkboxes for the libraries to display in the plot. If none are selected, the latest version of each library will be plotted. If a selected library is unavailable for the selected benchmark, its data won't be plotted."
                 )
-                libs = list(LIB_NAMES.values())
+                libs = LIB_NAMES
 
                 # Create checkboxes for all the libraries in LIB_NAMES
                 checks = []
