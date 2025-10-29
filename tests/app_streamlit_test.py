@@ -11,7 +11,7 @@ class TestStreamlitApp:
     @pytest.mark.skip(reason="Requires GitHub authentication - run manually with credentials")
     def test_all_app(self):
         """
-        Test needs to be put toghether since the initialization of the app can
+        Test needs to be put together since the initialization of the app can
         take quite some time
         """
         # Selection of the benchmarks is greater than 1

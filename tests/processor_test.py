@@ -65,11 +65,8 @@ class TestProcessor:
         assert len(data.columns) == 4
 
         # Test that non-existent tally raises error
-        try:
+        with pytest.raises((NotImplementedError, KeyError)):
             processor._get_graph_data("Oktavian", "exp", "NonExistentTally")
-            assert False
-        except (NotImplementedError, KeyError):
-            assert True
 
     def test_get_graph_data_ratio(self, processor: Processor):
         """Test the get_graph_data method with ratio"""
@@ -86,8 +83,10 @@ class TestProcessor:
         assert len(data.columns) == 4
         # Check that reference data (FENDL 3.2b-mcnp) has ratio of 1
         ref_data = data[data["label"] == "FENDL 3.2b-mcnp"]
+        # Get the value column (last column after label, which is the Y-axis data)
+        value_col_name = data.columns[-1]
         # The ratio values for the reference should be 1
-        assert ref_data.iloc[:, -1].mean() == 1
+        assert ref_data[value_col_name].mean() == 1
 
     def test_get_graph_data_TBM(self, processor: Processor):
         """Test the get_graph_data method for the TBM benchmarks"""
