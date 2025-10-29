@@ -1,10 +1,14 @@
 {
     "general": {
-        "tally_options_labels": ["Parent", "MT channel", "Tally"],
+        "tally_options_labels": [
+            "Parent - MT channel",
+            "Tally",
+            "Cooldown time"
+        ],
         "generic_tallies": true
     },
-    "2": {
-        "tally_name": "{} - {} - Neutron Flux at the external surface in VitaminJ 175 energy groups",
+    "{} - Neutron Flux at the external surface in Vitamin-J 175 energy groups": {
+        "result": "Leakage neutron flux Vitamin-J 175",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Neutron flux [n/cm^2/s]"
@@ -16,10 +20,12 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-    "32": {
-        "tally_name": "{} - {} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]",
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 0s": {
+        "result": "Leakage photon flux 24 groups",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon flux [n/cm^2/s]"
@@ -31,12 +37,145 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "sum_by": ["Time", "Energy"],
-        "subset": ["Time", "F1.0"]
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "0s"
+        ]
     },
-    "104": {
-        "tally_name": "{} - {} - Shutdown dose rate [Sv/h]",
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 2.7h": {
+        "result": "Leakage photon flux 24 groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "2.7h"
+        ]
+    },
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 24h": {
+        "result": "Leakage photon flux 24 groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "24h"
+        ]
+    },
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 11.6 days": {
+        "result": "Leakage photon flux 24 groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "11.6d"
+        ]
+    },
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 30 days": {
+        "result": "Leakage photon flux 24 groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "30d"
+        ]
+    },
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure] - 10 years": {
+        "result": "Leakage photon flux 24 groups",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [n/cm^2/s]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [n/cm^2/s]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "sum_by": [
+            "Time",
+            "Energy"
+        ],
+        "subset": [
+            "Time",
+            "10y"
+        ]
+    },
+    "{} - Shutdown dose rate [Sv/h]": {
+        "result": "SDDR",
         "substitutions": {
             "Time": "Cooldown time",
             "Value": "SDDR [Sv/h]"
@@ -48,12 +187,8 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": ["D1.0", "D2.0", "D3.0", "D4.0", "D5.0", "D6.0"],
-            "ticktext": ["0s", "2.7h", "24h", "11.6d", "30d", "10y"]
-        },
-        "sum_by": "Time"
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     }
 }

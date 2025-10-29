@@ -1,100 +1,93 @@
 {
     "general": {
         "tally_options_labels": [
-            "material",
-            "Shielding thickness",
-            "Angle"
-        ],
-        "generic_tallies": true
+            "Iron thickness",
+            "Tally"
+        ]
     },
-    "{} - {} cm - 0°": {
-        "result": "Neutron leakage flux at 0 deg",
+    "2.5 cm - Neutron leakage flux": {
+        "result": "IPPE-DT_FE_S1 Neutron flux time domain",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E (Leakage lethargy flux)"
+            "Value": "Neutron leakage flux [1/MeV/n/cm^2]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E (Leakage lethargy flux)",
+            "y": "Neutron leakage flux [1/MeV/n/cm^2]",
             "log_x": true,
-            "log_y": false
+            "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "only_ratio": true
+        }
     },
-    "{} - {} cm - 12.2°": {
-        "result": "Neutron leakage flux at 12.2 deg",
+    "7.5 cm - Neutron leakage flux": {
+        "result": "IPPE-DT_FE_S2 Neutron flux time domain",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E (Leakage lethargy flux)"
+            "Value": "Neutron leakage flux [1/MeV/n/cm^2]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E (Leakage lethargy flux)",
+            "y": "Neutron leakage flux [1/MeV/n/cm^2]",
             "log_x": true,
-            "log_y": false
+            "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "only_ratio": true
+        }
     },
-    "{} - {} cm - 24.9°": {
-        "result": "Neutron leakage flux at 24.9 deg",
+    "10 cm - Neutron leakage flux": {
+        "result": "IPPE-DT_FE_S3 Neutron flux time domain",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E (Leakage lethargy flux)"
+            "Value": "Neutron leakage flux [1/MeV/n/cm^2]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E (Leakage lethargy flux)",
+            "y": "Neutron leakage flux [1/MeV/n/cm^2]",
             "log_x": true,
-            "log_y": false
+            "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "only_ratio": true
+        }
     },
-    "{} - {} cm - 41.8°": {
-        "result": "Neutron leakage flux at 41.8 deg",
+    "18.1 cm - Neutron leakage flux": {
+        "result": "IPPE-DT_FE_S4 Neutron flux time domain",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E (Leakage lethargy flux)"
+            "Value": "Neutron leakage flux [1/MeV/n/cm^2]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E (Leakage lethargy flux)",
+            "y": "Neutron leakage flux [1/MeV/n/cm^2]",
             "log_x": true,
-            "log_y": false
+            "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "only_ratio": true
+        }
     },
-    "{} - {} cm - 66.8°": {
-        "result": "Neutron leakage flux at 66.8 deg",
+    "28 cm - Neutron leakage flux": {
+        "result": "IPPE-DT_FE_S5 Neutron flux time domain",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E (Leakage lethargy flux)"
+            "Value": "Neutron leakage flux [1/MeV/n/cm^2]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E (Leakage lethargy flux)",
+            "y": "Neutron leakage flux [1/MeV/n/cm^2]",
             "log_x": true,
-            "log_y": false
+            "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "only_ratio": true
+        }
     }
 }

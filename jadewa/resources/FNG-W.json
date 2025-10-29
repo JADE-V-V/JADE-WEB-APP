@@ -1,327 +1,181 @@
 {
-    "Al 4": {
-        "tally_name": "Activation Foil - Al27 (n,a) Na24",
+    "Reaction Rates - Al27 (n,a) Na24": {
+        "result": "FNG-W_Al Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "611",
-                "614",
-                "623",
-                "633"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "TLD 6": {
-        "tally_name": "Gamma absorbed dose in TLD 300",
+    "Nuclear Heating - Gamma absorbed dose in TLD 300": {
+        "result": "FNG-W_TLD Nuclear heating",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "611",
-                "614",
-                "623",
-                "633"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "Ni-np 4": {
-        "tally_name": "Activation Foil - Ni58 (n,p) Co58",
+    "Reaction Rates - Ni58 (n,p) Co58": {
+        "result": "FNG-W_Ni-np Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "611",
-                "614",
-                "623",
-                "633"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "Ni-n2n 4": {
-        "tally_name": "Activation Foil - Ni58 (n,2n) Ni57",
+    "Reaction Rates - Ni58 (n,2n) Ni57": {
+        "result": "FNG-W_Ni-n2n Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "611",
-                "614",
-                "623"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25
-            ]
         },
         "only_ratio": true
     },
-    "Nb 4": {
-        "tally_name": "Activation Foil - Nb93 (n,2n) Nb92",
+    "Reaction Rates - Nb93 (n,2n) Nb92": {
+        "result": "FNG-W_Nb Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "613",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "Mn 4": {
-        "tally_name": "Activation Foil - Mn55 (n,g) Mn56",
+    "Reaction Rates - Mn55 (n,g) Mn56": {
+        "result": "FNG-W_Mn Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "641",
-                "643",
-                "645",
-                "647"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "In 4": {
-        "tally_name": "Activation Foil - In115 (n,n’) In115m",
+    "Reaction Rates - In115 (n,n’) In115m": {
+        "result": "FNG-W_In Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "611",
-                "614",
-                "623"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25
-            ]
         },
         "only_ratio": true
     },
-    "Fe 4": {
-        "tally_name": "Activation Foil - Fe56 (n,p) Mn56",
+    "Reaction Rates - Fe56 (n,p) Mn56": {
+        "result": "FNG-W_Fe Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "613",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "Zr 4": {
-        "tally_name": "Activation Foil - Zr90 (n,2n) Zr89",
+    "Reaction Rates - Zr90 (n,2n) Zr89": {
+        "result": "FNG-W_Zr Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "613",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     },
-    "Au 4": {
-        "tally_name": "Activation Foil - Au197 (n,g) Au198",
+    "Reaction Rates - Au197 (n,g) Au198": {
+        "result": "FNG-W_Au Activation Foils",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "641",
-                "643",
-                "645",
-                "647"
-            ],
-            "ticktext": [
-                5,
-                15,
-                25,
-                35
-            ]
         },
         "only_ratio": true
     }

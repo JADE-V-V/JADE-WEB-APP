@@ -1,0 +1,183 @@
+{
+    "Neutron current on plasma boundary - Collided": {
+        "result": "C-Model Neutron current on plasma boundary",
+        "substitutions": {
+            "Value": "Neutron current [n/cm^2/s]",
+            "BLK n.": "BLK nº"
+        },
+        "subset": [
+            "User",
+            "1.0"
+        ],
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "BLK nº",
+            "y": "Neutron current [n/cm^2/s]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Neutron current on plasma boundary - Uncollided": {
+        "result": "C-Model Neutron current on plasma boundary",
+        "substitutions": {
+            "Value": "Neutron current [n/cm^2/s]",
+            "BLK n.": "BLK nº"
+        },
+        "subset": [
+            "User",
+            "0.0"
+        ],
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "BLK nº",
+            "y": "Neutron current [n/cm^2/s]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Neutron flux on plasma boundary - Collided": {
+        "result": "C-Model Neutron flux on plasma boundary",
+        "substitutions": {
+            "Value": "Neutron flux [n/cm^2/s]",
+            "BLK n.": "BLK nº"
+        },
+        "subset": [
+            "User",
+            "1.0"
+        ],
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "BLK nº",
+            "y": "Neutron flux [n/cm^2/s]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Neutron flux on plasma boundary - Uncollided": {
+        "result": "C-Model Neutron flux on plasma boundary",
+        "substitutions": {
+            "Value": "Neutron flux [n/cm^2/s]",
+            "BLK n.": "BLK nº"
+        },
+        "subset": [
+            "User",
+            "0.0"
+        ],
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "BLK nº",
+            "y": "Neutron flux [n/cm^2/s]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - Blanket": {
+        "result": "C-Model NUCLEAR HEAT IN BLANKET [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Components",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - Divertor": {
+        "result": "C-Model NUCLEAR HEAT IN DIVERTOR [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]",
+            "Cells": "Cell nº"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Cell nº",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - Port Plugs": {
+        "result": "C-Model NUCLEAR HEAT IN PORT PLUGS [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Components",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - PF Coils": {
+        "result": "C-Model NUCLEAR HEAT IN PF COILS [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Components",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - TF Coils": {
+        "result": "C-Model NUCLEAR HEAT IN TF COILS [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Components",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Nuclear heating - Vacuum Vessel, Port Extensions and Port Ducts": {
+        "result": "C-Model NUCLEAR HEAT IN VACUUM VESSEL, PORT EXTENSIONS, AND PORT DUCTS [W]",
+        "substitutions": {
+            "Value": "Nuclear heating [W]"
+        },
+        "plot_type": "grouped_bar",
+        "plot_args": {
+            "x": "Components",
+            "y": "Nuclear heating [W]",
+            "log_x": false,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    }
+}

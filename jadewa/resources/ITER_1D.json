@@ -1,77 +1,87 @@
 {
-    "204": {
-        "tally_name": "Neutron Flux",
+    "Neutron flux": {
+        "result": "ITER_1D Total neutron flux",
         "substitutions": {
-            "Cells": "Cell index",
+            "Cells": "Radial position [cm]",
             "Value": "Neutron flux [n/cm^2/s]"
         },
         "plot_type": "step",
         "plot_args": {
-            "x": "Cell index",
+            "x": "Radial position [cm]",
             "y": "Neutron flux [n/cm^2/s]",
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-    "214": {
-        "tally_name": "Photon Flux",
+    "Photon flux": {
+        "result": "ITER_1D Total photon flux",
         "substitutions": {
-            "Cells": "Cell index",
+            "Cells": "Radial position [cm]",
             "Value": "Photon flux [n/cm^2/s]"
         },
         "plot_type": "step",
         "plot_args": {
-            "x": "Cell index",
+            "x": "Radial position [cm]",
             "y": "Photon flux [n/cm^2/s]",
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-    "6": {
-        "tally_name": "Total nuclear heating",
+    "Total nuclear heating": {
+        "result": "ITER_1D Total nuclear heating",
         "substitutions": {
-            "Cells": "Cell index",
+            "Cells": "Radial position [cm]",
             "Value": "Total nuclear heating [W/g]"
         },
         "plot_type": "step",
         "plot_args": {
-            "x": "Cell index",
+            "x": "Radial position [cm]",
             "y": "Total nuclear heating [W/g]",
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-    "16": {
-        "tally_name": "Neutron heating",
+    "Neutron heating": {
+        "result": "ITER_1D Neutron heating",
         "substitutions": {
-            "Cells": "Cell index",
+            "Cells": "Radial position [cm]",
             "Value": "Neutron heating [W/g]"
         },
         "plot_type": "step",
         "plot_args": {
-            "x": "Cell index",
+            "x": "Radial position [cm]",
             "y": "Neutron heating [W/g]",
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-    "26": {
-        "tally_name": "Photon heating",
+    "Photon heating": {
+        "result": "ITER_1D Photon heating",
         "substitutions": {
-            "Cells": "Cell index",
+            "Cells": "Radial position [cm]",
             "Value": "Photon heating [W/g]"
         },
         "plot_type": "step",
         "plot_args": {
-            "x": "Cell index",
+            "x": "Radial position [cm]",
             "y": "Photon heating [W/g]",
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
         }
+    }
 }

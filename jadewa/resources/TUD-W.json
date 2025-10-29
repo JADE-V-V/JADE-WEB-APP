@@ -1,0 +1,144 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Shielding depth",
+            "Tally"
+        ]
+    },
+    "5 cm - Neutron flux": {
+        "result": "TUD-W_pos1 Neutron flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "5 cm - Photon flux": {
+        "result": "TUD-W_pos1 Photon flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "15 cm - Neutron flux": {
+        "result": "TUD-W_pos2 Neutron flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "15 cm - Photon flux": {
+        "result": "TUD-W_pos2 Photon flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "25 cm - Neutron flux": {
+        "result": "TUD-W_pos3 Neutron flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "25 cm - Photon flux": {
+        "result": "TUD-W_pos3 Photon flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "35 cm - Neutron flux": {
+        "result": "TUD-W_pos4 Neutron flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "35 cm - Photon flux": {
+        "result": "TUD-W_pos4 Photon flux",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Photon flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Photon flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    }
+}

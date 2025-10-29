@@ -1,6 +1,13 @@
 {
-    "Neutron Flux at the external surface in Vitamin-J 175 energy groups": {
-        "tally_name": "Neutron Flux at the external surface in Vitamin-J 175 energy groups",
+    "general": {
+        "tally_options_labels": [
+            "isotope or material",
+            "Tally"
+        ],
+        "generic_tallies": true
+    },
+    "{} - Neutron Flux at the external surface in Vitamin-J 175 energy groups": {
+        "result": "Leakage neutron flux Vitamin-J 175",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Neutron flux [n/cm^2/s]"
@@ -12,11 +19,12 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     },
-
-    "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]": {
-        "tally_name": "Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]",
+    "{} - Gamma flux at the external surface [FINE@FISPACT MANUAL 24 Group Structure]": {
+        "result": "Leakage photon flux 24 groups",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon flux [n/cm^2/s]"
@@ -28,6 +36,8 @@
             "log_x": true,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
     }
 }
