@@ -19,8 +19,7 @@ from jadewa.errors import JsonSettingsError
 from jadewa.plotter import get_figure
 from jadewa.status import Status
 from jadewa.utils import (
-    GITHUB_HEADERS,
-    get_pretty_mat_iso_names,
+    PROTECTED_STRINGS,
     sorting_func,
     string_ints_converter,
 )
@@ -60,8 +59,7 @@ class Processor:
                     for code, available_csv in values.items():
                         csv_names.extend(available_csv[1])
                 csv_names = list(set(csv_names))
-                if benchmark == "SphereSDDR":
-                    csv_names.sort(key=sorting_func)
+                csv_names.sort(key=sorting_func)
 
                 generic_tally_names = list(self.params[benchmark].keys())
                 for csv in csv_names:
@@ -75,27 +73,59 @@ class Processor:
                     # pieces[0] = benchmark, pieces[1][0] = case name,
                     # pieces[1][1] = tally name
                     pieces = [pieces[0], pieces[-1][0], pieces[-1][1]]
-
-                    # if SDDR the second piece is a material/isotope and needs
-                    # to be translated to something more useful
-                    if benchmark == "SphereSDDR":
-                        pieces[0] = get_pretty_mat_iso_names([pieces[1]])[0].replace(
-                            "-", ""
-                        )
                     # A new ad hoc config tally must be created from the generic
                     for gtally_name in generic_tally_names:
                         # Add the correct general tally
-                        if (
-                            gtally_name != "general"
-                            and self.params[benchmark][gtally_name]["result"]
-                            == pieces[-1][:-4]
-                        ):
-                            self.params[benchmark][
-                                gtally_name.format(*pieces[1].split("-"))
-                            ] = self.params[benchmark][gtally_name]
-                            self.params[benchmark][
-                                gtally_name.format(*pieces[1].split("-"))
-                            ]["csv"] = csv
+                        if gtally_name != "general":
+                            result = self.params[benchmark][gtally_name]["result"]
+                            match = False
+                            # result can either be a list or a string
+                            if isinstance(result, list):
+                                # Check if any item in the result list matches the current csv
+                                match = pieces[-1][:-4] in result
+                            else:
+                                match = result == pieces[-1][:-4]
+                            if match:
+                                gtally_splits = gtally_name.count("{}")
+                                # if there are protected substrings, replace them temporarily
+                                for orig, temp in PROTECTED_STRINGS.items():
+                                    pieces[1] = pieces[1].replace(orig, temp)
+                                    gtally_name = gtally_name.replace(orig, temp)
+                                split_name = pieces[1].rsplit("-", gtally_splits - 1)
+                                total_splits = gtally_name.count("-")
+                                # Restore original protected substrings
+                                for orig, temp in PROTECTED_STRINGS.items():
+                                    gtally_name = gtally_name.replace(temp, orig)
+                                    for i, split in enumerate(split_name):
+                                        split_name[i] = split_name[i].replace(
+                                            temp, orig
+                                        )
+                                # Substitute empty spaces in gtally_name ("{}")
+                                # with the corresponding specific case pieces
+                                completed_gtally_name = gtally_name.format(*split_name)
+                                if completed_gtally_name not in self.params[benchmark]:
+                                    self.params[benchmark][completed_gtally_name] = (
+                                        deepcopy(self.params[benchmark][gtally_name])
+                                    )
+                                # Add the "csv" key only for benchmarks with general tallies,
+                                # others retrieve csv names from self.params[benchmark][tally]["result"]
+                                if (
+                                    "csv"
+                                    not in self.params[benchmark][completed_gtally_name]
+                                ):
+                                    self.params[benchmark][completed_gtally_name][
+                                        "csv"
+                                    ] = []
+                                self.params[benchmark][completed_gtally_name][
+                                    "csv"
+                                ].append(csv)
+                                # Add "tally_options_divisions" for general tallies with
+                                # "-" in sub-cases; used when "{}" count in gtally_name
+                                # doesn't match "-" count in pieces[1].
+                                self.params[benchmark][gtally_name.format(*split_name)][
+                                    "tally_options_divisions"
+                                ] = gtally_splits + total_splits - 1
+
                 for key in generic_tally_names:
                     if key != "general":
                         self.params[benchmark].pop(key)
@@ -103,54 +133,25 @@ class Processor:
     def _get_csv(
         self,
         path: str | os.PathLike,
-        code: str,
         csv: str,
-        isotope_material: bool,
-        allow_not_found: bool = False,
     ) -> pd.DataFrame:
         # logic to determine the correct path (local or github)
         if "https" in path:
             path = path + r"/{}"
+            formatted_path = (
+                path.format(csv)
+                .replace(" ", "%20")
+                .replace("[", "%5B")
+                .replace("]", "%5D")
+            )
         else:
             path = path + os.sep + "{}"
+            formatted_path = path.format(csv)
 
-        if isotope_material:
-            if "https" in path:
-                formatted_path = path.format(code + isotope_material).replace(
-                    " ", "%20"
-                )
-            else:
-                formatted_path = path.format(code + isotope_material)
-        else:
-            if "https" in path:
-                formatted_path = path.format(csv).replace(" ", "%20")
-            else:
-                formatted_path = path.format(csv)
-        if allow_not_found:
-            try:
-                if "https" in path:
-                    response = requests.get(formatted_path, headers=GITHUB_HEADERS)
-                    response.raise_for_status()  # Raise an error for HTTP issues
-                    csv_content = StringIO(
-                        response.text
-                    )  # Convert text to a file-like object
-                else:
-                    # if the file is local, just read it
-                    csv_content = formatted_path
-                df = pd.read_csv(csv_content)
-            except FileNotFoundError:
-                # if everything went well, it means that the isotope
-                # or material is not available for this library
-                logging.debug("%s not found", formatted_path)
-                return None
-            except HTTPError:
-                # if everything went well, it means that the isotope
-                # or material is not available for this library
-                logging.debug("%s not found", formatted_path)
-                return None
-        else:
+        try:
             df = pd.read_csv(formatted_path)
-
+        except Exception:
+            df = None
         return df
 
     def _get_graph_data(
@@ -158,7 +159,6 @@ class Processor:
         benchmark: str,
         reflib: str,
         tally: str,
-        isotope_material: str = None,
         refcode: str = "mcnp",
         ratio: bool = False,
         x_vals_to_string: bool = None,
@@ -175,8 +175,6 @@ class Processor:
             library to be used as reference (e.g. FENDL 2.1c)
         tally : str
             tally to be plotted (code).
-        isotope_material : str, optional
-            isotope or material to be plotted (e.g. 1001), by default None
         refcode : str, optional
             code to be used as reference, by default 'mcnp'
         ratio : bool, optional
@@ -206,65 +204,78 @@ class Processor:
 
         # get all dfs for the different codes-libraries combos
         dfs = []
-        if benchmark in ["Sphere", "SphereSDDR"]:
-            allow = True
-        else:
-            allow = False
         for lib, values in self.status.status[benchmark].items():
             for code, (path, csvs) in values.items():
                 # locate and read the csv file
                 try:
-                    csv = [self.params[benchmark][tally]["csv"]]
+                    csv = self.params[benchmark][tally]["csv"]
                 except KeyError:
-                    csv = [
-                        csv
-                        for csv in csvs
-                        if self.params[benchmark][tally]["result"] in csv
-                    ]
-                df = self._get_csv(
-                    path,
-                    code,
-                    csv[0],
-                    isotope_material,
-                    allow_not_found=allow,
-                )
-                if df is None:
+                    result = self.params[benchmark][tally]["result"]
+                    # If result is a list, find all matching csvs
+                    if isinstance(result, list):
+                        csv = [csv for csv in csvs if csv[:-4] in result]
+                    else:
+                        csv = [csv for csv in csvs if result == csv[:-4]]
+                # If result is a list, more than one csv needs to be considered for the plot
+                # Load and concatenate all matching CSVs
+                dfs_to_concat = []
+                ref_df_concat = []
+                for csv_name in csv:
+                    df = self._get_csv(
+                        path,
+                        csv_name,
+                    )
+                    if df is None:
+                        if reflib == lib and refcode == code:
+                            raise NotImplementedError(
+                                f"Reference data for {reflib}-{refcode} not found. Please, select another library as a reference."
+                            )
+                        else:
+                            continue
+
+                    # Always drop the "total" row if present (check only first col)
+                    df = (
+                        df.set_index(df.columns[0])
+                        .drop("total", errors="ignore")
+                        .reset_index()
+                    )
+
+                    # Get only a subset of the data if requested
+                    if subset:
+                        col = subset[0]
+                        index = subset[1]
+                        # transform the values contained in column col to strings
+                        df[col] = list(map(str, df[col]))
+                        # keep the subset of the dataframe for which the col column matches the values in index
+                        df = df[df[col].isin(np.array(index).flatten())]
+
+                    # if sum_by is provided, group by the column and sum
+                    if sum_by:
+                        df["abs err"] = df["Value"] * df["Error"]
+                        df = df.groupby(sum_by).sum(numeric_only=True).reset_index()
+                        df["Error"] = df["abs err"] / df["Value"]
+
+                    # Add the label to the df
+                    label = f"{lib}-{code}"
+                    df["label"] = label
+
+                    # Memorize the reference df to compute ratios
+                    if reflib == lib and refcode == code:
+                        ref_df = df
+                        ref_df_concat.append(ref_df)
+
+                    # if requested, convert x values to string
+                    if x_vals_to_string:
+                        df = string_ints_converter(df, x_vals_to_string)
+
+                    dfs_to_concat.append(df)
+
+                # Concatenate all dataframes for this tally/lib/code
+                if not dfs_to_concat:
                     continue
-
-                # Always drop the "total" row if present (check only first col)
-                df = (
-                    df.set_index(df.columns[0])
-                    .drop("total", errors="ignore")
-                    .reset_index()
-                )
-
-                # Get only a subset of the data if requested
-                if subset:
-                    col = subset[0]
-                    index = subset[1]
-                    # transform the values contained in column col to strings
-                    df[col] = list(map(str, df[col]))
-                    # keep the subset of the dataframe for which the col column matches the values in index
-                    df = df[df[col].isin(np.array(index).flatten())]
-
-                # if sum_by is provided, group by the column and sum
-                if sum_by:
-                    df["abs err"] = df["Value"] * df["Error"]
-                    df = df.groupby(sum_by).sum(numeric_only=True).reset_index()
-                    df["Error"] = df["abs err"] / df["Value"]
-
-                # Add the label to the df
-                label = f"{lib}-{code}"
-                df["label"] = label
-
-                # Memorize the reference df to compute ratios
+                df = pd.concat(dfs_to_concat, ignore_index=True)
                 if reflib == lib and refcode == code:
-                    ref_df = df
-
-                # if requested, convert x values to string
-                if x_vals_to_string:
-                    df = string_ints_converter(df, x_vals_to_string)
-
+                    ref_df = pd.concat(ref_df_concat, ignore_index=True)
                 # if the library is exp, it needs to be the first one for
                 # better plots
                 if lib == "exp":
@@ -273,44 +284,15 @@ class Processor:
                     dfs = temp
                 else:
                     dfs.append(df)
-
         # normalize data to reflib/refcode if requested
         if ratio:
             newdfs = []
             for df in dfs:
                 newdf = df.copy()
-                if len(newdf["Value"]) == len(ref_df["Value"]):
-                    newdf["Value"] = (
-                        newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
-                    )
-                else:
-                    # Find the matching key column
-                    key_col = None
-                    for col in ["Cells", "Energy", "Time"]:
-                        if col in newdf.columns and col in ref_df.columns:
-                            key_col = col
-                            break
-                    if key_col is None:
-                        raise ValueError(
-                            "No matching key column found in both dataframes."
-                        )
-
-                    # Merge on the key column, keeping only rows present in both
-                    merged = pd.merge(
-                        newdf,
-                        ref_df[[key_col, "Value"]],
-                        on=key_col,
-                        suffixes=("", "_ref"),
-                    )
-
-                    # Divide the values and keep only matched rows
-                    merged["Value"] = merged["Value"] / merged["Value_ref"]
-
-                    # Drop the reference value column
-                    merged = merged.drop(columns=["Value_ref"])
-
-                    # Update newdf to be only the merged, matched rows
-                    newdf = merged
+                newdf["Value"] = newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
+                newdf["Error"] = np.sqrt(
+                    newdf["Error"].to_numpy() ** 2 + ref_df["Error"].to_numpy() ** 2
+                )  # relative error propagation for ratio
                 newdfs.append(newdf)
         else:
             newdfs = dfs
@@ -329,9 +311,6 @@ class Processor:
                     new = UNIT_PATTERN.sub(f"[ratio vs {reflib}-{refcode}]", new)
             newdf[new] = newdf[old]
             del newdf[old]
-
-        if isotope_material:
-            newdf = newdf[newdf["Tally Description"] == tally]
 
         return newdf
 
@@ -377,7 +356,6 @@ class Processor:
         reflib: str,
         refcode: str,
         tally: str,
-        isotope_material: str = None,
         ratio: bool = False,
     ) -> Figure:
         """Get a plotly figure for a specific benchmark-tally combination
@@ -392,8 +370,6 @@ class Processor:
             code to be used as reference
         tally : str
             tally to be plotted.
-        isotope_material : str, optional
-            isotope or material to be plotted, by default None
         ratio : bool, optional
             if yes, the data will be normalized to the ref-lib and ref-code, by default False
 
@@ -417,11 +393,6 @@ class Processor:
         if only_ratio:
             ratio = True  # if only_ratio is set, ratio is forced to True
 
-        if benchmark == "Sphere":
-            iso_mat = isotope_material
-        else:
-            iso_mat = None
-
         # Check if the x-axis needs to be converted to string
         x_vals_to_string = self._get_x_vals_to_string(benchmark, tally)
 
@@ -429,7 +400,6 @@ class Processor:
             benchmark,
             reflib,
             tally,
-            isotope_material=iso_mat,
             ratio=ratio,
             refcode=refcode,
             x_vals_to_string=x_vals_to_string,
@@ -515,25 +485,15 @@ class Processor:
         available_csv = self.status.status[benchmark][library][code]
         csv_names = available_csv[1]
 
-        supported = [
-            value["result"]
-            for key, value in self.params[benchmark].items()
-            if "result" in value
-        ]
-        # general is not part of the supported tallies, needs to be removed
-
-        # Sphere benchmark raw data has a different structure
-        if benchmark == "Sphere":
-            # get the first available csv file
-            if "https" in available_csv[0]:
-                path_csv = available_csv[0] + r"/" + csv_names[0] + r"?raw=true"
-            else:
-                path_csv = os.path.join(available_csv[0], csv_names[0])
-            df = pd.read_csv(path_csv)
-            return list(
-                set(df["Tally Description"].to_list()).intersection(set(supported))
-            )
-
+        supported = []
+        for key, value in self.params[benchmark].items():
+            if "result" in value:
+                result = value["result"]
+                # result can either be a list or a string
+                if isinstance(result, list):
+                    supported.extend(result)
+                else:
+                    supported.append(result)
         tally_names = []
         available = []
         for csv in csv_names:
@@ -541,13 +501,29 @@ class Processor:
             csv = csv[:-4].split(" ", 1)
             available.append(csv[-1])
         tallies = list(set(available).intersection(set(supported)))
-
-        if benchmark == "SphereSDDR":
-            tallies.sort(key=sorting_func)
+        tallies.sort(key=sorting_func)
         for tally in tallies:
             for key, value in self.params[benchmark].items():
-                if "result" in value and value["result"] == tally:
-                    tally_names.append(key)
+                if "result" in value:
+                    result = value["result"]
+                    # result can either be a list or a string
+                    if (
+                        (isinstance(result, list) and tally in result)
+                        or (result == tally)
+                    ) and key not in tally_names:
+                        tally_names.append(key)
+
+        # Sort options by number of "-" to ensure proper construction of the ctg_dict
+        # first, temporarily replace protected substrings
+        for i in range(len(tally_names)):
+            for orig, temp in PROTECTED_STRINGS.items():
+                tally_names[i] = tally_names[i].replace(orig, temp)
+        tally_names = sorted(tally_names, key=lambda x: x.count("-"))
+        # restore original protected substrings
+        for i in range(len(tally_names)):
+            for orig, temp in PROTECTED_STRINGS.items():
+                tally_names[i] = tally_names[i].replace(temp, orig)
+
         return tally_names
 
     def get_available_isotopes_materials(
