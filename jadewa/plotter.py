@@ -89,7 +89,7 @@ def _plot_step(data: pd.DataFrame, **keyargs) -> Figure:
         data, **keyargs, color="label", template="plotly_white", line_shape="hv"
     )
     # Experimental data usually have siginificant error that should be traced
-    experimental_data = data[data["label"] == "experiment-experiment"]
+    experimental_data = data[data["label"] == "_exp_-_exp_"]
     if len(experimental_data) > 0:
         x = experimental_data[keyargs["x"]].values
         y = experimental_data[keyargs["y"]].values
