@@ -25,22 +25,17 @@ LIB_NAMES = [
     "exp",
 ]
 
-MATERIAL_NUMBERS = {
-    "SS316L(N)-IG": "M101",
-    "Water": "M400",
-    "Boron Carbide": "M203",
-    "Ordinary Concrete": "M200",
-    "Natural Silicon": "M900",
-    "Polyethylene (non-borated)": "M901",
-    "Tungsten": "M74",
-    "CaF2": "M10",
-}
-MATERIAL_NAMES = {v: k for k, v in MATERIAL_NUMBERS.items()}
-
 # patterns
 MAT_ISO_PATTERN = re.compile(r"[mM]*\d+")
 
 LIB_MANAGER = LibManager()
+
+PROTECTED_STRINGS = {
+    "Vitamin-J": "VitaminJ",
+    "on-axis": "onaxis",
+    "off-axis": "offaxis",
+    "C-Model": "CModel",
+}
 
 try:
     with open("secrets.json", "r") as f:
@@ -66,55 +61,6 @@ def sorting_func(option: str) -> int:
         # it is a material, return 0 so it is placed first
         num = 0
     return num
-
-
-def get_pretty_mat_iso_names(raw_names: list[str]) -> list[str]:
-    """Get the pretty names of a list of materials/isotopes raw names
-
-    Parameters
-    ----------
-    raw_names : list[str]
-        raw names of the materials (e.g. mcnpM900) and isotopes (e.g. mcnp1001)
-
-    Returns
-    -------
-    list[str]
-        pretty names of the materials/isotopes
-    """
-    # the names should be ordered material first and then all isotopes using
-    # as order the zaid integer number. Sorting is easier in the raw list
-    raw_names.sort(key=sorting_func)
-
-    pretty_names = []
-    for name in raw_names:
-        # only the material/isotope needs to be assessed
-        name = MAT_ISO_PATTERN.search(name).group()
-
-        try:
-            pretty_names.append(MATERIAL_NAMES[name])
-        except KeyError:
-            pretty_names.append(LIB_MANAGER.get_zaidname(name)[1])
-
-    return pretty_names
-
-
-def get_mat_iso_code(name: str) -> str:
-    """Get the code of a material/isotope from its pretty name
-
-    Parameters
-    ----------
-    name : str
-        pretty name of the material/isotope (e.g. Natural Silicon, H-1, Ne-1)
-
-    Returns
-    -------
-    str
-        code of the material/isotope (e.g. mcnpM900, mcnp1001, mcnp10001)
-    """
-    try:
-        return MATERIAL_NUMBERS[name]
-    except KeyError:
-        return LIB_MANAGER.get_zaidnum(name)
 
 
 def string_ints_converter(df: pd.DataFrame, column: str) -> pd.DataFrame:
@@ -229,7 +175,6 @@ def safe_add_ctg_to_dict(dictionary: dict, keys: list[str], value: str) -> dict:
         dictionary with the added category
     """
     key = keys[0]
-
     if len(keys) == 1:
         if key in dictionary:
             dictionary[key].append(value)
