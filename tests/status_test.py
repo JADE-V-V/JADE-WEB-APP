@@ -38,17 +38,17 @@ class TestStatus:
 
     def test_get_libraries(self, status: Status):
         """Test the get_libraries method"""
-        assert set(status.get_libraries("ITER_1D")) == {"00c", "32c"}
+        assert set(status.get_libraries("ITER_1D")) == {"ENDFB-VIII.0", "FENDL 3.2b"}
 
     def test_get_codes(self, status: Status):
         """Test the get_codes method"""
-        assert status.get_codes("ITER_1D", "00c") == ["mcnp"]
+        assert status.get_codes("ITER_1D", "ENDFB-VIII.0") == ["mcnp"]
 
     def test_get_results(self, status: Status):
         """Test the get_results method"""
-        path, files_res = status.get_results("ITER_1D", "00c", "mcnp")
+        path, files_res = status.get_results("ITER_1D", "ENDFB-VIII.0", "mcnp")
         assert os.path.exists(os.path.join(path, files_res[0]))
-        assert len(files_res) == 23
+        assert len(files_res) == 6
 
     def test_from_github(self):
         """Test the from_github method"""

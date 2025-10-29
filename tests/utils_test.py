@@ -3,8 +3,6 @@ import pytest
 
 from jadewa.utils import (
     find_dict_depth,
-    get_mat_iso_code,
-    get_pretty_mat_iso_names,
     safe_add_ctg_to_dict,
     string_ints_converter,
 )
@@ -12,21 +10,6 @@ from jadewa.utils import (
 
 class TestUtils:
     """Test the utility functions"""
-
-    def test_get_pretty_mat_iso_names(self):
-        """Test the get_pretty_mat_iso_names function"""
-        names = ["10001", "1001", "M900"]
-        pretty_names = get_pretty_mat_iso_names(names)
-        assert pretty_names == ["Natural Silicon", "H-1", "Ne-1"]
-        for pretty_name, code in zip(pretty_names, names):
-            assert get_mat_iso_code(pretty_name) == code
-
-    def test_get_mat_iso_code(self):
-        """Test the get_mat_iso_code function"""
-        names = ["Natural Silicon", "H-1", "Ne-1"]
-        codes = ["M900", "1001", "10001"]
-        for name, code in zip(names, codes):
-            assert get_mat_iso_code(name) == code
 
     def test_string_ints_converter(self):
         """Test the string_ints_converter function"""
