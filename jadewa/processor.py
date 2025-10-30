@@ -248,13 +248,6 @@ class Processor:
                         df[col] = list(map(str, df[col]))
                         # keep the subset of the dataframe for which the col column matches the values in index
                         df = df[df[col].isin(np.array(index).flatten())]
-
-                    # if sum_by is provided, group by the column and sum
-                    if sum_by:
-                        df["abs err"] = df["Value"] * df["Error"]
-                        df = df.groupby(sum_by).sum(numeric_only=True).reset_index()
-                        df["Error"] = df["abs err"] / df["Value"]
-
                     # Add the label to the df
                     label = f"{lib}-{code}"
                     df["label"] = label
@@ -288,12 +281,15 @@ class Processor:
         if ratio:
             newdfs = []
             for df in dfs:
-                newdf = df.copy()
-                newdf["Value"] = newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
-                newdf["Error"] = np.sqrt(
-                    newdf["Error"].to_numpy() ** 2 + ref_df["Error"].to_numpy() ** 2
-                )  # relative error propagation for ratio
-                newdfs.append(newdf)
+                if len(df) == len(ref_df):
+                    newdf = df.copy()
+                    newdf["Value"] = (
+                        newdf["Value"].to_numpy() / ref_df["Value"].to_numpy()
+                    )
+                    newdf["Error"] = np.sqrt(
+                        newdf["Error"].to_numpy() ** 2 + ref_df["Error"].to_numpy() ** 2
+                    )  # relative error propagation for ratio
+                    newdfs.append(newdf)
         else:
             newdfs = dfs
 

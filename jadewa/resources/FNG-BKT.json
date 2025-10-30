@@ -20,7 +20,23 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "3.43",
+                "10.32",
+                "17.15",
+                "23.95",
+                "30.8",
+                "41.85",
+                "46.85",
+                "53.8",
+                "60.55",
+                "74.4",
+                "81.1"
+            ]
+        ]
     },
     "Au197 (n,g) Au198": {
         "result": "FNG-BKT_Au Reaction rate",
@@ -56,7 +72,22 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "3.43",
+                "10.32",
+                "17.15",
+                "23.95",
+                "30.8",
+                "41.85",
+                "46.85",
+                "53.8",
+                "60.55",
+                "74.4"
+            ]
+        ]
     },
     "In115 (n,n’) In115m": {
         "result": "FNG-BKT_In Reaction rate",
@@ -74,7 +105,23 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "3.43",
+                "10.32",
+                "17.15",
+                "23.95",
+                "30.8",
+                "41.85",
+                "46.85",
+                "53.8",
+                "60.55",
+                "74.4",
+                "81.1"
+            ]
+        ]
     },
     "Mn55 (n,g) Mn56": {
         "result": "FNG-BKT_Mn Reaction rate",
@@ -92,7 +139,23 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "3.43",
+                "10.32",
+                "17.15",
+                "23.95",
+                "30.8",
+                "41.85",
+                "46.85",
+                "53.8",
+                "60.55",
+                "74.4",
+                "81.1"
+            ]
+        ]
     },
     "Nb93 (n,2n) Nb92": {
         "result": "FNG-BKT_Nb Reaction rate",
@@ -128,7 +191,17 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "3.43",
+                "10.32",
+                "17.15",
+                "23.95",
+                "30.8"
+            ]
+        ]
     },
     "Ni58 (n,p) Co58": {
         "result": "FNG-BKT_Ni-np Reaction rate",

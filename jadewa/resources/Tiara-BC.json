@@ -44,7 +44,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Concrete - 43 Mev - 25 cm - 40 cm - on-axis": {
         "result": "Tiara-BC_cc-43-25-40 Neutron yield",
@@ -61,9 +65,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Concrete - 43 Mev - 25 cm - 40 cm - 20cm off-axis": {
+    "Concrete - 43 Mev - 25 cm - 40 cm - 20 cm off-axis": {
         "result": "Tiara-BC_cc-43-25-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -78,9 +86,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Concrete - 43 Mev - 25 cm - 40 cm - 40cm off-axis": {
+    "Concrete - 43 Mev - 25 cm - 40 cm - 40 cm off-axis": {
         "result": "Tiara-BC_cc-43-25-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -95,7 +107,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Concrete - 43 Mev - 50 cm - 40 cm - on-axis": {
         "result": "Tiara-BC_cc-43-50-40 Neutron yield",
@@ -112,9 +128,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Concrete - 43 Mev - 50 cm - 40 cm - 20cm off-axis": {
+    "Concrete - 43 Mev - 50 cm - 40 cm - 20 cm off-axis": {
         "result": "Tiara-BC_cc-43-50-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -129,9 +149,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Concrete - 43 Mev - 50 cm - 40 cm - 40cm off-axis": {
+    "Concrete - 43 Mev - 50 cm - 40 cm - 40 cm off-axis": {
         "result": "Tiara-BC_cc-43-50-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -146,7 +170,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Concrete - 68 MeV - 100 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_cc-68-100-00 Neutron yield",
@@ -163,7 +191,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Concrete - 68 MeV - 150 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_cc-68-150-00 Neutron yield",
@@ -180,7 +212,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Concrete - 68 MeV - 200 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_cc-68-200-00 Neutron yield",
@@ -197,7 +233,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Concrete - 68 MeV - 25 cm - 80 cm - on-axis": {
         "result": "Tiara-BC_cc-68-25-80 Neutron yield",
@@ -214,9 +254,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Concrete - 68 MeV - 25 cm - 80 cm - 20cm off-axis": {
+    "Concrete - 68 MeV - 25 cm - 80 cm - 20 cm off-axis": {
         "result": "Tiara-BC_cc-68-25-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -231,9 +275,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Concrete - 68 MeV - 25 cm - 80 cm - 40cm off-axis": {
+    "Concrete - 68 MeV - 25 cm - 80 cm - 40 cm off-axis": {
         "result": "Tiara-BC_cc-68-25-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -248,7 +296,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Concrete - 68 MeV - 50 cm - 80 cm - on-axis": {
         "result": "Tiara-BC_cc-68-50-80 Neutron yield",
@@ -265,9 +317,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Concrete - 68 MeV - 50 cm - 80 cm - 20cm off-axis": {
+    "Concrete - 68 MeV - 50 cm - 80 cm - 20 cm off-axis": {
         "result": "Tiara-BC_cc-68-50-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -282,9 +338,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Concrete - 68 MeV - 50 cm - 80 cm - 40cm off-axis": {
+    "Concrete - 68 MeV - 50 cm - 80 cm - 40 cm off-axis": {
         "result": "Tiara-BC_cc-68-50-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -299,9 +359,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
-    "Iron - 43 MeV - 00 cm - 80 cm - 20cm off-axis": {
+    "Iron - 43 MeV - 00 cm - 80 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-43-00-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -316,9 +380,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 43 MeV - 00 cm - 80 cm - 40cm off-axis": {
+    "Iron - 43 MeV - 00 cm - 80 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-43-00-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -333,7 +401,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 43 MeV - 10 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-43-10-00 Neutron yield",
@@ -350,9 +422,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 43 MeV - 10 cm - 70 cm - 20cm off-axis": {
+    "Iron - 43 MeV - 10 cm - 70 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-43-10-70 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -367,9 +443,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 43 MeV - 10 cm - 70 cm - 40cm off-axis": {
+    "Iron - 43 MeV - 10 cm - 70 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-43-10-70 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -384,7 +464,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 43 MeV - 100 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-43-100-00 Neutron yield",
@@ -401,7 +485,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Iron - 43 MeV - 20 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-43-20-00 Neutron yield",
@@ -418,9 +506,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 43 MeV - 20 cm - 60 cm - 20cm off-axis": {
+    "Iron - 43 MeV - 20 cm - 60 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-43-20-60 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -435,9 +527,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 43 MeV - 20 cm - 60 cm - 40cm off-axis": {
+    "Iron - 43 MeV - 20 cm - 60 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-43-20-60 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -452,7 +548,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 43 MeV - 40 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-43-40-00 Neutron yield",
@@ -469,9 +569,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 43 MeV - 40 cm - 40 cm - 20cm off-axis": {
+    "Iron - 43 MeV - 40 cm - 40 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-43-40-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -486,9 +590,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 43 MeV - 40 cm - 40 cm - 40cm off-axis": {
+    "Iron - 43 MeV - 40 cm - 40 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-43-40-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -503,7 +611,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 43 MeV - 70 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-43-70-00 Neutron yield",
@@ -520,9 +632,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 68 MeV - 00 cm - 80 cm - 20cm off-axis": {
+    "Iron - 68 MeV - 00 cm - 80 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-68-00-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -537,9 +653,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 68 MeV - 00 cm - 80 cm - 40cm off-axis": {
+    "Iron - 68 MeV - 00 cm - 80 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-68-00-80 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -554,7 +674,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 68 MeV - 100 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-68-100-00 Neutron yield",
@@ -571,7 +695,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Iron - 68 MeV - 130 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-68-130-00 Neutron yield",
@@ -588,7 +716,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
     "Iron - 68 MeV - 20 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-68-20-00 Neutron yield",
@@ -605,9 +737,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 68 MeV - 20 cm - 60 cm - 20cm off-axis": {
+    "Iron - 68 MeV - 20 cm - 60 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-68-20-60 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -622,9 +758,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 68 MeV - 20 cm - 60 cm - 40cm off-axis": {
+    "Iron - 68 MeV - 20 cm - 60 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-68-20-60 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -639,7 +779,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 68 MeV - 40 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-68-40-00 Neutron yield",
@@ -656,9 +800,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     },
-    "Iron - 68 MeV - 40 cm - 40 cm - 20cm off-axis": {
+    "Iron - 68 MeV - 40 cm - 40 cm - 20 cm off-axis": {
         "result": "Tiara-BC_fe-68-40-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -673,9 +821,13 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "20 cm"
+        ]
     },
-    "Iron - 68 MeV - 40 cm - 40 cm - 40cm off-axis": {
+    "Iron - 68 MeV - 40 cm - 40 cm - 40 cm off-axis": {
         "result": "Tiara-BC_fe-68-40-40 Neutron yield",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -690,7 +842,11 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "40 cm"
+        ]
     },
     "Iron - 68 MeV - 70 cm - 00 cm - on-axis": {
         "result": "Tiara-BC_fe-68-70-00 Neutron yield",
@@ -707,6 +863,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        }
+        },
+        "subset": [
+            "Offset",
+            "on-axis"
+        ]
     }
 }

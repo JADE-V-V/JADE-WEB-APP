@@ -1,4 +1,10 @@
 {
+    "general": {
+        "tally_options_labels": [
+            "tally",
+            "Time after shutdown"
+        ]
+    },
     "Total neutron flux": {
         "result": "ITER_Cyl_SDDR Total neutron flux",
         "substitutions": {
@@ -16,7 +22,7 @@
             "tickformat": ".2e"
         }
     },
-    "Gamma flux at 0s after shutdown": {
+    "Gamma flux - 0s": {
         "result": "ITER_Cyl_SDDR Total gamma flux",
         "substitutions": {
             "Cells": "Location",
@@ -37,7 +43,7 @@
             "0s"
         ]
     },
-    "Gamma flux at 1e6s after shutdown": {
+    "Gamma flux - 1e6s": {
         "result": "ITER_Cyl_SDDR Total gamma flux",
         "substitutions": {
             "Cells": "Location",
@@ -58,7 +64,7 @@
             "1e6s"
         ]
     },
-    "SDDR at 0s after shutdown": {
+    "SDDR - 0s": {
         "result": "ITER_Cyl_SDDR SDDR",
         "substitutions": {
             "Cells": "Location",
@@ -79,7 +85,7 @@
             "0s"
         ]
     },
-    "SDDR at 1e6s after shutdown": {
+    "SDDR - 1e6s": {
         "result": "ITER_Cyl_SDDR SDDR",
         "substitutions": {
             "Cells": "Location",

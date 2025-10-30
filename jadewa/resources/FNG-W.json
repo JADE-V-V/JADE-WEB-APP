@@ -69,7 +69,15 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "5",
+                "15",
+                "25"
+            ]
+        ]
     },
     "Reaction Rates - Nb93 (n,2n) Nb92": {
         "result": "FNG-W_Nb Activation Foils",
@@ -123,7 +131,15 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "only_ratio": true
+        "only_ratio": true,
+        "subset": [
+            "Cells",
+            [
+                "5",
+                "15",
+                "25"
+            ]
+        ]
     },
     "Reaction Rates - Fe56 (n,p) Mn56": {
         "result": "FNG-W_Fe Activation Foils",

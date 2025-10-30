@@ -1,7 +1,7 @@
 {
     "general": {
         "tally_options_labels": [
-            "Parent - MT channel",
+            "Parent (+ MT channel for isotopes)",
             "Tally",
             "Cooldown time"
         ],
@@ -175,7 +175,7 @@
         ]
     },
     "{} - Shutdown dose rate [Sv/h]": {
-        "result": "SDDR",
+        "result": "SDDR totals",
         "substitutions": {
             "Time": "Cooldown time",
             "Value": "SDDR [Sv/h]"
