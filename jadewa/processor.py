@@ -521,29 +521,3 @@ class Processor:
                 tally_names[i] = tally_names[i].replace(temp, orig)
 
         return tally_names
-
-    def get_available_isotopes_materials(
-        self, benchmark: str, library: str, code: str
-    ) -> list[str]:
-        """Get a list of all isotopes or materials available for a given benchmark, library and code
-
-        Parameters
-        ----------
-        benchmark : str
-            Benchmark name
-        library : str
-            Library name
-        code : str
-            Code name
-
-        Returns
-        -------
-        list[str]
-            List of all isotopes or materials available
-        """
-        available_csv = self.status.status[benchmark][library][code][1]
-        available = []
-        for csv in available_csv:
-            available.append(csv[:-4])
-
-        return available
