@@ -198,7 +198,7 @@ def select_visible_libs(fig: Figure, df: list) -> None:
     None
     """
     for trace in fig.data:
-        if trace.name.split("-")[0] in df:
+        if trace.name.rsplit("-", 1)[0] in df:
             trace.visible = True
         else:
             trace.visible = "legendonly"
