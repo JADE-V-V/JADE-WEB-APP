@@ -62,7 +62,6 @@ class TestProcessor:
         assert processor.params["FNS-TOF"]["general"]["generic_tallies"] is True
         # Check that the tally was properly generated from CSV
         assert "Be - 5 cm - 24.9°" in processor.params["FNS-TOF"]
-        print(len(processor.params["FNS-TOF"]))
         assert len(processor.params["FNS-TOF"]) == 2
 
     def test_get_graph_data(self, processor: Processor):
