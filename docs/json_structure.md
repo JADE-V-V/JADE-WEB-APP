@@ -45,9 +45,9 @@ The following, instead, are the available options for each tally configuration.
 
 <dl>
   <dt>result</dt>
-  <dd> the name of the .csv file in the raw data repository that contains the data to plot. 
-  If a generic tally is being defined and the corresponding .csv files follow the naming convention "benchmark_option1-option2 tallyname.csv", only the tallyname should be specified for this configuration 
-  option.<dd>  
+  <dd> it can either be a string of a list of strings. If it's a single string, it is interpreted as the name of the .csv file in the raw data repository that contains the data to plot. If it's a list of strings, it corresponds to the group of .csv files in the raw data repository whose data will be plotted together.
+  If a generic tally is being defined and the corresponding .csv files follow the naming convention "benchmark_option1-option2 tallyname.csv", only the tallyname should be specified for this configuration option.
+  The same .csv file can be used across different tally dictionaries.<dd>  
   <dt>plot_type</dt>
   <dd>at the moment the available plot types are `step`, `scatter` and `grouped_bar`. You can check the webapp directly to have a feeling of how these plots look like.</dd>
   <dt>plot_args</dt>
