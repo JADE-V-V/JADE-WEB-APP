@@ -53,7 +53,7 @@ def get_figure(
     if fig:
         # Define the labels for the available libraries in the benchmark
         libraries = [
-            trace.name.split("-")[0]
+            trace.name.rsplit("-", 1)[0]
             for trace in fig.data
             if bool(re.search("-", trace.name))
         ]
