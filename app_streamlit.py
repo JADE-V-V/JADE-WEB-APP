@@ -21,7 +21,7 @@ from jadewa.utils import (
 # Get list of CSV files in current directory
 OWNER = "JADE-V-V"
 REPO = "JADE-RAW-RESULTS"
-BRANCH = "jade_v4_raw_results"
+BRANCH = "main"
 
 
 # Initialize status and processor

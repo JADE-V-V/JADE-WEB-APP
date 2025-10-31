@@ -53,9 +53,7 @@ class TestStatus:
 
     def test_from_github(self):
         """Test the from_github method"""
-        status = Status.from_github(
-            "JADE-V-V", "JADE-RAW-RESULTS", branch="jade_v4_raw_results"
-        )
+        status = Status.from_github("JADE-V-V", "JADE-RAW-RESULTS", branch="main")
         assert isinstance(status, Status)
         csvs = status.get_results("Sphere", "FENDL 3.2c", "mcnp")
         assert len(csvs[1]) > 100
