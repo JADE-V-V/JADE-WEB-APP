@@ -162,7 +162,6 @@ class Processor:
         refcode: str = "mcnp",
         ratio: bool = False,
         x_vals_to_string: bool = None,
-        sum_by: str = None,
         subset: tuple[str, str | list] = None,
     ) -> pd.DataFrame:
         """Get data for a specific graph
@@ -183,9 +182,6 @@ class Processor:
             Columns to convert. The x values will be converted to string, by default False.
             In this process, floats and int representation of integers will be
             converted to the same value.
-        sum_by: str, optional
-            if provided, the df is groubed by the specified column, sum and
-            index is then reserted, by default None.
         subset: tuple[str, str | list], optional
             if provided, the df is filtered by the specified column-value couple, by default None.
 
@@ -399,7 +395,6 @@ class Processor:
             ratio=ratio,
             refcode=refcode,
             x_vals_to_string=x_vals_to_string,
-            sum_by=self._get_optional_config("sum_by", benchmark, tally),
             subset=self._get_optional_config("subset", benchmark, tally),
         )
         # Mandatory keys

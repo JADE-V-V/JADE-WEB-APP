@@ -40,10 +40,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "0s"
@@ -65,10 +61,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "2.7h"
@@ -90,10 +82,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "24h"
@@ -115,10 +103,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "11.6d"
@@ -140,10 +124,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "30d"
@@ -165,10 +145,6 @@
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "sum_by": [
-            "Time",
-            "Energy"
-        ],
         "subset": [
             "Time",
             "10y"
