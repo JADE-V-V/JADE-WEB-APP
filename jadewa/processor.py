@@ -172,7 +172,7 @@ class Processor:
         benchmark : str
             benchmark name
         reflib : str
-            library to be used as reference (e.g. FENDL 2.1c)
+            library to be used as reference (e.g. FENDL 2.1)
         tally : str
             tally to be plotted (code).
         refcode : str, optional

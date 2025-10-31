@@ -11,7 +11,7 @@ import streamlit as st
 from f4enix.input.libmanager import LibManager
 
 LIB_NAMES = [
-    "FENDL 2.1c",
+    "FENDL 2.1",
     "FENDL 3.0",
     "FENDL 3.1d",
     "FENDL 3.2b",

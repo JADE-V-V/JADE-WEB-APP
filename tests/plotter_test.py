@@ -15,7 +15,7 @@ TEST_DF = pd.DataFrame(
 
 fig = Figure(
     data=[
-        go.Scatter(x=[1, 2, 3], y=[4, 5, 6], name="FENDL 2.1c-mcnp"),
+        go.Scatter(x=[1, 2, 3], y=[4, 5, 6], name="FENDL 2.1-mcnp"),
         go.Bar(x=[1, 2, 3], y=[4, 5, 6], name="FENDL 3.0-mcnp"),
         go.Scatter(x=[1, 2, 3], y=[4, 5, 6], name="FENDL 3.1d-mcnp"),
         go.Bar(x=[1, 2, 3], y=[4, 5, 6], name="FENDL 3.2b-mcnp"),
