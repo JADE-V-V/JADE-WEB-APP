@@ -1,12 +1,13 @@
-"""Test the status module
-"""
+"""Test the status module"""
 
 import os
 from importlib.resources import files
-import pytest
-from jadewa.status import Status
-import tests.resources.status as res
+
 import pandas as pd
+import pytest
+
+import tests.resources.status as res
+from jadewa.status import Status
 
 
 class StatusMockup(Status):
@@ -38,25 +39,29 @@ class TestStatus:
 
     def test_get_libraries(self, status: Status):
         """Test the get_libraries method"""
-        assert set(status.get_libraries("ITER_1D")) == {"00c", "32c"}
+        assert set(status.get_libraries("ITER_1D")) == {"ENDFB-VIII.0", "FENDL 3.2b"}
 
     def test_get_codes(self, status: Status):
         """Test the get_codes method"""
-        assert status.get_codes("ITER_1D", "00c") == ["mcnp"]
+        assert status.get_codes("ITER_1D", "ENDFB-VIII.0") == ["mcnp"]
 
     def test_get_results(self, status: Status):
         """Test the get_results method"""
-        path, files_res = status.get_results("ITER_1D", "00c", "mcnp")
+        path, files_res = status.get_results("ITER_1D", "ENDFB-VIII.0", "mcnp")
         assert os.path.exists(os.path.join(path, files_res[0]))
-        assert len(files_res) == 23
+        assert len(files_res) == 6
 
     def test_from_github(self):
         """Test the from_github method"""
-        status = Status.from_github("JADE-V-V", "JADE-RAW-RESULTS")
+        status = Status.from_github(
+            "JADE-V-V", "JADE-RAW-RESULTS", branch="jade_v4_raw_results"
+        )
         assert isinstance(status, Status)
-        csvs = status.get_results("Sphere", "32c", "mcnp")
+        csvs = status.get_results("Sphere", "FENDL 3.2c", "mcnp")
         assert len(csvs[1]) > 100
-        assert pd.read_csv(csvs[0] + "/" + csvs[1][0] + "?raw=true") is not None
+        path = csvs[0] + "/" + csvs[1][0] + "?raw=true"
+        formatted_path = path.replace(" ", "%20")
+        assert pd.read_csv(formatted_path) is not None
         assert status.metadata_df is None
         status.get_metadata_df()
         assert len(status.metadata_df) > 1

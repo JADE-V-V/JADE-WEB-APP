@@ -3,9 +3,9 @@ import pytest
 
 from jadewa.utils import (
     find_dict_depth,
-    get_mat_iso_code,
-    get_pretty_mat_iso_names,
+    get_info_dfs,
     safe_add_ctg_to_dict,
+    sorting_func,
     string_ints_converter,
 )
 
@@ -13,20 +13,22 @@ from jadewa.utils import (
 class TestUtils:
     """Test the utility functions"""
 
-    def test_get_pretty_mat_iso_names(self):
-        """Test the get_pretty_mat_iso_names function"""
-        names = ["10001", "1001", "M900"]
-        pretty_names = get_pretty_mat_iso_names(names)
-        assert pretty_names == ["Natural Silicon", "H-1", "Ne-1"]
-        for pretty_name, code in zip(pretty_names, names):
-            assert get_mat_iso_code(pretty_name) == code
-
-    def test_get_mat_iso_code(self):
-        """Test the get_mat_iso_code function"""
-        names = ["Natural Silicon", "H-1", "Ne-1"]
-        codes = ["M900", "1001", "10001"]
-        for name, code in zip(names, codes):
-            assert get_mat_iso_code(name) == code
+    def test_sorting_func(self):
+        """Test the sorting_func function with only material strings"""
+        options = [
+            "98254_Cf-254",
+            "1002_H-2",
+            "M901_Polyethylene-(non-borated)",
+            "30068_Zn-68",
+        ]
+        # Expected: materials sorted by number, then isotopes sorted by number
+        sorted_options = sorted(options, key=sorting_func)
+        assert sorted_options == [
+            "M901_Polyethylene-(non-borated)",
+            "1002_H-2",
+            "30068_Zn-68",
+            "98254_Cf-254",
+        ]
 
     def test_string_ints_converter(self):
         """Test the string_ints_converter function"""
@@ -79,3 +81,21 @@ class TestUtils:
         safe_add_ctg_to_dict(dictionary, ["A", "B", "X"], "E")
         assert dictionary["A"]["B"]["X"] == ["E"]
         assert list(dictionary["A"]["B"].keys()) == ["C", "X"]
+
+    def test_get_info_dfs(self):
+        """Test the get_info_dfs function"""
+        # Create a simple metadata DataFrame
+        data = [
+            {"benchmark_name": "B1", "library": "L1", "code": "C1", "Available": True},
+            {"benchmark_name": "B1", "library": "L2", "code": "C1", "Available": True},
+            {"benchmark_name": "B2", "library": "L1", "code": "C2", "Available": False},
+            {"benchmark_name": "B3", "library": "L3", "code": "d1s", "Available": True},
+        ]
+        df = pd.DataFrame(data)
+        sorted_df, df_sddr, df_no_sddr = get_info_dfs(df)
+        # Check that sorted_df is a DataFrame and has the correct index
+        assert isinstance(sorted_df, pd.DataFrame)
+        assert list(sorted_df.index.names) == ["benchmark_name", "library", "code"]
+        # Check that df_sddr and df_no_sddr are DataFrames
+        assert isinstance(df_sddr, pd.DataFrame)
+        assert isinstance(df_no_sddr, pd.DataFrame)

@@ -172,21 +172,16 @@ class Status:
         for path, _, files in allfiles:
             path = os.path.normpath(path)
             pieces = path.split(os.sep)
-            # handle libraries with hyphens and spaces in the name differently
-            if len(pieces[-2].split("-")) > 2:
-                library = (
-                    pieces[-2].split("-")[-2] + "-" + pieces[-2].split("-")[-1]
-                ).replace("_", "")
-            else:
-                library = (
-                    pieces[-3]
-                    .split("-")[-1]
-                    .replace("_", "")
-                    .replace("%20", " ")
-                    .replace("%2B", "+")
-                )
+            # Extract code and library from pieces[-2] which has format _code_-_library_
+            # Split on the first hyphen to separate code from library
+            code_library = pieces[-2]
+            # Find the position of the separator (hyphen between code and library)
+            # The format is _code_-_library_, so we split on "-" and take first as code, rest as library
+            parts = code_library.split("-", 1)  # Split on first hyphen only
+            code = parts[0].replace("_", "")
+            library = parts[1].replace("_", "").replace("%20", " ").replace("%2B", "+")
+
             benchmark = pieces[-1]
-            code = pieces[-2].split("-")[0].replace("_", "")
             # retain only .csv files
             newfiles = []
             for file in files:
