@@ -1,14 +1,14 @@
 {
-    "214": {
-        "tally_name": "Neutron Heating",
+    "Neutron heating": {
+        "result": "WCLL_TBM_1D Neutron heating",
         "substitutions": {
             "Cor A": "Radial distance [cm]",
-            "Value": "Ratio of Neutron Heating"
+            "Value": "Ratio of Neutron heating"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Radial distance [cm]",
-            "y": "Ratio of Neutron Heating",
+            "y": "Ratio of Neutron heating",
             "log_x": false,
             "log_y": false
         },
@@ -17,16 +17,16 @@
         },
         "only_ratio": true
     },
-    "224": {
-        "tally_name": "Photon Heating",
+    "Photon heating": {
+        "result": "WCLL_TBM_1D Photon heating",
         "substitutions": {
             "Cor A": "Radial distance [cm]",
-            "Value": "Ratio of Photon Heating"
+            "Value": "Ratio of Photon heating"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Radial distance [cm]",
-            "y": "Ratio of Photon Heating",
+            "y": "Ratio of Photon heating",
             "log_x": false,
             "log_y": false
         },
@@ -35,16 +35,16 @@
         },
         "only_ratio": true
     },
-    "234": {
-        "tally_name": "Tritium Production",
+    "Tritium production": {
+        "result": "WCLL_TBM_1D Tritium Production",
         "substitutions": {
             "Cor A": "Radial distance [cm]",
-            "Value": "Ratio of Tritium Production"
+            "Value": "Ratio of Tritium production"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Radial distance [cm]",
-            "y": "Ratio of Tritium Production",
+            "y": "Ratio of Tritium production",
             "log_x": false,
             "log_y": false
         },
@@ -53,16 +53,16 @@
         },
         "only_ratio": true
     },
-    "244": {
-        "tally_name": "Neutron Flux",
+    "Neutron flux": {
+        "result": "WCLL_TBM_1D Neutron flux",
         "substitutions": {
             "Cor A": "Radial distance [cm]",
-            "Value": "Ratio of Neutron Flux"
+            "Value": "Ratio of Neutron flux"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Radial distance [cm]",
-            "y": "Ratio of Neutron Flux",
+            "y": "Ratio of Neutron flux",
             "log_x": false,
             "log_y": false
         },
@@ -71,16 +71,16 @@
         },
         "only_ratio": true
     },
-    "254": {
-        "tally_name": "Photon Flux",
+    "Photon flux": {
+        "result": "WCLL_TBM_1D Photon flux",
         "substitutions": {
             "Cor A": "Radial distance [cm]",
-            "Value": "Ratio of Photon Flux"
+            "Value": "Ratio of Photon flux"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Radial distance [cm]",
-            "y": "Ratio of Photon Flux",
+            "y": "Ratio of Photon flux",
             "log_x": false,
             "log_y": false
         },

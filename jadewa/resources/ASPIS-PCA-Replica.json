@@ -1,0 +1,90 @@
+{
+    "Neutron Spectra - z = 39.01cm": {
+        "result": "ASPIS-PCA-Replica_flux Neutron flux (z=39.01cm)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Spectrum [Flux/lethargy/NESTOR Watt]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Spectrum [Flux/lethargy/NESTOR Watt]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Neutron Spectra - z = 58.61cm": {
+        "result": "ASPIS-PCA-Replica_flux Neutron flux (z=58.61cm)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Spectrum [Flux/lethargy/NESTOR Watt]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Spectrum [Flux/lethargy/NESTOR Watt]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Reaction Rates - In115 (n,n’) In115m": {
+        "result": "ASPIS-PCA-Replica_In Reaction Rate In",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Reaction Rates - Rh103 (n,n’) Rh103m": {
+        "result": "ASPIS-PCA-Replica_Rh Reaction Rate Rh",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Reaction Rates - S32 (n,p) P32": {
+        "result": "ASPIS-PCA-Replica_S Reaction Rate S",
+        "substitutions": {
+            "Cells": "Shielding thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    }
+}

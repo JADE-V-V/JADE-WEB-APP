@@ -1,0 +1,488 @@
+{
+    "Neutron fluence - HPD energy group": {
+        "result": "RCR-SS_SR Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Neutron fluence - SSD energy group": {
+        "result": "RCR-SS_SR Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Surface reaction rates - Total": {
+        "result": [
+            "RCR-SS_SR Total Reaction Rate Ni (SR)",
+            "RCR-SS_SR Total Reaction Rate In1",
+            "RCR-SS_SR Total Reaction Rate In2"
+        ],
+        "substitutions": {
+            "Cells": "Reaction",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Reaction",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Surface reaction rates - Cumulative - 58Ni(n,p)58Co": {
+        "result": "RCR-SS_SR Cumulative Reaction Rate Ni (SR)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Surface reaction rates - Cumulative - 115In(n,n')115mIn": {
+        "result": "RCR-SS_SR Cumulative Reaction Rate In1",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Surface reaction rates - Cumulative - 115In(n,g)116In": {
+        "result": "RCR-SS_SR Cumulative Reaction Rate In2",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Total - 58Ni(n,p)58Co": {
+        "result": "RCR-SS_RI Total Reaction Rates Ni (RI)",
+        "substitutions": {
+            "Cells": "Steel thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Steel thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Interior reaction rates - Total - 197Au(n,g)198Au": {
+        "result": "RCR-SS_RI Total Reaction Rates Au",
+        "substitutions": {
+            "Cells": "Steel thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Steel thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Interior reaction rates - Total - 181Ta(n,g)182Ta": {
+        "result": "RCR-SS_RI Total Reaction Rates Ta",
+        "substitutions": {
+            "Cells": "Steel thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Steel thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Interior reaction rates - Total - 63Cu(n,g)64Cu": {
+        "result": "RCR-SS_RI Total Reaction Rates Cu",
+        "substitutions": {
+            "Cells": "Steel thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Steel thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Interior reaction rates - Total - 93Nb(n,2n)92mNb": {
+        "result": "RCR-SS_RI Total Reaction Rate Nb",
+        "substitutions": {
+            "Cells": "Steel thickness [cm]",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Steel thickness [cm]",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Interior reaction rates - Cumulative - 58Ni(n,p)58Co - 5.04 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ni (RI) pos 1",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 58Ni(n,p)58Co - 10.08 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ni (RI) pos 2",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 58Ni(n,p)58Co - 15.12 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ni (RI) pos 3",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 58Ni(n,p)58Co - 20.16 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ni (RI) pos 4",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 197Au(n,g)198Au - 5.04 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Au pos 1",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 197Au(n,g)198Au - 10.08 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Au pos 2",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 197Au(n,g)198Au - 15.12 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Au pos 3",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 197Au(n,g)198Au - 20.16 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Au pos 4",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 181Ta(n,g)182Ta - 5.04 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ta pos 1",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 181Ta(n,g)182Ta - 10.08 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ta pos 2",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 181Ta(n,g)182Ta - 15.12 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ta pos 3",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 181Ta(n,g)182Ta - 20.16 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Ta pos 4",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 63Cu(n,g)64Cu - 5.04 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Cu pos 1",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 63Cu(n,g)64Cu - 10.08 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Cu pos 2",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 63Cu(n,g)64Cu - 15.12 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Cu pos 3",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 63Cu(n,g)64Cu - 20.16 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rates Cu pos 4",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "Interior reaction rates - Cumulative - 93Nb(n,2n)92mNb - 10.08 cm of steel thickness": {
+        "result": "RCR-SS_RI Cumulative Reaction Rate Nb",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    }
+}

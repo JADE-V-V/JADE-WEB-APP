@@ -1,6 +1,11 @@
 {
-    "FNG1 4": {
-        "tally_name": "SDDR - 1st campaign",
+    "general": {
+        "tally_options_labels": [
+            "SDDR Campaign"
+        ]
+    },
+    "1st campaign": {
+        "result": "FNG-SDDR_1 SDDR in air irr. 1",
         "substitutions": {
             "Time": "Cooldown time",
             "Value": "SDDR [Sv/h]"
@@ -12,16 +17,29 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "x_axis_format": {
             "tickmode": "array",
-            "tickvals": [86400, 604800, 1296000, 2592000, 5184000],
-            "ticktext": ["1d", "7d", "15d", "30d", "60d"]
+            "tickvals": [
+                86400,
+                604800,
+                1296000,
+                2592000,
+                5184000
+            ],
+            "ticktext": [
+                "1d",
+                "7d",
+                "15d",
+                "30d",
+                "60d"
+            ]
         }
     },
-
-    "FNG2 4": {
-        "tally_name": "SDDR - 2nd campaign",
+    "2nd campaign": {
+        "result": "FNG-SDDR_2 SDDR in air irr. 2",
         "substitutions": {
             "Time": "Cooldown time [s]",
             "Value": "SDDR [Sv/h]"
@@ -33,7 +51,11 @@
             "log_x": false,
             "log_y": true
         },
-        "y_axis_format": {"tickformat": ".2e"},
-        "x_axis_format": {"tickformat": ".2e"}
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "x_axis_format": {
+            "tickformat": ".2e"
         }
+    }
 }

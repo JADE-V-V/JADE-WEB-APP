@@ -4,11 +4,11 @@ and their locations.
 """
 
 from __future__ import annotations
+
 import os
-import requests
+
 import pandas as pd
-from jadewa.utils import LIB_NAMES
-from jadewa.utils import GITHUB_HEADERS
+import requests
 
 
 class Status:
@@ -57,8 +57,7 @@ class Status:
         """
         metadata_rows = []
         for path in self.metadata_paths:
-            r = requests.get(path, timeout=5, headers=GITHUB_HEADERS)
-            r.raise_for_status()
+            r = requests.get(path, timeout=5)
             metadata_rows.append(r.json())
 
         self.metadata_df = pd.DataFrame(metadata_rows)
@@ -66,7 +65,7 @@ class Status:
     @staticmethod
     def _github_walk(owner: str, repo: str, branch: str = "main"):
         url = f"https://api.github.com/repos/{owner}/{repo}/git/trees/{branch}?recursive=1"
-        r = requests.get(url, timeout=10, headers=GITHUB_HEADERS)
+        r = requests.get(url, timeout=10)
         r.raise_for_status()
         data = r.json()
 
@@ -90,8 +89,8 @@ class Status:
         Status
             Status object
         """
-        # structure in the root directory goes library -> benchmark ->
-        # code -> results.
+        # structure in the root directory goes _code_-_library_ -> benchmark ->
+        # -> results.
 
         # First get all last level directories
         allfiles = []
@@ -104,13 +103,24 @@ class Status:
         # create the nested dict for the status
         status = {}
         metadata_paths = []
-        # start_url = f"https://github.com/{owner}/{repo}/blob/{branch}/"
-        start_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/"
+        start_url = f"https://github.com/{owner}/{repo}/raw/{branch}/"
         for path in allfiles:
             pieces = path.split("/")
-            library = pieces[-5]
-            benchmark = pieces[-4]
-            code = pieces[-3]
+            # handle libraries with hyphens and spaces in the name differently
+            if len(pieces[-3].split("-")) > 2:
+                library = (
+                    pieces[-3].split("-")[-2] + "-" + pieces[-3].split("-")[-1]
+                ).replace("_", "")
+            else:
+                library = (
+                    pieces[-3]
+                    .split("-")[-1]
+                    .replace("_", "")
+                    .replace("%20", " ")
+                    .replace("%2B", "+")
+                )
+            benchmark = pieces[-2]
+            code = pieces[-3].split("-")[0].replace("_", "")
             file = pieces[-1]
             # store the .csv files
             if file.endswith(".csv"):
@@ -129,7 +139,6 @@ class Status:
                 # r = requests.get(json_path, timeout=5)
                 # metadata_rows.append(r.json())
                 metadata_paths.append(json_path)
-
         # df = pd.DataFrame(metadata_rows)
 
         return cls(status, metadata_paths)
@@ -149,13 +158,13 @@ class Status:
         Status
             Status object
         """
-        # structure in the root directory goes library -> benchmark ->
-        # code -> results.
+        # structure in the root directory goes _code_-_library_ -> benchmark ->
+        # -> results.
 
         # First get all last level directories
         allfiles = []
         for i in os.walk(root):
-            if os.path.basename(i[0]) == "Raw_Data":
+            if any(f.endswith(".csv") for f in i[2]):
                 allfiles.append(i)
 
         # build a flat dict
@@ -163,9 +172,16 @@ class Status:
         for path, _, files in allfiles:
             path = os.path.normpath(path)
             pieces = path.split(os.sep)
-            library = pieces[-4]
-            benchmark = pieces[-3]
-            code = pieces[-2]
+            # Extract code and library from pieces[-2] which has format _code_-_library_
+            # Split on the first hyphen to separate code from library
+            code_library = pieces[-2]
+            # Find the position of the separator (hyphen between code and library)
+            # The format is _code_-_library_, so we split on "-" and take first as code, rest as library
+            parts = code_library.split("-", 1)  # Split on first hyphen only
+            code = parts[0].replace("_", "")
+            library = parts[1].replace("_", "").replace("%20", " ").replace("%2B", "+")
+
+            benchmark = pieces[-1]
             # retain only .csv files
             newfiles = []
             for file in files:
@@ -196,15 +212,13 @@ class Status:
         """
         return list(self.status.keys())
 
-    def get_libraries(self, benchmark: str, pretty: bool = False) -> list[str]:
+    def get_libraries(self, benchmark: str) -> list[str]:
         """Get a list of all libraries available for a given benchmark
 
         Parameters
         ----------
         benchmark : str
             Benchmark name
-        pretty : bool, optional
-            if True, return the pretty names, by default False
 
         Returns
         -------
@@ -212,14 +226,8 @@ class Status:
             List of all libraries available
         """
         # Use the pretty names
-        if pretty:
-            libs = []
-            for lib in self.status[benchmark].keys():
-                libs.append(LIB_NAMES[lib])
-        else:
-            libs = list(self.status[benchmark].keys())
 
-        return libs
+        return list(self.status[benchmark].keys())
 
     def get_codes(self, benchmark: str, library: str) -> list[str]:
         """Get a list of all codes available for a given library and benchmark

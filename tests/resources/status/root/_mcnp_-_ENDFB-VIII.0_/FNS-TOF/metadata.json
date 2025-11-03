@@ -1,0 +1,9 @@
+{
+    "benchmark_version": "1.0",
+    "jade_run_version": "3.0.1",
+    "benchmark_name": "FNS-TOF",
+    "library": "ENDFB-VIII.0",
+    "code": "mcnp",
+    "jade_version": "3.1.1.dev181+g8162787",
+    "code_version": "6.2"
+}

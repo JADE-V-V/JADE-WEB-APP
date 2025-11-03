@@ -1,0 +1,94 @@
+{
+    "general": {
+        "generic_tallies": true
+    },
+    "{} - Neutron fluence - HPD energy group": {
+        "result": "Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron fluence - SSD energy group": {
+        "result": "Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron fluence [1/MeV/cm^2/n]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron fluence [1/MeV/cm^2/n]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Reaction rates - Total": {
+        "result": [
+            "Total Reaction Rate In",
+            "Total Reaction Rate Ni"
+        ],
+        "substitutions": {
+            "Cells": "Reaction",
+            "Value": "C/E (Reaction rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Reaction",
+            "y": "C/E (Reaction rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "{} - Reaction rates - Cumulative - 115In(n,n')115mIn": {
+        "result": "Cumulative Reaction Rate In",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Reaction rates - Cumulative - 58Ni(n,p)58Co": {
+        "result": "Cumulative Reaction Rate Ni",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Normalized Cumulative Reaction Rate [%]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Normalized Cumulative Reaction Rate [%]",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    }
+}

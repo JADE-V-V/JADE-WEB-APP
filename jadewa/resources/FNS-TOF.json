@@ -1,105 +1,96 @@
 {
     "general": {
         "tally_options_labels": [
-            "Material",
-            "Thickness",
+            "material",
+            "Shielding thickness",
             "Angle"
         ],
         "generic_tallies": true
     },
-    "5": {
-        "tally_name": "{} - {} cm - 0°",
+    "{} - {} cm - 0°": {
+        "result": "Neutron leakage flux at 0 deg",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+            "Value": "C/E (Leakage lethargy flux)"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "y": "C/E (Leakage lethargy flux)",
+            "log_x": true,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - {} cm - 12.2°": {
+        "result": "Neutron leakage flux at 12.2 deg",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "C/E (Leakage lethargy flux)"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "C/E (Leakage lethargy flux)",
             "log_x": true,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
         },
-        "compute_lethargy": true,
         "only_ratio": true
     },
-    "15": {
-        "tally_name": "{} - {} cm - 12.2°",
+    "{} - {} cm - 24.9°": {
+        "result": "Neutron leakage flux at 24.9 deg",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+            "Value": "C/E (Leakage lethargy flux)"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "y": "C/E (Leakage lethargy flux)",
             "log_x": true,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true,
-        "only_ratio": true
+        }
     },
-    "25": {
-        "tally_name": "{} - {} cm - 24.9°",
+    "{} - {} cm - 41.8°": {
+        "result": "Neutron leakage flux at 41.8 deg",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+            "Value": "C/E (Leakage lethargy flux)"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "y": "C/E (Leakage lethargy flux)",
             "log_x": true,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true,
-        "only_ratio": true
+        }
     },
-    "35": {
-        "tally_name": "{} - {} cm - 41.8°",
+    "{} - {} cm - 66.8°": {
+        "result": "Neutron leakage flux at 66.8 deg",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
+            "Value": "C/E (Leakage lethargy flux)"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
+            "y": "C/E (Leakage lethargy flux)",
             "log_x": true,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true,
-        "only_ratio": true
-    },
-    "45": {
-        "tally_name": "{} - {} cm - 66.8°",
-        "substitutions": {
-            "Energy": "Energy [MeV]",
-            "Value": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]"
-        },
-        "plot_type": "step",
-        "plot_args": {
-            "x": "Energy [MeV]",
-            "y": "C/E Leakage lethargy flux [1/n/sr/u/cm^2]",
-            "log_x": true,
-            "log_y": false
-        },
-        "y_axis_format": {
-            "tickformat": ".2e"
-        },
-        "compute_lethargy": true,
-        "only_ratio": true
+        }
     }
 }

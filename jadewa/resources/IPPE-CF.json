@@ -1,0 +1,213 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "Iron sphere diameter",
+            "Tally",
+            "Energy group"
+        ]
+    },
+    "20 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S1_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "20 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S1_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "30 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S2_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "30 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S2_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "40 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S3_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "40 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S3_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "50 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S4_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "50 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S4_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "60 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S5_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "60 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S5_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "70 cm - Neutron flux - HPD": {
+        "result": "IPPE-CF_FE_S6_NP Neutron flux HPD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "70 cm - Neutron flux - SSD": {
+        "result": "IPPE-CF_FE_S6_NP Neutron flux SSD",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [1/MeV/n/cm^2]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    }
+}

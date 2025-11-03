@@ -1,204 +1,199 @@
 {
-    "Al 21": {
-        "tally_name": "Al - neutron leakage spectrum",
+    "general": {
+        "tally_options_labels": [
+            "sphere material",
+            "Tally"
+        ]
+    },
+    "Al - Neutron leakage spectrum": {
+        "result": "Oktavian_Al Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Co 21": {
-        "tally_name": "Co - neutron leakage spectrum",
+    "Co - Neutron leakage spectrum": {
+        "result": "Oktavian_Co Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Cr 21": {
-        "tally_name": "Cr - neutron leakage spectrum",
+    "Cr - Neutron leakage spectrum": {
+        "result": "Oktavian_Cr Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Cu 21": {
-        "tally_name": "Cu - neutron leakage spectrum",
+    "Cu - Neutron leakage spectrum": {
+        "result": "Oktavian_Cu Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "LiF 21": {
-        "tally_name": "LiF - neutron leakage spectrum",
+    "LiF - Neutron leakage spectrum": {
+        "result": "Oktavian_LiF Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Mn 21": {
-        "tally_name": "Mn - neutron leakage spectrum",
+    "Mn - Neutron leakage spectrum": {
+        "result": "Oktavian_Mn Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Mo 21": {
-        "tally_name": "Mo - neutron leakage spectrum",
+    "Mo - Neutron leakage spectrum": {
+        "result": "Oktavian_Mo Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Si 21": {
-        "tally_name": "Si - neutron leakage spectrum",
+    "Si - Neutron leakage spectrum": {
+        "result": "Oktavian_Si Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Ti 21": {
-        "tally_name": "Ti - neutron leakage spectrum",
+    "Ti - Neutron leakage spectrum": {
+        "result": "Oktavian_Ti Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "W 21": {
-        "tally_name": "W - neutron leakage spectrum",
+    "W - Neutron leakage spectrum": {
+        "result": "Oktavian_W Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Zr 21": {
-        "tally_name": "Zr - neutron leakage spectrum",
+    "Zr - Neutron leakage spectrum": {
+        "result": "Oktavian_Zr Neutron flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron leakage spectrum per unit lethargy [1/u/n]"
+            "Value": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron leakage spectrum per unit lethargy [1/u/n]",
+            "y": "Neutron leakage spectrum per unit lethargy [n/cm^2/s/u]",
             "log_x": true,
             "log_y": true
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_lethargy": true
+        }
     },
-    "Al 41": {
-        "tally_name": "Al - Photon leakage spectrum",
+    "Al - Photon leakage spectrum": {
+        "result": "Oktavian_Al Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -212,11 +207,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Co 41": {
-        "tally_name": "Co - Photon leakage spectrum",
+    "Co - Photon leakage spectrum": {
+        "result": "Oktavian_Co Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -230,11 +224,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Cr 41": {
-        "tally_name": "Cr - Photon leakage spectrum",
+    "Cr - Photon leakage spectrum": {
+        "result": "Oktavian_Cr Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -248,11 +241,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Cu 41": {
-        "tally_name": "Cu - Photon leakage spectrum",
+    "Cu - Photon leakage spectrum": {
+        "result": "Oktavian_Cu Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -266,11 +258,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "LiF 41": {
-        "tally_name": "LiF - Photon leakage spectrum",
+    "LiF - Photon leakage spectrum": {
+        "result": "Oktavian_LiF Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -284,11 +275,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Mn 41": {
-        "tally_name": "Mn - Photon leakage spectrum",
+    "Mn - Photon leakage spectrum": {
+        "result": "Oktavian_Mn Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -302,11 +292,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Mo 41": {
-        "tally_name": "Mo - Photon leakage spectrum",
+    "Mo - Photon leakage spectrum": {
+        "result": "Oktavian_Mo Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -320,11 +309,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Si 41": {
-        "tally_name": "Si - Photon leakage spectrum",
+    "Si - Photon leakage spectrum": {
+        "result": "Oktavian_Si Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -338,11 +326,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "Ti 41": {
-        "tally_name": "Ti - Photon leakage spectrum",
+    "Ti - Photon leakage spectrum": {
+        "result": "Oktavian_Ti Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -356,11 +343,10 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     },
-    "W 41": {
-        "tally_name": "W - Photon leakage spectrum",
+    "W - Photon leakage spectrum": {
+        "result": "Oktavian_W Photon flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -374,7 +360,6 @@
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "compute_per_unit_bin": "Energy"
+        }
     }
 }

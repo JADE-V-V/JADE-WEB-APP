@@ -53,7 +53,7 @@ def get_figure(
     if fig:
         # Define the labels for the available libraries in the benchmark
         libraries = [
-            trace.name.split("-")[0]
+            trace.name.rsplit("-", 1)[0]
             for trace in fig.data
             if bool(re.search("-", trace.name))
         ]
@@ -89,7 +89,7 @@ def _plot_step(data: pd.DataFrame, **keyargs) -> Figure:
         data, **keyargs, color="label", template="plotly_white", line_shape="hv"
     )
     # Experimental data usually have siginificant error that should be traced
-    experimental_data = data[data["label"] == "experiment-experiment"]
+    experimental_data = data[data["label"] == "_exp_-_exp_"]
     if len(experimental_data) > 0:
         x = experimental_data[keyargs["x"]].values
         y = experimental_data[keyargs["y"]].values
@@ -198,7 +198,7 @@ def select_visible_libs(fig: Figure, df: list) -> None:
     None
     """
     for trace in fig.data:
-        if trace.name.split("-")[0] in df:
+        if trace.name.rsplit("-", 1)[0] in df:
             trace.visible = True
         else:
             trace.visible = "legendonly"

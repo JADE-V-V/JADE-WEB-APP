@@ -1,213 +1,244 @@
 {
     "general": {
-        "tally_options_labels": ["Material", "Source", "Shield"]
+        "tally_options_labels": [
+            "shielding material",
+            "Source",
+            "Shielding thickness",
+            "Angle"
+        ]
     },
-    "cc-43-25": {
-        "tally_name": "Concrete - 43 MeV - 25 cm",
+    "Concrete - 43 MeV - 25 cm - 40 cm off-axis": {
+        "result": "Tiara-BS_cc-43-25-40 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-43-50": {
-        "tally_name": "Concrete - 43 MeV - 50 cm",
+    "Concrete - 43 MeV - 50 cm - 40 cm off-axis": {
+        "result": "Tiara-BS_cc-43-50-40 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-43-100": {
-        "tally_name": "Concrete - 43 MeV - 100 cm",
+    "Concrete - 43 MeV - 100 cm - on-axis": {
+        "result": "Tiara-BS_cc-43-100-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-43-150": {
-        "tally_name": "Concrete - 43 MeV - 150 cm",
+    "Concrete - 43 MeV - 150 cm - on-axis": {
+        "result": "Tiara-BS_cc-43-150-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-68-50": {
-        "tally_name": "Concrete - 68 MeV - 50 cm",
+    "Concrete - 68 MeV - 50 cm - on-axis": {
+        "result": "Tiara-BS_cc-68-50-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-68-100": {
-        "tally_name": "Concrete - 68 MeV - 100 cm",
+    "Concrete - 68 MeV - 100 cm - on-axis": {
+        "result": "Tiara-BS_cc-68-100-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "cc-68-150": {
-        "tally_name": "Concrete - 68 MeV - 150 cm",
+    "Concrete - 68 MeV - 150 cm - on-axis": {
+        "result": "Tiara-BS_cc-68-150-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-43-20": {
-        "tally_name": "Iron - 43 MeV - 20 cm",
+    "Iron - 43 MeV - 20 cm - on-axis": {
+        "result": "Tiara-BS_fe-43-20-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-43-40": {
-        "tally_name": "Iron - 43 MeV - 40 cm",
+    "Iron - 43 MeV - 40 cm - on-axis": {
+        "result": "Tiara-BS_fe-43-40-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-43-100": {
-        "tally_name": "Iron - 43 MeV - 100 cm",
+    "Iron - 43 MeV - 100 cm - on-axis": {
+        "result": "Tiara-BS_fe-43-100-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-68-20": {
-        "tally_name": "Iron - 68 MeV - 20 cm",
+    "Iron - 68 MeV - 20 cm - on-axis": {
+        "result": "Tiara-BS_fe-68-20-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-68-40": {
-        "tally_name": "Iron - 68 MeV - 40 cm",
+    "Iron - 68 MeV - 40 cm - on-axis": {
+        "result": "Tiara-BS_fe-68-40-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     },
-    "fe-68-100": {
-        "tally_name": "Iron - 68 MeV - 100 cm",
+    "Iron - 68 MeV - 100 cm - on-axis": {
+        "result": "Tiara-BS_fe-68-100-00 Bonner sphere detector",
         "substitutions": {
-            "Cells": "Bonner sphere radius [mm]",
-            "Value": "C/E"
+            "Radius": "Bonner sphere radius [mm]",
+            "Value": "C/E (Count rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Bonner sphere radius [mm]",
-            "y": "C/E",
+            "y": "C/E (Count rate)",
             "log_x": false,
             "log_y": false
         },
-        "y_axis_format": {"tickformat": ".2e"},
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
         "only_ratio": true
     }
 }

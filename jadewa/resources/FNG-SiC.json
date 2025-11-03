@@ -1,166 +1,91 @@
 {
-    "Al 4": {
-        "tally_name": "Reaction Rates - Al27 (n,a) Na24",
+    "Reaction Rates - Al27 (n,\u03B1) Na24": {
+        "result": "FNG-SiC_Al Reaction rate",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "612",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                10.41,
-                25.65,
-                40.89,
-                56.13
-            ]
         },
         "only_ratio": true
     },
-    "Au 4": {
-        "tally_name": "Reaction Rates - Au197 (n,g) Au198",
+    "Reaction Rates - Au197 (n,g) Au198": {
+        "result": "FNG-SiC_Au Reaction rate",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "612",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                10.41,
-                25.65,
-                40.89,
-                56.13
-            ]
         },
         "only_ratio": true
     },
-    "Ni 4": {
-        "tally_name": "Reaction Rates - Ni58 (n,p) Co58",
+    "Reaction Rates - Ni58 (n,p) Co58": {
+        "result": "FNG-SiC_Ni Reaction rate",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "612",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                10.41,
-                25.65,
-                40.89,
-                56.13
-            ]
         },
         "only_ratio": true
     },
-    "Nb 4": {
-        "tally_name": "Reaction Rates - Nb93 (n,2n) Nb92",
+    "Reaction Rates - Nb93 (n,2n) Nb92": {
+        "result": "FNG-SiC_Nb Reaction rate",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Reaction rate)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Reaction rate)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "612",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                10.41,
-                25.65,
-                40.89,
-                56.13
-            ]
         },
         "only_ratio": true
     },
-    "TLD 6": {
-        "tally_name": "Nuclear Heating (TLDs)",
+    "Nuclear Heating (TLDs)": {
+        "result": "FNG-SiC_TLD Nuclear heating",
         "substitutions": {
             "Cells": "Shielding thickness [cm]",
-            "Value": "C/E"
+            "Value": "C/E (Nuclear heating)"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Shielding thickness [cm]",
-            "y": "C/E",
+            "y": "C/E (Nuclear heating)",
             "log_x": false,
             "log_y": false
         },
         "y_axis_format": {
             "tickformat": ".2e"
-        },
-        "x_axis_format": {
-            "tickmode": "array",
-            "tickvals": [
-                "602",
-                "612",
-                "622",
-                "632"
-            ],
-            "ticktext": [
-                14.99,
-                30.23,
-                45.47,
-                60.71
-            ]
         },
         "only_ratio": true
     }
