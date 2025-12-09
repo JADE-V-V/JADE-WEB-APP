@@ -18,17 +18,12 @@ from jadewa.utils import (
     safe_add_ctg_to_dict,
 )
 
-# Get list of CSV files in current directory
-OWNER = "JADE-V-V"
-REPO = "JADE-RAW-RESULTS"
-BRANCH = "main"
-
 
 # Initialize status and processor
 @st.cache_data
 def get_status_processor() -> tuple[Status, Processor]:
     """Get the status and processor objects"""
-    session_status = Status.from_github(OWNER, REPO, branch=BRANCH)
+    session_status = Status.from_github()
     session_processor = Processor(session_status)
     return session_status, session_processor
 

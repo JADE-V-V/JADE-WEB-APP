@@ -71,8 +71,8 @@ class Status:
 
         return data["tree"]
 
-    @classmethod
-    def from_github(cls, owner: str, repo: str, branch: str = "main") -> Status:
+    @staticmethod
+    def _from_github(owner: str, repo: str, branch: str = "main") -> tuple[dict, list]:
         """Create a Status object parsing all files contained in a GitHub repository
 
         Parameters
@@ -86,15 +86,15 @@ class Status:
 
         Returns
         -------
-        Status
-            Status object
+        status, metadata_paths : tuple[dict, list]
+            nested dictionary and list of metadata paths to build the Status object
         """
         # structure in the root directory goes _code_-_library_ -> benchmark ->
         # -> results.
 
         # First get all last level directories
         allfiles = []
-        for i in cls._github_walk(owner, repo, branch):
+        for i in Status._github_walk(owner, repo, branch):
             path = i["path"]
             filename = os.path.basename(path)
             if filename.endswith(".csv") or filename == "metadata.json":
@@ -141,7 +141,24 @@ class Status:
                 metadata_paths.append(json_path)
         # df = pd.DataFrame(metadata_rows)
 
-        return cls(status, metadata_paths)
+        return status, metadata_paths
+    
+    @classmethod
+    def from_github(cls) -> Status:
+        """Create a Status object parsing all files contained in the various
+        GitHub repositories
+        """
+        status_dict, metadata_paths = cls._from_github("JADE-V-V", "JADE-RAW-RESULTS", branch="main")
+        additional_status, _ = cls._from_github("IAEA-NDS", "open-benchmarks", branch="main")
+        # Merge the two status dictionaries
+        for benchmark, libraries in additional_status.items():
+            if benchmark not in status_dict:
+                # there is no point in getting exp data if no computational is available
+                continue
+            additional_exp = libraries['expresults']
+            status_dict[benchmark]['expresults'] = additional_exp
+
+        return cls(status_dict, metadata_paths)
 
     @classmethod
     def from_root(cls, root: os.PathLike) -> Status:
