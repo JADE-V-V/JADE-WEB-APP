@@ -28,15 +28,15 @@ class TestStreamlitApp:
 
         # Test an experiment
         app.selectbox(key="benchmark_0").select("Oktavian").run()
-        assert set(app.selectbox(key="lib").options) == {
+        for label in [
             "Experiment",
             "FENDL 2.1",
             "FENDL 3.1d",
             "FENDL 3.2b",
             "FENDL 3.2c",
             "ENDFB-VIII.0",
-            "JEFF-3.3",
-        }
+            "JEFF-3.3"]:
+            assert label in set(app.selectbox(key="lib").options)
 
         # Test the selection of tally options by checking if the selected values
         # match the expected values.

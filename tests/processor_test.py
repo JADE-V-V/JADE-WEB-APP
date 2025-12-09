@@ -24,7 +24,7 @@ class TestProcessor:
     def processor_github(self):
         """Fixture for github processor"""
         return Processor(
-            Status.from_github("JADE-V-V", "JADE-RAW-RESULTS", branch="main")
+            Status.from_github()
         )
 
     @pytest.fixture
@@ -135,7 +135,7 @@ class TestProcessor:
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
         processor = Processor(
-            Status.from_github("JADE-V-V", "JADE-RAW-RESULTS", branch="main")
+            Status.from_github()
         )
         data = processor._get_graph_data(
             "Sphere",

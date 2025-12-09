@@ -53,7 +53,7 @@ class TestStatus:
 
     def test_from_github(self):
         """Test the from_github method"""
-        status = Status.from_github("JADE-V-V", "JADE-RAW-RESULTS", branch="main")
+        status = Status.from_github()
         assert isinstance(status, Status)
         csvs = status.get_results("Sphere", "FENDL 3.2c", "mcnp")
         assert len(csvs[1]) > 100
@@ -63,3 +63,7 @@ class TestStatus:
         assert status.metadata_df is None
         status.get_metadata_df()
         assert len(status.metadata_df) > 1
+    
+    def test_github_iaea(self):
+        status, metadata_paths = Status._from_github("IAEA-NDS", "open-benchmarks", branch="main")
+        assert 'Tiara-BC' in status
