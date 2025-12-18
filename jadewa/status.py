@@ -156,7 +156,7 @@ class Status:
                 # there is no point in getting exp data if no computational is available
                 continue
             additional_exp = libraries['expresults']
-            status_dict[benchmark]['expresults'] = additional_exp
+            status_dict[benchmark]['exp_exp'] = additional_exp
 
         return cls(status_dict, metadata_paths)
 
