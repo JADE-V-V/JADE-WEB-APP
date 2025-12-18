@@ -155,8 +155,8 @@ class Status:
             if benchmark not in status_dict:
                 # there is no point in getting exp data if no computational is available
                 continue
-            additional_exp = libraries['expresults']
-            status_dict[benchmark]['exp_exp'] = additional_exp
+            additional_exp = libraries['expresults']['expresults']
+            status_dict[benchmark]['exp']['exp'] = additional_exp
 
         return cls(status_dict, metadata_paths)
 
