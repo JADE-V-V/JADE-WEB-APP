@@ -23,9 +23,7 @@ class TestProcessor:
     @pytest.fixture
     def processor_github(self):
         """Fixture for github processor"""
-        return Processor(
-            Status.from_github()
-        )
+        return Processor(Status.from_github())
 
     @pytest.fixture
     def processor(self, status: Status):
@@ -134,16 +132,14 @@ class TestProcessor:
 
     def test_get_graph_data_github(self):
         """Test the get_graph_data method with github data"""
-        processor = Processor(
-            Status.from_github()
-        )
+        processor = Processor(Status.from_github())
         data = processor._get_graph_data(
             "Sphere",
             "FENDL 3.2c",
             "1001_H-1 - Neutron Flux at the external surface in Vitamin-J 175 energy groups",
         )
         assert len(data.columns) == 4
-        assert len(set(data["Neutron flux [n/cm^2/s]"].to_list())) == 1006
+        assert len(set(data["Neutron flux [n/cm^2/s]"].to_list())) == 1174
 
         data = processor._get_graph_data(
             "C-Model",

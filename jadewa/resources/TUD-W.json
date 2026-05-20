@@ -6,15 +6,15 @@
         ]
     },
     "5 cm - Neutron flux": {
-        "result": "TUD-W_pos1 Neutron flux",
+        "result": "TUD-W_pos1 Neutron spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron flux [1/MeV/n/cm^2]"
+            "Value": "Neutron flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "y": "Neutron flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -23,15 +23,15 @@
         }
     },
     "5 cm - Photon flux": {
-        "result": "TUD-W_pos1 Photon flux",
+        "result": "TUD-W_pos1 Photon spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon flux [1/MeV/n/cm^2]"
+            "Value": "Photon flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon flux [1/MeV/n/cm^2]",
+            "y": "Photon flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -40,15 +40,15 @@
         }
     },
     "15 cm - Neutron flux": {
-        "result": "TUD-W_pos2 Neutron flux",
+        "result": "TUD-W_pos2 Neutron spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron flux [1/MeV/n/cm^2]"
+            "Value": "Neutron flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "y": "Neutron flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -57,15 +57,15 @@
         }
     },
     "15 cm - Photon flux": {
-        "result": "TUD-W_pos2 Photon flux",
+        "result": "TUD-W_pos2 Photon spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon flux [1/MeV/n/cm^2]"
+            "Value": "Photon flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon flux [1/MeV/n/cm^2]",
+            "y": "Photon flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -74,15 +74,15 @@
         }
     },
     "25 cm - Neutron flux": {
-        "result": "TUD-W_pos3 Neutron flux",
+        "result": "TUD-W_pos3 Neutron spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron flux [1/MeV/n/cm^2]"
+            "Value": "Neutron flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "y": "Neutron flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -91,15 +91,15 @@
         }
     },
     "25 cm - Photon flux": {
-        "result": "TUD-W_pos3 Photon flux",
+        "result": "TUD-W_pos3 Photon spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon flux [1/MeV/n/cm^2]"
+            "Value": "Photon flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon flux [1/MeV/n/cm^2]",
+            "y": "Photon flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -108,15 +108,15 @@
         }
     },
     "35 cm - Neutron flux": {
-        "result": "TUD-W_pos4 Neutron flux",
+        "result": "TUD-W_pos4 Neutron spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Neutron flux [1/MeV/n/cm^2]"
+            "Value": "Neutron flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Neutron flux [1/MeV/n/cm^2]",
+            "y": "Neutron flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },
@@ -125,15 +125,15 @@
         }
     },
     "35 cm - Photon flux": {
-        "result": "TUD-W_pos4 Photon flux",
+        "result": "TUD-W_pos4 Photon spectra",
         "substitutions": {
             "Energy": "Energy [MeV]",
-            "Value": "Photon flux [1/MeV/n/cm^2]"
+            "Value": "Photon flux [1/MeV/n/cm²]"
         },
         "plot_type": "step",
         "plot_args": {
             "x": "Energy [MeV]",
-            "y": "Photon flux [1/MeV/n/cm^2]",
+            "y": "Photon flux [1/MeV/n/cm²]",
             "log_x": true,
             "log_y": false
         },

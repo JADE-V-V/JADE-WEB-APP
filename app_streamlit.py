@@ -120,13 +120,13 @@ def display_metadata(
     pivot_no_sddr: pd.DataFrame, pivot_sddr: pd.DataFrame, sorted_df: pd.DataFrame
 ) -> None:
     st.header("Available simulations (no activation)")
-    st.dataframe(pivot_no_sddr, use_container_width=True)
+    st.dataframe(pivot_no_sddr, width="stretch")
 
     st.header("Available simulations (activation)")
-    st.dataframe(pivot_sddr, use_container_width=True)
+    st.dataframe(pivot_sddr, width="stretch")
 
     st.header("Complete metadata on available simulations")
-    st.dataframe(sorted_df, use_container_width=True)
+    st.dataframe(sorted_df, width="stretch")
 
 
 def _split_options(
@@ -422,7 +422,7 @@ def main():
                 fig = None
 
             if fig:
-                plotly_chart = st.plotly_chart(fig, use_container_width=True)
+                plotly_chart = st.plotly_chart(fig, width="stretch")
 
             expander = st.expander(
                 "Select specific libraries across benchmarks.",
