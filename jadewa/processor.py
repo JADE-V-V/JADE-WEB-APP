@@ -342,6 +342,10 @@ class Processor:
         except KeyError:
             return None
 
+    def is_only_ratio(self, benchmark: str, tally: str) -> bool:
+        """Check whether a tally is configured to be displayed in ratio mode only."""
+        return bool(self._get_optional_config("only_ratio", benchmark, tally))
+
     def get_plot(
         self,
         benchmark: str,
@@ -381,7 +385,7 @@ class Processor:
         # check for optional inputs
         x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
         y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
-        only_ratio = self._get_optional_config("only_ratio", benchmark, tally)
+        only_ratio = self.is_only_ratio(benchmark, tally)
         if only_ratio:
             ratio = True  # if only_ratio is set, ratio is forced to True
 
