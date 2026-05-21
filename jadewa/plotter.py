@@ -144,6 +144,8 @@ def _plot_grouped_bars(data: pd.DataFrame, **keyargs) -> Figure:
     fig = px.bar(
         data, **keyargs, color="label", template="plotly_white", barmode="group"
     )
+    for trace in fig.data:
+        trace.offsetgroup = None
     return fig
 
 
