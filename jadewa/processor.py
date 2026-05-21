@@ -335,7 +335,7 @@ class Processor:
         return x_vals_to_string
 
     def _get_optional_config(self, key: str, benchmark: str, tally: str) -> str | bool:
-        """helper to get optional configuration from the json file thay may not
+        """helper to get optional configuration from the json file that may not
         be present"""
         try:
             return self.params[benchmark][tally][key]
