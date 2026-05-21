@@ -401,11 +401,7 @@ def main():
 
         with col2:
             only_ratio = (
-                bool(
-                    processor.params.get(selected_benchmark, {})
-                    .get(tally, {})
-                    .get("only_ratio", False)
-                )
+                bool(processor.get_optional_config("only_ratio", selected_benchmark, tally))
                 if selected_benchmark and tally
                 else False
             )

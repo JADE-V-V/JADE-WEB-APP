@@ -334,9 +334,8 @@ class Processor:
 
         return x_vals_to_string
 
-    def _get_optional_config(self, key: str, benchmark: str, tally: str) -> str | bool:
-        """helper to get optional configuration from the json file that may not
-        be present"""
+    def get_optional_config(self, key: str, benchmark: str, tally: str) -> str | bool:
+        """Get an optional configuration from the benchmark-tally json input."""
         try:
             return self.params[benchmark][tally][key]
         except KeyError:
@@ -379,9 +378,9 @@ class Processor:
         """
 
         # check for optional inputs
-        x_axis_format = self._get_optional_config("x_axis_format", benchmark, tally)
-        y_axis_format = self._get_optional_config("y_axis_format", benchmark, tally)
-        only_ratio = self._get_optional_config("only_ratio", benchmark, tally)
+        x_axis_format = self.get_optional_config("x_axis_format", benchmark, tally)
+        y_axis_format = self.get_optional_config("y_axis_format", benchmark, tally)
+        only_ratio = self.get_optional_config("only_ratio", benchmark, tally)
         if only_ratio:
             ratio = True  # if only_ratio is set, ratio is forced to True
 
@@ -395,7 +394,7 @@ class Processor:
             ratio=ratio,
             refcode=refcode,
             x_vals_to_string=x_vals_to_string,
-            subset=self._get_optional_config("subset", benchmark, tally),
+            subset=self.get_optional_config("subset", benchmark, tally),
         )
         # Mandatory keys
         try:
