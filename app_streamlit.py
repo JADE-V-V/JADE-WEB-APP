@@ -400,13 +400,17 @@ def main():
                 tally = None
 
         with col2:
-            only_ratio = bool(
-                selected_benchmark
-                and tally
-                and processor.is_only_ratio(selected_benchmark, tally)
+            only_ratio_index = 0
+            ratio_index_when_both_available = 1
+            only_ratio = (
+                processor.is_only_ratio(selected_benchmark, tally)
+                if selected_benchmark and tally
+                else False
             )
             plot_type_options = ["Ratio"] if only_ratio else ["Absolute", "Ratio"]
-            default_plot_type = 0 if only_ratio else 1
+            default_plot_type = (
+                only_ratio_index if only_ratio else ratio_index_when_both_available
+            )
             # Radio button to select plot type as ratio or not
             ratio_button = st.radio(
                 "Plot type",
