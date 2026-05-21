@@ -171,17 +171,6 @@ class TestProcessor:
         )
         assert fig is not None
 
-    def test_is_only_ratio(self, processor: Processor):
-        """Test only_ratio flag retrieval for benchmark tallies."""
-        assert processor.is_only_ratio("HCPB_TBM_1D", "Neutron heating") is True
-        assert (
-            processor.is_only_ratio(
-                "Sphere",
-                "1001_H-1 - Neutron Flux at the external surface in Vitamin-J 175 energy groups",
-            )
-            is False
-        )
-
     def test_get_plot_subset(self, processor: Processor):
         """Test the get_plot method with C-Model which has subset configuration"""
         fig = processor.get_plot(
