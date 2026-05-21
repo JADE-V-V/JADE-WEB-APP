@@ -343,7 +343,15 @@ class Processor:
             return None
 
     def is_only_ratio(self, benchmark: str, tally: str) -> bool:
-        """Check whether a tally is configured to be displayed in ratio mode only."""
+        """Check whether a benchmark tally is configured for ratio-only plotting.
+
+        Parameters
+        ----------
+        benchmark : str
+            Benchmark name.
+        tally : str
+            Tally name within the benchmark.
+        """
         return bool(self._get_optional_config("only_ratio", benchmark, tally))
 
     def get_plot(
