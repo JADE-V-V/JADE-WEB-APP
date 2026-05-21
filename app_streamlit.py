@@ -406,7 +406,7 @@ def main():
                 else False
             )
             plot_type_options = ["Ratio"] if only_ratio else ["Absolute", "Ratio"]
-            default_plot_type = 0 if only_ratio else plot_type_options.index("Ratio")
+            default_plot_type = 0 if only_ratio else 1
             # Radio button to select plot type as ratio or not
             ratio_button = st.radio(
                 "Plot type",

@@ -351,6 +351,11 @@ class Processor:
             Benchmark name.
         tally : str
             Tally name within the benchmark.
+
+        Returns
+        -------
+        bool
+            True when the tally is configured with ``only_ratio``.
         """
         return bool(self._get_optional_config("only_ratio", benchmark, tally))
 
