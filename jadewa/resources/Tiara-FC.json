@@ -7,7 +7,7 @@
             "Angle"
         ]
     },
-    "Concrete - 43 MeV - U238 - On-axis": {
+    "Concrete - 43 MeV - U238 - on-axis": {
         "result": [
             "Tiara-FC_cc-43-25-00 On-axis U-238 FC",
             "Tiara-FC_cc-43-50-00 On-axis U-238 FC",
@@ -51,7 +51,7 @@
         },
         "only_ratio": true
     },
-    "Concrete - 43 MeV - Th232 - On-axis": {
+    "Concrete - 43 MeV - Th232 - on-axis": {
         "result": [
             "Tiara-FC_cc-43-25-00 On-axis Th-232 FC",
             "Tiara-FC_cc-43-50-00 On-axis Th-232 FC",
@@ -95,7 +95,7 @@
         },
         "only_ratio": true
     },
-    "Concrete - 68 MeV - U238 - On-axis": {
+    "Concrete - 68 MeV - U238 - on-axis": {
         "result": [
             "Tiara-FC_cc-68-25-00 On-axis U-238 FC",
             "Tiara-FC_cc-68-50-00 On-axis U-238 FC",
@@ -141,7 +141,7 @@
         },
         "only_ratio": true
     },
-    "Concrete - 68 MeV - Th232 - On-axis": {
+    "Concrete - 68 MeV - Th232 - on-axis": {
         "result": [
             "Tiara-FC_cc-68-25-00 On-axis Th-232 FC",
             "Tiara-FC_cc-68-50-00 On-axis Th-232 FC",
@@ -187,7 +187,7 @@
         },
         "only_ratio": true
     },
-    "Iron - 43 MeV - U238 - On-axis": {
+    "Iron - 43 MeV - U238 - on-axis": {
         "result": [
             "Tiara-FC_fe-43-00-00 On-axis U-238 FC",
             "Tiara-FC_fe-43-10-00 On-axis U-238 FC",
@@ -235,7 +235,7 @@
         },
         "only_ratio": true
     },
-    "Iron - 43 MeV - Th232 - On-axis": {
+    "Iron - 43 MeV - Th232 - on-axis": {
         "result": [
             "Tiara-FC_fe-43-00-00 On-axis Th-232 FC",
             "Tiara-FC_fe-43-10-00 On-axis Th-232 FC",
@@ -281,7 +281,7 @@
         },
         "only_ratio": true
     },
-    "Iron - 68 MeV - U238 - On-axis": {
+    "Iron - 68 MeV - U238 - on-axis": {
         "result": [
             "Tiara-FC_fe-68-00-00 On-axis U-238 FC",
             "Tiara-FC_fe-68-20-00 On-axis U-238 FC",
@@ -330,7 +330,7 @@
         },
         "only_ratio": true
     },
-    "Iron - 68 MeV - Th232 - On-axis": {
+    "Iron - 68 MeV - Th232 - on-axis": {
         "result": [
             "Tiara-FC_fe-68-00-00 On-axis Th-232 FC",
             "Tiara-FC_fe-68-20-00 On-axis Th-232 FC",
