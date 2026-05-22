@@ -37,6 +37,12 @@ class TestPlotter:
         key_args = {"x": "x", "y": "y"}
         get_figure("step", TEST_DF, key_args)
 
+    def test_get_grouped_bar_figure_without_offset_group(self):
+        key_args = {"x": "x", "y": "y"}
+        fig = get_figure("grouped_bar", TEST_DF, key_args)
+
+        assert all(trace.offsetgroup is None for trace in fig.data)
+
     def test_select_visible_libs(self):
         """Test select_visible_libs function by ensuring that the old libraries
         have been deselected from the plot legend and the new ones are visible"""
