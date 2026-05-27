@@ -193,7 +193,7 @@
         }
     },
     "Al - Photon leakage spectrum": {
-        "result": "Oktavian_Al Photon flux",
+        "result": "Oktavian_Al Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -210,7 +210,7 @@
         }
     },
     "Co - Photon leakage spectrum": {
-        "result": "Oktavian_Co Photon flux",
+        "result": "Oktavian_Co Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -227,7 +227,7 @@
         }
     },
     "Cr - Photon leakage spectrum": {
-        "result": "Oktavian_Cr Photon flux",
+        "result": "Oktavian_Cr Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -244,7 +244,7 @@
         }
     },
     "Cu - Photon leakage spectrum": {
-        "result": "Oktavian_Cu Photon flux",
+        "result": "Oktavian_Cu Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -261,7 +261,7 @@
         }
     },
     "LiF - Photon leakage spectrum": {
-        "result": "Oktavian_LiF Photon flux",
+        "result": "Oktavian_LiF Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -278,7 +278,7 @@
         }
     },
     "Mn - Photon leakage spectrum": {
-        "result": "Oktavian_Mn Photon flux",
+        "result": "Oktavian_Mn Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -295,7 +295,7 @@
         }
     },
     "Mo - Photon leakage spectrum": {
-        "result": "Oktavian_Mo Photon flux",
+        "result": "Oktavian_Mo Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -312,7 +312,7 @@
         }
     },
     "Si - Photon leakage spectrum": {
-        "result": "Oktavian_Si Photon flux",
+        "result": "Oktavian_Si Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -329,7 +329,7 @@
         }
     },
     "Ti - Photon leakage spectrum": {
-        "result": "Oktavian_Ti Photon flux",
+        "result": "Oktavian_Ti Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"
@@ -346,7 +346,7 @@
         }
     },
     "W - Photon leakage spectrum": {
-        "result": "Oktavian_W Photon flux",
+        "result": "Oktavian_W Gamma flux",
         "substitutions": {
             "Energy": "Energy [MeV]",
             "Value": "Photon leakage spectrum per unit energy [#/cm^2/s/MeV]"

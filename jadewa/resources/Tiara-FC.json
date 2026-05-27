@@ -1,0 +1,382 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "shielding material",
+            "Source",
+            "Fission cell",
+            "Angle"
+        ]
+    },
+    "Concrete - 43 MeV - U238 - on-axis": {
+        "result": [
+            "Tiara-FC_cc-43-25-00 On-axis U-238 FC",
+            "Tiara-FC_cc-43-50-00 On-axis U-238 FC",
+            "Tiara-FC_cc-43-100-00 On-axis U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 43 MeV - U238 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_cc-43-25-00 20 cm U-238 FC",
+            "Tiara-FC_cc-43-50-00 20 cm U-238 FC",
+            "Tiara-FC_cc-43-100-00 20 cm U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 43 MeV - Th232 - on-axis": {
+        "result": [
+            "Tiara-FC_cc-43-25-00 On-axis Th-232 FC",
+            "Tiara-FC_cc-43-50-00 On-axis Th-232 FC",
+            "Tiara-FC_cc-43-100-00 On-axis Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 43 MeV - Th232 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_cc-43-25-00 20 cm Th-232 FC",
+            "Tiara-FC_cc-43-50-00 20 cm Th-232 FC",
+            "Tiara-FC_cc-43-100-00 20 cm Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 68 MeV - U238 - on-axis": {
+        "result": [
+            "Tiara-FC_cc-68-25-00 On-axis U-238 FC",
+            "Tiara-FC_cc-68-50-00 On-axis U-238 FC",
+            "Tiara-FC_cc-68-100-00 On-axis U-238 FC",
+            "Tiara-FC_cc-68-150-00 On-axis U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 68 MeV - U238 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_cc-68-25-00 20 cm U-238 FC",
+            "Tiara-FC_cc-68-50-00 20 cm U-238 FC",
+            "Tiara-FC_cc-68-100-00 20 cm U-238 FC",
+            "Tiara-FC_cc-68-150-00 20 cm U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 68 MeV - Th232 - on-axis": {
+        "result": [
+            "Tiara-FC_cc-68-25-00 On-axis Th-232 FC",
+            "Tiara-FC_cc-68-50-00 On-axis Th-232 FC",
+            "Tiara-FC_cc-68-100-00 On-axis Th-232 FC",
+            "Tiara-FC_cc-68-150-00 On-axis Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Concrete - 68 MeV - Th232 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_cc-68-25-00 20 cm Th-232 FC",
+            "Tiara-FC_cc-68-50-00 20 cm Th-232 FC",
+            "Tiara-FC_cc-68-100-00 20 cm Th-232 FC",
+            "Tiara-FC_cc-68-150-00 20 cm Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 43 MeV - U238 - on-axis": {
+        "result": [
+            "Tiara-FC_fe-43-00-00 On-axis U-238 FC",
+            "Tiara-FC_fe-43-10-00 On-axis U-238 FC",
+            "Tiara-FC_fe-43-20-00 On-axis U-238 FC",
+            "Tiara-FC_fe-43-40-00 On-axis U-238 FC",
+            "Tiara-FC_fe-43-70-00 On-axis U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 43 MeV - U238 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_fe-43-00-00 20 cm U-238 FC",
+            "Tiara-FC_fe-43-10-00 20 cm U-238 FC",
+            "Tiara-FC_fe-43-20-00 20 cm U-238 FC",
+            "Tiara-FC_fe-43-40-00 20 cm U-238 FC",
+            "Tiara-FC_fe-43-70-00 20 cm U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 43 MeV - Th232 - on-axis": {
+        "result": [
+            "Tiara-FC_fe-43-00-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-43-10-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-43-20-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-43-40-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-43-70-00 On-axis Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 43 MeV - Th232 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_fe-43-20-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-43-40-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-43-70-00 20 cm Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 68 MeV - U238 - on-axis": {
+        "result": [
+            "Tiara-FC_fe-68-00-00 On-axis U-238 FC",
+            "Tiara-FC_fe-68-20-00 On-axis U-238 FC",
+            "Tiara-FC_fe-68-40-00 On-axis U-238 FC",
+            "Tiara-FC_fe-68-70-00 On-axis U-238 FC",
+            "Tiara-FC_fe-68-100-00 On-axis U-238 FC",
+            "Tiara-FC_fe-68-130-00 On-axis U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 68 MeV - U238 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_fe-68-20-00 20 cm U-238 FC",
+            "Tiara-FC_fe-68-40-00 20 cm U-238 FC",
+            "Tiara-FC_fe-68-70-00 20 cm U-238 FC",
+            "Tiara-FC_fe-68-100-00 20 cm U-238 FC",
+            "Tiara-FC_fe-68-130-00 20 cm U-238 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 68 MeV - Th232 - on-axis": {
+        "result": [
+            "Tiara-FC_fe-68-00-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-68-20-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-68-40-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-68-70-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-68-100-00 On-axis Th-232 FC",
+            "Tiara-FC_fe-68-130-00 On-axis Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    },
+    "Iron - 68 MeV - Th232 - 20 cm off-axis": {
+        "result": [
+            "Tiara-FC_fe-68-20-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-68-40-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-68-70-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-68-100-00 20 cm Th-232 FC",
+            "Tiara-FC_fe-68-130-00 20 cm Th-232 FC"
+        ],
+        "substitutions": {
+            "Shielding depth (cm)": "Shielding depth [cm]",
+            "Value": "C/E (Count rate)"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Shielding depth [cm]",
+            "y": "C/E (Count rate)",
+            "log_x": false,
+            "log_y": false
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        },
+        "only_ratio": true
+    }
+}
