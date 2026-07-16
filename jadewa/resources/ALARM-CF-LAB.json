@@ -194,12 +194,12 @@
         "result": "Count rates 2 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -207,12 +207,12 @@
         "result": "Count rates 3 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -220,12 +220,12 @@
         "result": "Count rates 5 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -233,12 +233,12 @@
         "result": "Count rates 5 inches (without Cd)",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -246,12 +246,12 @@
         "result": "Count rates 8 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -259,12 +259,12 @@
         "result": "Count rates 10 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     },
@@ -272,12 +272,12 @@
         "result": "Count rates 12 inches",
         "substitutions": {
             "Cells": "Detector position",
-            "Value": "Neutron count rate [n/s]"
+            "Value": "Neutron count rate [pulses/s]"
         },
         "plot_type": "scatter",
         "plot_args": {
             "x": "Detector position",
-            "y": "Neutron count rate [n/s]"
+            "y": "Neutron count rate [pulses/s]"
         },
         "only_ratio": true
     }
