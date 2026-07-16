@@ -224,7 +224,11 @@ def _recursive_select_split_option(columns, ctg_dict, labels, selections=None):
         unique_key = f"{label}_{path_key}"
 
         option_selected = st.selectbox(
-            label=label, options=options_available, index=index, key=unique_key
+            label=label if label else " ",
+            options=options_available,
+            index=index,
+            key=unique_key,
+            label_visibility="hidden" if not label else "visible",
         )
         # add selection to the list
         selections.append(option_selected)
