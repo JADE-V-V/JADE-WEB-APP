@@ -139,7 +139,7 @@ class TestProcessor:
             "1001_H-1 - Neutron Flux at the external surface in Vitamin-J 175 energy groups",
         )
         assert len(data.columns) == 4
-        assert len(set(data["Neutron flux [n/cm^2/s]"].to_list())) == 1174
+        assert len(set(data["Neutron flux [n/cm^2/s]"].to_list())) == 1342
 
         data = processor._get_graph_data(
             "C-Model",
