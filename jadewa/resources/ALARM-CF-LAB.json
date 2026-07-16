@@ -1,9 +1,9 @@
 {
     "general": {
         "tally_options_labels": [
-            "Labyrinth configuration",
+            "labyrinth configuration",
             "Tally",
-            "Detector position"
+            ""
         ],
         "generic_tallies": true
     },
@@ -20,7 +20,7 @@
         },
         "only_ratio": true
     },
-    "{} - Neutron spectra - 1": {
+    "{} - Neutron spectra - Detector position 1": {
         "result": "Neutron spectra (pos 1)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -37,7 +37,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 2": {
+    "{} - Neutron spectra - Detector position 2": {
         "result": "Neutron spectra (pos 2)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -54,7 +54,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 3": {
+    "{} - Neutron spectra - Detector position 3": {
         "result": "Neutron spectra (pos 3)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -71,7 +71,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 4": {
+    "{} - Neutron spectra - Detector position 4": {
         "result": "Neutron spectra (pos 4)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -88,7 +88,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 5": {
+    "{} - Neutron spectra - Detector position 5": {
         "result": "Neutron spectra (pos 5)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -105,7 +105,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 6": {
+    "{} - Neutron spectra - Detector position 6": {
         "result": "Neutron spectra (pos 6)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -122,7 +122,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 7": {
+    "{} - Neutron spectra - Detector position 7": {
         "result": "Neutron spectra (pos 7)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -139,7 +139,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 8": {
+    "{} - Neutron spectra - Detector position 8": {
         "result": "Neutron spectra (pos 8)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -156,7 +156,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 9": {
+    "{} - Neutron spectra - Detector position 9": {
         "result": "Neutron spectra (pos 9)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -173,7 +173,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Neutron spectra - 10": {
+    "{} - Neutron spectra - Detector position 10": {
         "result": "Neutron spectra (pos 10)",
         "substitutions": {
             "Energy": "Energy [MeV]",
@@ -190,7 +190,7 @@
             "tickformat": ".2e"
         }
     },
-    "{} - Count rates 2\"": {
+    "{} - Count rates - Bonner spheres 2\"": {
         "result": "Count rates 2 inches",
         "substitutions": {
             "Cells": "Detector position",
@@ -203,7 +203,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 3\"": {
+    "{} - Count rates - Bonner spheres 3\"": {
         "result": "Count rates 3 inches",
         "substitutions": {
             "Cells": "Detector position",
@@ -216,7 +216,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 5\"": {
+    "{} - Count rates - Bonner spheres 5\"": {
         "result": "Count rates 5 inches",
         "substitutions": {
             "Cells": "Detector position",
@@ -229,7 +229,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 5\" (no Cd)": {
+    "{} - Count rates - Bonner spheres 5\" (no Cd)": {
         "result": "Count rates 5 inches (without Cd)",
         "substitutions": {
             "Cells": "Detector position",
@@ -242,7 +242,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 8\"": {
+    "{} - Count rates - Bonner spheres 8\"": {
         "result": "Count rates 8 inches",
         "substitutions": {
             "Cells": "Detector position",
@@ -255,7 +255,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 10\"": {
+    "{} - Count rates - Bonner spheres 10\"": {
         "result": "Count rates 10 inches",
         "substitutions": {
             "Cells": "Detector position",
@@ -268,7 +268,7 @@
         },
         "only_ratio": true
     },
-    "{} - Count rates 12\"": {
+    "{} - Count rates - Bonner spheres 12\"": {
         "result": "Count rates 12 inches",
         "substitutions": {
             "Cells": "Detector position",
