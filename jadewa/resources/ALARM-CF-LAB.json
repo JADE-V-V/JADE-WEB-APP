@@ -1,0 +1,284 @@
+{
+    "general": {
+        "tally_options_labels": [
+            "labyrinth configuration",
+            "Tally",
+            ""
+        ],
+        "generic_tallies": true
+    },
+    "{} - Total neutron flux": {
+        "result": "Total neutron flux",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron flux [n/cm²]"
+        },
+        "only_ratio": true
+    },
+    "{} - Neutron spectra - Detector position 1": {
+        "result": "Neutron spectra (pos 1)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 2": {
+        "result": "Neutron spectra (pos 2)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 3": {
+        "result": "Neutron spectra (pos 3)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 4": {
+        "result": "Neutron spectra (pos 4)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 5": {
+        "result": "Neutron spectra (pos 5)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 6": {
+        "result": "Neutron spectra (pos 6)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 7": {
+        "result": "Neutron spectra (pos 7)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 8": {
+        "result": "Neutron spectra (pos 8)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 9": {
+        "result": "Neutron spectra (pos 9)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Neutron spectra - Detector position 10": {
+        "result": "Neutron spectra (pos 10)",
+        "substitutions": {
+            "Energy": "Energy [MeV]",
+            "Value": "Neutron flux [n/cm²]"
+        },
+        "plot_type": "step",
+        "plot_args": {
+            "x": "Energy [MeV]",
+            "y": "Neutron flux [n/cm²]",
+            "log_x": true,
+            "log_y": true
+        },
+        "y_axis_format": {
+            "tickformat": ".2e"
+        }
+    },
+    "{} - Count rates - Bonner spheres 2\"": {
+        "result": "Count rates 2 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 3\"": {
+        "result": "Count rates 3 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 5\"": {
+        "result": "Count rates 5 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 5\" (no Cd)": {
+        "result": "Count rates 5 inches (without Cd)",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 8\"": {
+        "result": "Count rates 8 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 10\"": {
+        "result": "Count rates 10 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    },
+    "{} - Count rates - Bonner spheres 12\"": {
+        "result": "Count rates 12 inches",
+        "substitutions": {
+            "Cells": "Detector position",
+            "Value": "Neutron count rate [pulses/s]"
+        },
+        "plot_type": "scatter",
+        "plot_args": {
+            "x": "Detector position",
+            "y": "Neutron count rate [pulses/s]"
+        },
+        "only_ratio": true
+    }
+}
